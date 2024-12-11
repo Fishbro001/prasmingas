@@ -1,0 +1,904 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Open Sans", sans-serif;
+}
+
+header {
+    position: relative;
+    width: 100%
+}
+
+.container {
+    width: 100%;
+    max-width: 1170px;
+    margin: 0 auto;
+}
+
+#top-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid #999;
+    width: 100%;
+}
+
+#top-header a {
+    color: #777777;
+    font-size: 12px;
+    text-decoration: none;
+    display: flex;
+    position: relative;
+    margin-right: 14px;
+    box-sizing: border-box;
+}
+
+#top-header a img {
+    width: 18px;
+    height: 18px;
+    color: #666;
+    position: absolute;
+}
+
+#top-header a span {
+    margin-left: 30px;
+}
+
+#top-header .social-icons a {
+    margin-left: 20px;
+}
+
+.contact-info, .social-icons, .top-header-links {
+    display: flex;
+}
+
+.contact-info {
+    flex-grow: 6;
+}
+
+.social-icons {
+    flex-grow: 2;
+    justify-content: flex-end;
+}
+
+.top-header-links {
+    flex-grow: 4;
+    justify-content: flex-end;
+}
+
+#main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+    width: 100%;
+}
+
+#main-header #logo {
+    flex-grow: 4;
+}
+
+#menu {
+    flex-grow: 7;
+    text-align: right;
+}
+
+#search {
+    flex-grow: 1;
+    text-align: right;
+    padding-top: 5px;
+}
+
+#logo a {
+    color:#408326;
+    text-decoration: none;
+    font-size: 22px;
+    font-weight: 700;
+}
+
+#menu a {
+    font-size: 14px;
+    text-decoration: none;
+    color: #777777;
+    margin-left: 10px;
+    position: relative;
+}
+
+#menu a span {
+    margin-left: 30px;
+}
+
+#menu a img {
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+    position: absolute;
+}
+
+#search a {
+    position: relative;
+}
+
+#search a img {
+    width: 20px;
+    height: 20px;
+}
+
+.logo a {
+    font-size: 25px; 
+    color: #408326;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.logo img {
+    width: 40px;
+    height: auto;
+}
+
+/* Search Toggle */
+
+.hidden {
+    display: none;
+}
+
+#searchMobile {
+    position: absolute;
+    width: 100%;
+    top: 100px; /* Adjust based on your layout */
+    z-index: 10;
+}
+
+.search-container {
+    width: 1170px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    border: 1px solid #cccccc;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.search-content form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Input Fields */
+.data-input-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.data-input-col {
+    flex-grow: 4;
+}
+
+.data-input-field {
+    margin-bottom: 10px;
+}
+
+.data-input-date {
+    display: flex;
+    gap: 15px;
+}
+
+.data-input-date-from, .data-input-date-to {
+    flex-grow: 6;
+}
+
+.data-input-transport img {
+    width: 30px;
+    height: 30px;
+}
+
+.data-input-submit button {
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 18px;
+}
+
+.data-input-submit img {
+    width: 20px;
+    height: 20px;
+}
+
+.data-input-container input, .data-input-container select {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    color: #777777;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    transition: border 0.3s ease;
+    box-sizing: border-box;
+    font-family: "Open Sans", sans-serif;
+}
+
+#fromSlider, #toSlider {
+    padding: 0;
+}
+
+.data-input-container input:focus, .data-input-container select:focus {
+    border-color: #78a321;
+    outline: none;
+}
+
+/* Price Range Slider */
+
+h3.range-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: #777;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+}
+
+/* Transport Checkboxes */
+.data-input-transport {
+    display: flex;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.checkbox-icon {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    gap: 5px;
+}
+
+.checkbox-icon input[type="checkbox"] {
+    display: none;
+}
+
+.checkbox-icon .checkmark {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background 0.3s;
+}
+
+.checkbox-icon input[type="checkbox"]:checked + .checkbody .checkmark {
+    background-color: #408326;
+}
+
+/* Submit Button */
+.btn-search-submit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 12px 20px;
+    margin-right: 10px;
+    font-size: 16px;
+    background-color: #408326;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    box-sizing: border-box;
+}
+
+.btn-search-submit:hover {
+    background-color: #78a321;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    #searchMobile {
+        max-width: 100%;
+        padding: 10px;
+    }
+    
+    .form_control_container__time {
+        font-size: 12px;
+    }
+}
+
+/* BANNER */
+
+.site-banner {
+    background-color: #000000;
+    background-image: url(../img/6518_large.jpg);
+    background-size: cover;
+    background-position: center center;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 200px 0 50px;
+}
+
+/* SEARCH HOME DESKTOP */
+
+#searchDesktop {
+    padding-top: 30px;
+}
+
+.page-title {
+    font-size: 50px;
+    line-height: 1;
+    font-weight: 700;
+    margin: 0;
+    color: #ffffff;
+}
+
+/* FOOTER */
+
+#site-footer {
+    background-color: #343a40;
+}
+
+.column-wrapper {
+    display: flex;
+    gap: 25px;
+    justify-content: space-between;
+    padding: 50px 0;
+}  
+
+.footer-col {
+    display: flex; 
+    flex-direction: column;
+    justify-content: flex-start;   
+}
+
+.company-desc-1 {
+    padding-bottom: 0;
+    color: #ffffff;
+}
+
+.company-desc-2 {
+    color: #ffffff;
+}
+
+h3.info-header {
+    margin-top: 0;
+    color: #ffffff;
+}
+
+.footer-col a {
+    padding-bottom: 10px;
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 12px;
+
+}
+
+.footer-col a:hover {
+    color: #78a321;
+}
+
+.footer-col a img {
+    width: 20px;
+    height: 20px;
+}
+
+.info-company {
+    flex-grow: 3;
+}
+
+.info-contact {
+    flex-grow: 2;
+}
+
+.info-link {
+    flex-grow: 2;
+}
+
+.info-trips {
+    flex-grow: 2;
+}
+
+.info-more-links {
+    flex-grow: 3;
+}
+
+footer .contact-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.contact-info a {
+    display: flex;
+    gap: 10px;
+}
+
+footer .social-icons {
+    justify-content: flex-start;
+}
+
+.work-hours {
+    color: #ffffff;
+    font-size: 12px;
+}
+
+.footer-bottom {
+    color: #ffffff;
+    font-size: 12px;
+    text-align: center;
+    margin: 0;
+    padding: 20px 0;
+}
+
+/* MAIN CONTENT */
+
+#main {
+    padding: 80px 0;
+}
+
+#section-title {
+    font-size: 36px;
+    font-weight: 700;
+    padding-bottom: 20px;
+    color: #408326;
+    text-transform: uppercase;
+}
+
+.row-tours {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+#tour-item {
+    flex-grow: 4;
+}
+
+.tour-info {
+    position: relative;
+    font-size: 0;
+}
+
+.tour-info .image {
+    height: auto;
+    display: inline-block;
+}
+
+.tour-info .marks {
+    display: flex;
+    width: 50px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 20px;
+    padding: 10px 0;
+    background-color: #78a321; 
+}
+
+.tour-info span.num-days {
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.tour-info .icon img {
+    width: 20px;
+    height: 20px;
+}
+
+.tour-img {
+    width: 100%;
+    max-width: 1000px;
+    height: auto;
+}
+
+.price-mark {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+    padding: 5px 20px;
+    background-color: #78a321;
+    height: 40px;
+}
+
+.price-mark p {
+    margin: 0;
+    line-height: 1.2;
+    color: #ffffff;
+    font-size: 12px;
+}
+
+.price-mark p.price {
+    font-weight: 700;
+    font-size: 16px;
+}
+
+.discount-mark {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    bottom: 20px;
+    right: 0;
+    background-color: #78a321;
+    height: 40px;
+    padding: 5px 20px;
+}
+
+.discount-mark p {
+    margin: 0;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.tour-dates-available {
+    border: 1px solid #cccccc;
+}
+
+.tour-title-box {
+    margin: 10px 10px 0;
+    border-bottom: 1px dotted #cccccc;
+}
+
+.tour-title {
+    font-size: 18px;
+    color: #408326;
+    margin: 0;
+    padding-bottom: 10px;
+}
+
+.tour-dates {
+    padding: 0 10px;
+}
+
+.tour-date-content {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px dotted #cccccc;
+    padding: 5px 0;
+}
+
+.date, .free-places, .col-date-price {
+    width: 33.33%;
+}
+
+.free-places {
+    font-size: 14px;
+}
+
+.guaranteed {
+    font-weight: 700;
+    padding: 2px;
+    background-color: #ff8400;
+    font-size: 14px;
+    border-radius: 3px;
+    color: #ffffff;
+}
+
+.col-date-price {
+    text-align: right;
+}
+
+.date a {
+    padding: 0;
+    font-size: 14px;
+    color: #555555;
+    text-align: left;
+    text-decoration: none;
+}
+
+.col-date-price {
+   font-size: 14px; 
+}
+
+.date-price {   
+    font-weight: 700;
+    color: #408326;
+}
+
+.date-price-old {
+    text-decoration: line-through;
+}
+
+/* TOURS */
+
+#banner.nerija {
+    background-image: url(../img/keliones/Nerija/5.jpg);
+}
+
+#banner.augustavas {
+    background-image: url(../img/keliones/Augustavas/Augustavas-1.jpg);
+}
+
+#banner.balstoge {
+    background-image: url(../img/keliones/Balstoge/Balstoge-1.jpg);
+    background-position: top center;
+}
+
+#banner.balstoge {
+    background-image: url(../img/keliones/Druskininkai/Druskininkai-1.jpg);
+    background-position: bottom center;
+}
+
+#banner.balstoge {
+    background-image: url(../img/keliones/VilkoGuolis/Vilko-guolis-1.jpg);
+    background-position: bottom center;
+}
+
+#banner.balstoge {
+    background-image: url(../img/keliones/Zarasai/1.jpg);
+    background-position: center center;
+}
+
+#banner {
+    background-position: center center;
+    background-repeat: no-repeat;
+    position: relative;
+    height: 400px;
+    background-size: cover;
+}
+
+.overlay {
+    background-color: #000000;
+    opacity: 0.3;
+    position: absolute;
+    z-index: 98;
+    height: 400px;
+    width: 100%;
+    display: block;
+}
+
+#banner .container {
+    position: absolute;
+    z-index: 99; 
+    width: 100%;
+    max-width: 100%;
+    height: 400px;
+}
+
+#banner-title {   
+    display: flex;
+    align-items: center;
+    height: 400px;
+    width: 100%;
+    justify-content: center;
+}
+
+#banner-title h1 {
+    color: #ffffff;
+    font-size: 40px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.tab {
+    display: flex;
+}
+
+button.tablinks {
+    border-right: 1px solid #cccccc;
+    border-left: none;
+    border-top: none;
+    border-bottom: none;
+    flex-grow: 1;
+    background-color: #408326;
+    color: #fff;
+    box-shadow: none;
+    padding: 20px;
+    font-weight:700;
+}
+
+button.tablinks:last-child {
+    border-right: none;
+}
+
+.tab button:hover {
+    background-color: #78a321;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+    background-color: #78a321;
+}
+
+.travel-info-box {
+    border: 1px dotted #408326;
+    border-radius: 20px;
+    padding: 40px;
+    margin-bottom: 60px;
+}
+
+.main-desc {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.main-desc #section-title {
+    padding: 0;
+}
+
+.main-desc-icons {
+    width: 50%;
+}
+
+.main-desc-price {
+    width: 50%;
+    text-align: right;
+}
+
+.main-desc-icons img {
+    width: 20px;
+    height: 20px;
+}
+
+.main-desc-price p {
+    font-size: 55px;
+    color: #ff8400;
+    font-weight: 700;
+}
+
+.main-desc p {
+    margin: 0;
+}
+
+.travel-dates-info {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+.travel-dates-info p {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px dotted #cccccc;
+    margin: 0;
+    padding: 10px 0;
+}
+
+.programa h4 {
+    color: #ff8200;
+}
+
+.content-image {
+    text-align: left;
+    max-width: 1170px;
+    margin: 50px 0;
+    box-sizing: border-box;
+}
+
+.travel-program ul {
+    list-style-type: none;
+    margin-bottom: 50px;
+}
+
+.travel-program ul li {
+    position: relative;
+    margin: 0;
+    padding: 1rem 0 1rem 60px;
+    border-bottom: 1px solid #cccccc;
+}
+
+.travel-program ul li::after {
+    content: "";
+    background: #cccccc;
+    position: absolute;
+    width: 1px;
+    top: 0;
+    bottom: 0;
+    height: 100%;
+    left: 19px;
+    display: block;
+    clear: both;
+}
+
+.travel-program ul li span.tp-day {
+    width: 40px;
+    height: 40px;
+    top: 30px;
+    line-height: 40px;
+    background: #ff8200;
+    border-radius: 50%;
+    text-align: center;
+    padding: 0;
+    margin-left: -61px;
+    position: absolute;
+    color: #fff;
+    font-size: 1.2857rem;
+    font-weight: bold;
+    z-index: 1;
+}
+
+.datos {
+    display: flex;
+    align-items: center;
+    background-color: #f1f1f1;
+    border: 1px dotted #cccccc;
+    box-sizing: border-box;
+    padding: 30px;
+    margin-top: 50px;
+    border-radius: 20px;
+}
+
+.travel-reservation {
+    flex-grow: 2;
+}
+
+.travel-price {
+    flex-grow: 1;
+}
+
+.reserve-link {
+    flex-grow: 1;
+}
+
+h5.travel-free-places-name {
+    color: red;
+    margin: 0;
+}
+
+.travel-origin {
+    margin: 0;
+}
+
+.travel-tour-price {
+    font-size: 55px;
+    color: #ff8400;
+    font-weight: 700;
+    margin: 0;
+}
+
+.btn-buy {
+    background-color: #ff8400;
+    font-weight: 700;
+    color: #ffffff;
+    text-transform: uppercase;
+    padding: 10px;
+    border-radius: 3px;
+    text-align: center;
+    display: block;
+}
+
+.img-row {
+    display: -ms-flexbox; /* IE10 */
+    display: flex;
+    -ms-flex-wrap: wrap; /* IE10 */
+    flex-wrap: wrap;
+    padding: 0 4px;
+    width: 100%;
+  }
+  
+  /* Create four equal columns that sits next to each other */
+  .img-column {
+    -ms-flex: 32%; /* IE10 */
+    flex: 32%;
+    max-width: 32%;
+    padding: 0;
+  }
+  
+  .img-column img {
+    margin-top: 8px;
+    vertical-align: middle;
+    width: 100%;
+  }
+  
+  /* Responsive layout - makes a two column-layout instead of four columns */
+  @media screen and (max-width: 800px) {
+    .img-column {
+      -ms-flex: 50%;
+      flex: 50%;
+      max-width: 50%;
+    }
+  }
+
+  /* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+    .img-column {
+      -ms-flex: 100%;
+      flex: 100%;
+      max-width: 100%;
+    }
+  }

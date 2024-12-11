@@ -1,0 +1,561 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/range.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">  
+  
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="container">
+                <div id="top-header" class="col-top-header">
+                    <div class="contact-info">
+                        <a href="tel:37065955770">
+                            <img class="icon" src="img/phone-svgrepo-com.svg" />
+                            <span>(+370) 659 55770</span>
+                        </a>
+                        <a href="#">
+                            <img class="icon" src="img/mail-svgrepo-com.svg" />
+                            <span>info@mail.com
+                        </a>
+                    </div>
+                    <div class="top-header-links">
+                        <a href="apie-mus.html">
+                            <img class="icon" src="img/info-circle-svgrepo-com.svg" />
+                            <span>Apie mus</span>
+                        </a>
+                        <a href="kontaktai.html">
+                            <img class="icon" src="img/location-svgrepo-com.svg" />
+                            </span>
+                            <span>Kontaktai</span>
+                        </a>
+                    </div>
+                    <div class="social-icons">
+                        <a href="https://www.facebook.com/profile.php?id=100080044436184">
+                            <img class="icon" img src="img/facebook-svgrepo-com.svg" />
+                        </a>
+                        <a href="#">
+                            <img class="icon" img src="img/instagram-svgrepo-com.svg" /> 
+                        </a>
+                    </div>
+                </div>
+                <div id="main-header" class="col-main-header">
+                    <div id="logo">
+                        <a href="index-2.html" class="logo">
+                            <span>VšĮ "Prasmingam gyvenimui"</span>
+                        </a>
+                    </div>
+                    <div id="menu">
+                        <a href="autubusu.html">
+                            <img class="icon" src="img/bus-svgrepo-com.svg" />
+                            <span>Autobusu</span>
+                        </a>                           
+                        <a href="lietuvoje.html">
+                            <img class="icon" src="img/flag-for-flag-lithuania-svgrepo-com.svg" />
+                            <span>Lietuvoje</span>
+                        </a>
+                        <a href="uzsienyje.html">
+                            <img class="icon" img src="img/globe-svgrepo-com.svg" />
+                            <span>Užsienyje</span>
+                        </a>
+                        <a href="garantuotos.html">
+                            <img class="icon" src="img/approved-aproved-confirm-2-svgrepo-com.svg" />
+                            <span>Garantuotos</span>
+                        </a>
+                        <a href="kaledines.html">
+                            <img class="icon" src="img/christmas-tree-svgrepo-com.svg" />
+                            <span>Kalėdinės</span>
+                        </a>
+                    </div>
+                    <div id="search">
+                        <a href="#" id="searchIcon">
+                            <img class="icon" src="img/search-svgrepo-com.svg" />
+                        </a>     
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <!-- end mobile search modal -->
+        <!-- Mobile search modal -->
+        <div id="searchMobile" class="hidden">
+            <div class="search-container">
+                <div class="search-content">
+                    <form action="/your-backend-endpoint" method="POST">
+                        <div class="data-input-container">
+                            <div class="data-input-col">
+                                <div class="data-input-field data-input-country">
+                                    <input type="text" placeholder="Kelionė arba šalis" name="tour" id="tour-name" autocomplete="off" class="country">
+                                </div>
+                                <div class="data-input-field data-input-transport">
+                                    <label class="checkbox-icon" title="Autobusu">
+                                        <input type="checkbox" class="select-only-one" name="transport" value="bus">
+                                        <span class="checkbody">
+                                            <span class="checkmark">
+                                                <img src="img/bus-svgrepo-com.svg" />
+                                            </span>
+                                        </span>
+                                    </label>
+                                    <label class="checkbox-icon" title="Lėktuvu">
+                                        <input type="checkbox" class="select-only-one" name="transport" value="plane">
+                                        <span class="checkbody">
+                                            <span class="checkmark">
+                                                <img src="img/airplane-svgrepo-com.svg" />
+                                            </span>
+                                        </span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="data-input-col">
+                                <div class="data-input-field data-input-date">
+                                    <div class="data-input-date-from">
+                                        <input type="date" placeholder="Data nuo" name="date_from" id="d1" class="date-from">
+                                    </div>
+                                    <div class="data-input-field data-input-date-to">
+                                        <input type="date" placeholder="Data iki" name="date_to" id="d2" class="date-to">
+                                    </div>
+                                </div>
+                                <div class="data-input-field data-input-tour-type">
+                                    <select name="travel_type" id="keliones-tipas" class="">
+                                        <option value="" selected>Kelionės tipas</option>
+                                        <option value="1">Pažintinės</option>
+                                        <option value="2">Poilsinės</option>
+                                        <option value="3">Aktyvios</option>
+                                        <option value="4">Egzotinės</option>
+                                        <option value="5">Skrydis + viešbutis</option>
+                                        <option value="š">Kolektyvams</option>
+                                        <option value="1">Moksleiviams</option>
+                                        <option value="1">Ekskursija</option>
+                                        <option value="1">Vestuvės</option>
+                                        <option value="1">Poilsis Lietuvoje</option>
+                                        <option value="1">Dovanų kuponas</option>
+                                        <option value="1">Žygiai</option>
+                                        <option value="1">Slidinėjimas</option>
+                                        <!-- Add more options as needed -->
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="data-input-col">
+                                <div class="data-input-field data-input-price-range">
+                                    <h3 class="range-title">Kelionės kaina</h3>
+                                    <div class="range_container">
+                                        <div class="form_control">
+                                            <div class="form_control_container">
+                                                <div class="form_control_container__time">Min</div>
+                                                <input class="form_control_container__time__input" type="number" id="fromInput" name="price_min" value="80" min="0" max="3999"/>
+                                            </div>
+                                            <div class="form_control_container">
+                                                <div class="form_control_container__time">Max</div>
+                                                <input class="form_control_container__time__input" type="number" id="toInput" name="price_max" value="3000" min="0" max="3999"/>
+                                            </div>
+                                        </div>
+                                        <div class="sliders_control">
+                                            <input id="fromSlider" type="range" value="80" min="0" max="3999"/>
+                                            <input id="toSlider" type="range" value="3000" min="0" max="3999"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="data-input-field data-input-submit">
+                                    <button type="submit" class="btn-search-submit">
+                                        <img src="img/search-svgrepo-com-white.svg" />
+                                        <span>Ieškoti</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>                   
+        <!-- end mobile search modal -->
+    </header>
+    <banner id="home-banner">
+        <div class="site-banner">
+            <div id="banner-headline" class="container">
+                <h1 class="page-title">KELIONĖS AUTOBUSU</h1>   
+            </div>
+            <div id="searchDesktop">
+                <div class="search-container">
+                    <div class="search-content">
+                        <form action="/your-backend-endpoint" method="POST">
+                            <div class="data-input-container">
+                                <div class="data-input-col">
+                                    <div class="data-input-field data-input-country">
+                                        <input type="text" placeholder="Kelionė arba šalis" name="tour" id="tour-name" autocomplete="off" class="country">
+                                    </div>
+                                    <div class="data-input-field data-input-transport">
+                                        <label class="checkbox-icon" title="Autobusu">
+                                            <input type="checkbox" class="select-only-one" name="transport" value="bus">
+                                            <span class="checkbody">
+                                                <span class="checkmark">
+                                                    <img src="img/bus-svgrepo-com.svg" />
+                                                </span>
+                                            </span>
+                                        </label>
+                                        <label class="checkbox-icon" title="Lėktuvu">
+                                            <input type="checkbox" class="select-only-one" name="transport" value="plane">
+                                            <span class="checkbody">
+                                                <span class="checkmark">
+                                                    <img src="img/airplane-svgrepo-com.svg" />
+                                                </span>
+                                            </span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="data-input-col">
+                                    <div class="data-input-field data-input-date">
+                                        <div class="data-input-date-from">
+                                            <input type="date" placeholder="Data nuo" name="date_from" id="d1" class="date-from">
+                                        </div>
+                                        <div class="data-input-field data-input-date-to">
+                                            <input type="date" placeholder="Data iki" name="date_to" id="d2" class="date-to">
+                                        </div>
+                                    </div>
+                                    <div class="data-input-field data-input-tour-type">
+                                        <select name="travel_type" id="keliones-tipas" class="">
+                                            <option value="" selected>Kelionės tipas</option>
+                                            <option value="1">Pažintinės</option>
+                                            <option value="2">Poilsinės</option>
+                                            <!-- Add more options as needed -->
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="data-input-col">
+                                    <div class="data-input-field data-input-price-range">
+                                        <h3 class="range-title">Kelionės kaina</h3>
+                                        <div class="range_container">
+                                            <div class="form_control">
+                                                <div class="form_control_container">
+                                                    <div class="form_control_container__time">Min</div>
+                                                    <input class="form_control_container__time__input" type="number" id="fromInput" name="price_min" value="80" min="0" max="3999"/>
+                                                </div>
+                                                <div class="form_control_container">
+                                                    <div class="form_control_container__time">Max</div>
+                                                    <input class="form_control_container__time__input" type="number" id="toInput" name="price_max" value="3000" min="0" max="3999"/>
+                                                </div>
+                                            </div>
+                                            <div class="sliders_control">
+                                                <input id="fromSlider" type="range" value="80" min="0" max="3999"/>
+                                                <input id="toSlider" type="range" value="3000" min="0" max="3999"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="data-input-field data-input-submit">
+                                        <button type="submit" class="btn-search-submit">
+                                            <img src="img/search-svgrepo-com-white.svg" />
+                                            <span>Ieškoti</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>                   
+        </div>
+    </banner>
+    <div id="main">
+        <div class="container">      
+            <div id="section-title">Savaitės pasiūlymai</div>
+            <!--start tour-->
+            <div id="tours" class="col-tours">
+                <div id="tours-wrapper" class="row-tours">
+                    <article class="tour-item">
+                        <div class="tour-info">
+                            <div class="image">
+                                <img class="tour-img" src="img/keliones/Augustavas/Augustavas-1.jpg" alt="">
+                            </div>
+                            <div class="marks"> 
+                                <span class="icon">                     
+                                <img src="img/airplane-svgrepo-com-white.svg" />
+                                </span>
+                                <span class="num-days">
+                                    6<small>d.</small>
+                                </span>     
+                            </div>
+                            <div class="price-mark">                      
+                                <p class="price-info">nuo</p>
+                                <p class="price">645 €</p>       
+                            </div>
+                            <div class="discount-mark">                      
+                                <p class="discount-info">    
+                                    <span class="discount-percentage">-5</span> <small>%</small>
+                                </p>     
+                            </div>
+                        </div>
+                        <div class="tour-dates-available">
+                            <div id="tour-content" class="tour-content-box">
+                                <div class="tour-title-box">
+                                    <h3 class="tour-title">Augustavas, Lenkija</h3>
+                                </div>
+                                <div class="tour-dates">
+                                    <div class="tour-date-content">
+                                        <div class="date">
+                                            <a href="#">2024-09-17</a>
+                                        </div>
+                                        <div class="free-places">
+                                            <span><small>liko 11 viet.</small></span>
+                                            <span class="guaranteed" title="Garantuotas išvykimas">G</span>
+                                        </div>
+                                        <div class="col-date-price">
+                                            <span class="date-price-old">689 €</span>
+                                            <span class="date-price">655 €</span>
+                                        </div>
+                                    </div>
+                                    <div class="tour-date-content">
+                                        <div class="date">
+                                            <a href="#">2024-10-02</a>
+                                        </div>
+                                        <div class="free-places">
+                                            <span><small>vietų nėra</small></span>
+                                            <span class="guaranteed" title="Garantuotas išvykimas">G</span>
+                                        </div>
+                                        <div class="col-date-price">
+                                            <span class="date-price-old"></span>
+                                            <span class="date-price">679 €</span>
+                                        </div>
+                                    </div>
+                                    <div class="tour-date-content">
+                                        <div class="date">
+                                            <a href="#">2024-10-12</a>
+                                        </div>
+                                        <div class="free-places">
+                                            <span><small>liko 11 viet.</small></span>
+                                            <span class="guaranteed" title="Garantuotas išvykimas">G</span>
+                                        </div>
+                                        <div class="col-date-price">
+                                            <span class="date-price-old">689 €</span>
+                                            <span class="date-price">655 €</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="tour-item">
+                        <div class="tour-info">
+                            <div class="image">
+                                <img class="tour-img" src="img/keliones/Augustavas/Augustavas-1.jpg" alt="">
+                            </div>
+                            <div class="marks"> 
+                                <span class="icon">                     
+                                <img src="img/airplane-svgrepo-com-white.svg" />
+                                </span>
+                                <span class="num-days">
+                                    6<small>d.</small>
+                                </span>     
+                            </div>
+                            <div class="price-mark">                      
+                                <p class="price-info">nuo</p>
+                                <p class="price">645 €</p>       
+                            </div>
+                            <div class="discount-mark">                      
+                                <p class="discount-info">    
+                                    <span class="discount-percentage">-5</span> <small>%</small>
+                                </p>     
+                            </div>
+                        </div>
+                        <div class="tour-dates-available">
+                            <div id="tour-content" class="tour-content-box">
+                                <div class="tour-title-box">
+                                    <h3 class="tour-title">Augustavas, Lenkija</h3>
+                                </div>
+                                <div class="tour-dates">
+                                    <div class="tour-date-content">
+                                        <div class="date">
+                                            <a href="#">2024-09-17</a>
+                                        </div>
+                                        <div class="free-places">
+                                            <span><small>liko 11 viet.</small></span>
+                                            <span class="guaranteed" title="Garantuotas išvykimas">G</span>
+                                        </div>
+                                        <div class="col-date-price">
+                                            <span class="date-price-old">689 €</span>
+                                            <span class="date-price">655 €</span>
+                                        </div>
+                                    </div>
+                                    <div class="tour-date-content">
+                                        <div class="date">
+                                            <a href="#">2024-10-02</a>
+                                        </div>
+                                        <div class="free-places">
+                                            <span><small>vietų nėra</small></span>
+                                            <span class="guaranteed" title="Garantuotas išvykimas">G</span>
+                                        </div>
+                                        <div class="col-date-price">
+                                            <span class="date-price-old"></span>
+                                            <span class="date-price">679 €</span>
+                                        </div>
+                                    </div>
+                                    <div class="tour-date-content">
+                                        <div class="date">
+                                            <a href="#">2024-10-12</a>
+                                        </div>
+                                        <div class="free-places">
+                                            <span><small>liko 11 viet.</small></span>
+                                            <span class="guaranteed" title="Garantuotas išvykimas">G</span>
+                                        </div>
+                                        <div class="col-date-price">
+                                            <span class="date-price-old">689 €</span>
+                                            <span class="date-price">655 €</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="tour-item">
+                        <div class="tour-info">
+                            <div class="image">
+                                <img class="tour-img" src="img/keliones/Augustavas/Augustavas-1.jpg" alt="">
+                            </div>
+                            <div class="marks"> 
+                                <span class="icon">                     
+                                <img src="img/airplane-svgrepo-com-white.svg" />
+                                </span>
+                                <span class="num-days">
+                                    6<small>d.</small>
+                                </span>     
+                            </div>
+                            <div class="price-mark">                      
+                                <p class="price-info">nuo</p>
+                                <p class="price">645 €</p>       
+                            </div>
+                            <div class="discount-mark">                      
+                                <p class="discount-info">    
+                                    <span class="discount-percentage">-5</span> <small>%</small>
+                                </p>     
+                            </div>
+                        </div>
+                        <div class="tour-dates-available">
+                            <div id="tour-content" class="tour-content-box">
+                                <div class="tour-title-box">
+                                    <h3 class="tour-title">Augustavas, Lenkija</h3>
+                                </div>
+                                <div class="tour-dates">
+                                    <div class="tour-date-content">
+                                        <div class="date">
+                                            <a href="#">2024-09-17</a>
+                                        </div>
+                                        <div class="free-places">
+                                            <span><small>liko 11 viet.</small></span>
+                                            <span class="guaranteed" title="Garantuotas išvykimas">G</span>
+                                        </div>
+                                        <div class="col-date-price">
+                                            <span class="date-price-old">689 €</span>
+                                            <span class="date-price">655 €</span>
+                                        </div>
+                                    </div>
+                                    <div class="tour-date-content">
+                                        <div class="date">
+                                            <a href="#">2024-10-02</a>
+                                        </div>
+                                        <div class="free-places">
+                                            <span><small>vietų nėra</small></span>
+                                            <span class="guaranteed" title="Garantuotas išvykimas">G</span>
+                                        </div>
+                                        <div class="col-date-price">
+                                            <span class="date-price-old"></span>
+                                            <span class="date-price">679 €</span>
+                                        </div>
+                                    </div>
+                                    <div class="tour-date-content">
+                                        <div class="date">
+                                            <a href="#">2024-10-12</a>
+                                        </div>
+                                        <div class="free-places">
+                                            <span><small>liko 11 viet.</small></span>
+                                            <span class="guaranteed" title="Garantuotas išvykimas">G</span>
+                                        </div>
+                                        <div class="col-date-price">
+                                            <span class="date-price-old">689 €</span>
+                                            <span class="date-price">655 €</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>                                                            
+                </div>
+            </div>
+            <!--end tour-->
+            <div id="tours" class="col-tours"></div>
+            <div id="tours" class="col-tours"></div>
+        </div>
+    </div>
+    <footer id="site-footer">
+        <div class="container">
+            <div class="column-wrapper">
+                <div class="footer-col info-company">
+                    <div id="logo" class="logo">
+                        <a href="index-2.html">
+                            <span>VšĮ "Prasmingam gyvenimui"</span>
+                        </a>
+                    </div>
+                    <p class="company-desc-1">Kelionės autobusu - Jūsų Prasmingam gyvenimui</p>
+                    <h3 class="company-desc-2">Džiaugiamės, kad domitės mūsų pasiūlymais!</h3>
+                </div>
+                <div class="footer-col info-contact">
+                    <h3 class="info-header">susisiekime</h3>
+                    <div class="contact-info">
+                        <a href="tel:37065955770">
+                            <img class="icon" src="img/phone-svgrepo-com-white.svg" />
+                            <span>(+370) 659 55770</span>
+                        </a>
+                        <a href="#">
+                            <img class="icon" src="img/mail-svgrepo-com-white.svg" />
+                            <span>info@mail.com
+                        </a>
+                    </div>
+                    <div class="social-icons">
+                        <a href="https://www.facebook.com/profile.php?id=100080044436184">
+                            <img class="icon" img src="img/facebook-svgrepo-com-white.svg" />
+                        </a>
+                        <a href="#">
+                            <img class="icon" img src="img/instagram-svgrepo-com-white.svg" /> 
+                        </a>
+                    </div>
+                    <div class="work-hours">
+                        <p>I-V 9-13 val.</p>
+                        <p>IV-IIV nedirbame</p>
+                    </div>
+                </div>
+                <div class="footer-col info-link"> 
+                    <h3 class="info-header">Struktura</h3>
+                    <a href="apie-mus.html" class="link-item">Apie mus</a>
+                    <a href="kontaktai.html" class="link-item">Kontaktai</a>                        
+                </div>
+                <div class="footer-col info-trips">
+                    <h3 class="info-header">Kelionės</h3>
+                    <a href="augustavas.html" class="link-item">Augustavas Lenkija</a>
+                    <a href="balstoge.html" class="link-item">Balstoge Lenkija</a>
+                    <a href="druskininkai.html" class="link-item">Druskininkai</a>
+                    <a href="kursiu-nerija.html" class="link-item">Kursiu nerija</a>
+                    <a href="vilko-guolis.html" class="link-item">Vilko guolis Lenkija</a>
+                    <a href="zarasai.html" class="link-item">Zarasai</a>
+                    <a href="zemaitija.html" class="link-item">Zemaitija</a>
+                </div>
+                <div class="footer-col info-more-links">
+                    <h3 class="info-header">Informacija</h3>
+                    <a href="turizmo-paslaugų-sutartis.html" class="link-item">Turizmo paslaugų sutartis</a>
+                    <a href="informacija-vartotojams-koronaviruso-laikotarpiu.html" class="link-item">Informacija vartotojams koronaviruso laikotarpiu</a>
+                    <a href="es-projektai.html" class="link-item">ES projektai</a>
+                    <a href="privatumo-politika.html" class="link-item">Privatumo politika</a>
+                    <a href="informavimas-apie-asmens-duomenų-tvarkymą.html" class="link-item">Informavimas apie asmens duomenų tvarkymą</a>
+                    <a href="kelionės-kolektyvams-po-lietuvą.html" class="link-item">Kelionės kolektyvams po Lietuvą</a>
+                </div>
+            </div>    
+        </div>
+        <div class="footer-bottom">
+            <p>Copyright 2024. Your company name. All rights reserved.</p>
+        </div>    
+    </footer>
+    <script src="javascript/search-toggle.js"></script>
+    <script src="javascript/searchForm.js"></script>
+</body>
+</html>

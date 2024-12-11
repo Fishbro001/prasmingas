@@ -1,0 +1,580 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/range.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="container">
+                <div id="top-header" class="col-top-header">
+                    <div class="contact-info">
+                        <a href="tel:37065955770">
+                            <img class="icon" src="img/phone-svgrepo-com.svg" />
+                            <span>(+370) 659 55770</span>
+                        </a>
+                        <a href="#">
+                            <img class="icon" src="img/mail-svgrepo-com.svg" />
+                            <span>info@mail.com
+                        </a>
+                    </div>
+                    <div class="top-header-links">
+                        <a href="apie-mus.html">
+                            <img class="icon" src="img/info-circle-svgrepo-com.svg" />
+                            <span>Apie mus</span>
+                        </a>
+                        <a href="kontaktai.html">
+                            <img class="icon" src="img/location-svgrepo-com.svg" />
+                            </span>
+                            <span>Kontaktai</span>
+                        </a>
+                    </div>
+                    <div class="social-icons">
+                        <a href="https://www.facebook.com/profile.php?id=100080044436184">
+                            <img class="icon" img src="img/facebook-svgrepo-com.svg" />
+                        </a>
+                        <a href="#">
+                            <img class="icon" img src="img/instagram-svgrepo-com.svg" /> 
+                        </a>
+                    </div>
+                </div>
+                <div id="main-header" class="col-main-header">
+                    <div id="logo">
+                        <a href="index.html" class="logo">
+                            <span>VšĮ "Prasmingam gyvenimui"</span>
+                        </a>
+                    </div>
+                    <div id="menu">
+                        <a href="autubusu.html">
+                            <img class="icon" src="img/bus-svgrepo-com.svg" />
+                            <span>Autobusu</span>
+                        </a>                           
+                        <a href="lietuvoje.html">
+                            <img class="icon" src="img/flag-for-flag-lithuania-svgrepo-com.svg" />
+                            <span>Lietuvoje</span>
+                        </a>
+                        <a href="uzsienyje.html">
+                            <img class="icon" img src="img/globe-svgrepo-com.svg" />
+                            <span>Užsienyje</span>
+                        </a>
+                        <a href="garantuotos.html">
+                            <img class="icon" src="img/approved-aproved-confirm-2-svgrepo-com.svg" />
+                            <span>Garantuotos</span>
+                        </a>
+                        <a href="kaledines.html">
+                            <img class="icon" src="img/christmas-tree-svgrepo-com.svg" />
+                            <span>Kalėdinės</span>
+                        </a>
+                    </div>
+                    <div id="search">
+                        <a href="#" id="searchIcon">
+                            <img class="icon" src="img/search-svgrepo-com.svg" />
+                        </a>     
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <!-- end mobile search modal -->
+        <!-- Mobile search modal -->
+        <div id="searchMobile" class="hidden">
+            <div class="search-container">
+                <div class="search-content">
+                    <form action="/your-backend-endpoint" method="POST">
+                        <div class="data-input-container">
+                            <div class="data-input-col">
+                                <div class="data-input-field data-input-country">
+                                    <input type="text" placeholder="Kelionė arba šalis" name="tour" id="tour-name" autocomplete="off" class="country">
+                                </div>
+                                <div class="data-input-field data-input-transport">
+                                    <label class="checkbox-icon" title="Autobusu">
+                                        <input type="checkbox" class="select-only-one" name="transport" value="bus">
+                                        <span class="checkbody">
+                                            <span class="checkmark">
+                                                <img src="img/bus-svgrepo-com.svg" />
+                                            </span>
+                                        </span>
+                                    </label>
+                                    <label class="checkbox-icon" title="Lėktuvu">
+                                        <input type="checkbox" class="select-only-one" name="transport" value="plane">
+                                        <span class="checkbody">
+                                            <span class="checkmark">
+                                                <img src="img/airplane-svgrepo-com.svg" />
+                                            </span>
+                                        </span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="data-input-col">
+                                <div class="data-input-field data-input-date">
+                                    <div class="data-input-date-from">
+                                        <input type="date" placeholder="Data nuo" name="date_from" id="d1" class="date-from">
+                                    </div>
+                                    <div class="data-input-field data-input-date-to">
+                                        <input type="date" placeholder="Data iki" name="date_to" id="d2" class="date-to">
+                                    </div>
+                                </div>
+                                <div class="data-input-field data-input-tour-type">
+                                    <select name="travel_type" id="keliones-tipas" class="">
+                                        <option value="" selected>Kelionės tipas</option>
+                                        <option value="1">Pažintinės</option>
+                                        <option value="2">Poilsinės</option>
+                                        <option value="3">Aktyvios</option>
+                                        <option value="4">Egzotinės</option>
+                                        <option value="5">Skrydis + viešbutis</option>
+                                        <option value="š">Kolektyvams</option>
+                                        <option value="1">Moksleiviams</option>
+                                        <option value="1">Ekskursija</option>
+                                        <option value="1">Vestuvės</option>
+                                        <option value="1">Poilsis Lietuvoje</option>
+                                        <option value="1">Dovanų kuponas</option>
+                                        <option value="1">Žygiai</option>
+                                        <option value="1">Slidinėjimas</option>
+                                        <!-- Add more options as needed -->
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="data-input-col">
+                                <div class="data-input-field data-input-price-range">
+                                    <h3 class="range-title">Kelionės kaina</h3>
+                                    <div class="range_container">
+                                        <div class="form_control">
+                                            <div class="form_control_container">
+                                                <div class="form_control_container__time">Min</div>
+                                                <input class="form_control_container__time__input" type="number" id="fromInput" name="price_min" value="80" min="0" max="3999"/>
+                                            </div>
+                                            <div class="form_control_container">
+                                                <div class="form_control_container__time">Max</div>
+                                                <input class="form_control_container__time__input" type="number" id="toInput" name="price_max" value="3000" min="0" max="3999"/>
+                                            </div>
+                                        </div>
+                                        <div class="sliders_control">
+                                            <input id="fromSlider" type="range" value="80" min="0" max="3999"/>
+                                            <input id="toSlider" type="range" value="3000" min="0" max="3999"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="data-input-field data-input-submit">
+                                    <button type="submit" class="btn-search-submit">
+                                        <img src="img/search-svgrepo-com-white.svg" />
+                                        <span>Ieškoti</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>                   
+        <!-- end mobile search modal -->
+    </header>
+    <div id="banner" class="nerija">
+        <div class="container">
+            <div id="banner-title">
+                <h1>Kursiu nerija</h1>   
+            </div>
+        </div>
+        <div class="overlay"></div>
+    </div>
+    <!-- Tab links -->
+    <div class="tab">
+        <button class="tablinks" onclick="openContent(event, 'Kelione')">Kelionė</button>
+        <button class="tablinks" onclick="openContent(event, 'Programa')">Kelionės Programa</button>
+        <button class="tablinks" onclick="openContent(event, 'Iskaiciuota')">Įskaičiuota</button>
+        <button class="tablinks" onclick="openContent(event, 'Neiskaiciuota')">Neįskaičiuota</button>
+        <button class="tablinks" onclick="openContent(event, 'Isvykimo')">Išvykimo vietos ir laikas</button>
+        <button class="tablinks" onclick="openContent(event, 'Pastabos')">Kitos Pastabos</button>
+        <button class="tablinks" onclick="openContent(event, 'Datos')">Data</button>
+    </div> 
+
+    <div id="main"> 
+
+        <div class="container">      
+            <!-- Tab content -->
+            <div id="Kelione" class="tabcontent">
+                <div class="main-desc">
+                    <div class="main-desc-icons">
+                        <div id="section-title">Kursiu nerija</div>
+                        <p><img src="img/location-svgrepo-com.svg" /> Lietuva</p>
+                        <p><img src="img/bus-svgrepo-com.svg"/> Autobusu, 1 diena</p>
+                    </div>
+                    <div class="main-desc-price"><p>55 €</p></div>
+                </div>
+                <div class="programa">
+                    <h3>KELIONĖS PROGRAMA</h3>
+                    <p><em>Tai, kas gražiausia Kuršių nerijoje: unikalus gamtos grožis, jos didybė ir neaprėpiami toliai...
+                    Ankstyvą rytą autobusu išvyksime link Kuršių nerijos. Vyksime į Smiltynės prieplauką. Iš čia keltu kelsimės į Kuršių neriją.</em></p>
+                    <div class="travel-program">
+                        <ul>
+                            <li>
+                                <span class="tp-day">1</span>  
+                                <h4>Juodkrantė</h4>
+                                <p>Sustosime Juodkrantėje. Juodkrantėje savarankiškai bus galima aplankyti įdomesnius objektus. Pavyzdžiui, žymiąją medinių skulptūrų ekspoziciją, vadinamajame ,,Raganų kalne“. Ar Juodkrantės Šv. Pranciškaus Asyžiečio bažnyčią. Vaikštant marių pakrante bus galima pamatyti akmens skulptūrų kompoziciją ,,Žemė ir vanduo“. O gal norėsis tiesiog pasėdėti šio jaukaus pamario miesto kavinukėse.</p>
+                                <p>Keliaujant toliau, pravažiuosime žymiąsias garnių ir kormoranų perimvietes.</p>
+
+                                <div class="content-image">
+                                    <div class="img-row"> 
+                                        <div class="img-column">
+                                            <img src="img/keliones/Nerija/3.jpg" style="width:100%">
+                                        </div>
+                                        <div class="img-column">
+                                            <img src="img/keliones/Nerija/4.jpg" style="width:100%">
+                                        </div>
+                                        <div class="img-column">                                            
+                                            <img src="img/keliones/Nerija/1.jpg" style="width:100%">
+                                            <img src="img/keliones/Nerija/2.jpg" style="width:100%">
+                                        </div>
+                                    </div>
+                                </div>
+                                <p>Keliausime į tolimiausią Kuršių nerijos gyvenvietę - Nidą. Nidoje aplankysime žymiausias ir gražiausias jos vietas.</p></li>
+
+                            <li>
+                                <span class="tp-day">2</span>
+                                <h4>Parnidžio kopa ir saulės laikrodis</h4>
+                                <p>Pažintį su Nida pradėsime nuo Parnidžio kopos. Ši kopa yra viena aukščiausių apžvalgos vietų Nidoje (53 m). Jos viršūnėje pastatytas žymusis Saulės laikrodis-kalendorius. Jį sudaro apskrita aikštelė su puslankiu iškilusiomis nedidelėmis pakopėlėmis, žyminčiomis valandas. Pasigėrėję įspūdingais vaizdais, patikrinę vietinį laiką pagal saulės laikrodžio šešėlį, keliausime pėsčiomis toliau.</p></li>
+                            
+                            <li>
+                                <span class="tp-day">3</span>
+                                <h4>Parnidžio pažintinis takas</h4>
+                                <p>Kelionę tęsime Parnidžio kopos pažintiniu taku. Tai vienas gražiausių pažintinių takų Lietuvoje. Atnaujintas takas tapo dar patogesnis ir įdomesnis: su suoleliais poilsiui, įdomiomis skulptūromis, gražiausiose vietose įrengtomis apžvalgos aikštelėmis... Praeisime Tylos slėnį, o nusileidę nuo kopos, pasieksime senąją Nidos dalį.</p></li>
+                                
+                            <li>
+                                <span class="tp-day">4</span>
+                                <h4>Nida</h4>
+                                <p>Nidoje galėsime pasigrožėti savita architektūra, nusagstytu vėtrungėmis pamariu. Prisėsti prie maestro Kernagio skulptūros. Savarankiškai aplankyti įdomesnius muziejus, kaip pvz.: Nidos žvejo etnografinė sodyba, ar moderniai įrengtą Mizgirių gintaro muziejų... Spartesni galės pasiekti ir tolimesnes vietas, pvz.: senąjį Nidos švyturį ant Urbo kalno ar net jūrą.</p>
+                        
+                                <div class="content-image">
+                                    <div class="img-row"> 
+                                        <div class="img-column">
+                                            <img src="img/keliones/Nerija/5.jpg" style="width:100%">
+                                            <img src="img/keliones/Nerija/6.jpg" style="width:100%">
+                                            <img src="img/keliones/Nerija/7.jpg" style="width:100%">
+                                        </div>
+                                        <div class="img-column">
+                                            <img src="img/keliones/Nerija/8.jpg" style="width:100%">
+                                            <img src="img/keliones/Nerija/9.jpg" style="width:100%">
+                                            <img src="img/keliones/Nerija/10.jpg" style="width:100%">
+                                        </div>
+                                        <div class="img-column">
+                                            
+                                            <img src="img/keliones/Nerija/11.jpg" style="width:100%">
+                                        </div>
+                                    </div>
+                                </div></li>
+                            <li>
+                                <span class="tp-day">5</span>
+                                <h4>Naglių gamtinis rezervatas</h4>
+                                <p>Toliau vyksime į Naglių gamtinį rezervatą. Pažintinis takas ves iki Mirusių (Pilkųjų) kopų. Tako gale, užlipę į apžvalgos bokštelį, galėsime pamatyti tyvuliuojančius smėlynus, marių ir jūros panoramą. Po šiomis kopomis palaidotas senasis Naglių kaimas.</p>
+
+                                <div class="content-image">
+
+                                    <div class="img-row"> 
+                                        <div class="img-column">
+                                            <img src="img/keliones/Nerija/12.jpg" style="width:100%">
+                                        </div>
+                                        <div class="img-column">
+                                            <img src="img/keliones/Nerija/13.jpg" style="width:100%">                                          
+                                        </div>
+                                        <div class="img-column">
+                                            <img src="img/keliones/Nerija/14.jpg" style="width:100%">
+                                        </div>
+                                    </div>
+                                
+                                </div>
+
+                                <p>Kviečiame prasmingai ir turiningai praleisti laiką.</p>
+                            </li>
+                        </ul> 
+                    </div>       
+                </div>              
+                <div class="iskaiciuota">
+                    <h4>Į KAINĄ ĮSKAIČIUOTA</h4>
+                        <ul>
+                            <li>Kelionė autobusu</li>
+                            <li>Kelių ir kuro mokesčiai</li>
+                            <li>Ekskursinė programa</li>
+                            <li>Kelionės vadovo paslaugos</li>
+                    </ul>
+                </div>
+
+                <div class="neiskaiciuota">
+                    <h4>Į KAINĄ NEĮSKAIČIUOTA</h4>
+                        <ul>
+                            <li>Kelto ir įvažiavimo į Neringą mokestis (privalomas) ~4 Eur/asm. (priklauso nuo grupės dydžio)</li>
+                            <li>Naglių rezervato pažintinis takas</li>
+                            <li>Suaugusiems ~5 Eur/asm.; studentams ~2 Eur/asm.; moksleiviams ir neįgaliesiems - nemokamai</li>
+                            <li>Asmeninės išlaidos</li>
+                        </ul>
+                </div>
+
+                <div class="isvykimo">
+                    <h4>IŠVYKIMO VIETOS IR LAIKAS</h4>
+                        <ul>
+                            Prašome atvykti 10 min. iki autobuso išvykimo
+                            <li>Kaunas
+                                <ul>
+                                    <li>prie McDonald's, Savanorių pr. 321 (šalia yra nemokama automobilių stovėjimo aikštelė); išvykimas 07:30, planuojame grįžti tarp 21:00 ir 22:00</li>
+                                    <li>autobusų stotelė prie Šilainių Maxima, Šarkuvos g./Žemaičių pl., Maxima pusėje; išvykimas ~07:50</li>
+                                </ul>
+                            </li>
+                            <li>Kėdainiai - stotelė autostradoje, prie Cinkiškio; išvykimas ~08:10></li>
+                            <li>Raseiniai - degalinė BALTIC PETROLEUM, autostradoje prie Kalnujų; išvykimas ~08:40</li>
+                        </ul>
+                </div>
+
+                <div class="pastabos">
+                    <h4>KITOS PASTABOS</h4>
+                        <ul>
+                            Prašome atvykti 10 min. iki autobuso išvykimo
+                            <li>Informaciją atsiųsime trumpąja SMS žinute jūsų nurodytu telefono numeriu:
+                                <ul>
+                                    <li>kad susirinko grupė - 3-4 d. iki kelionės pradžios</li>
+                                    <li>autobuso valstybinį numerį ir sėdimas vietas (pagal bilieto įsigijimo laiką: anksčiau nusipirkę bilietą sėdi arčiau priekio) - 1-2 d. iki kelionės pradžios</li>
+                                </ul>
+                            </li>
+                            <li>Kelionės vadovas autobuse veda programą ir supažindina su lankomais objektais</li>
+                            <li>Kelionės vadovas lankomuose objektuose ekskursijų neveda</li>
+                            <li>Lankomų objektų skaičius, eiliškumas ir kainos gali kisti</li>
+                            <li>Turėkite atsigerti, kepurę, skėtį, lietpaltį... (pagal orų prognozes)</li>
+                            <li>Ši kelionė nėra pritaikyta riboto judumo asmenims</li>
+                        </ul>
+                </div>
+                <p>Kelionę organizuoja: VšĮ „Prasmingam gyvenimui“</p>
+
+                <div class="datos">
+                    <div class="travel-reservation">
+                        <h3 class="travel-tour-dates">2024-06-22 - 2024-06-22</h3>
+                        <h5 class="travel-free-places-name">VIETŲ YRA</h5> 
+                        <p class="travel-origin">iš Kauno, Kėdainių ir Raseinių</p>  
+                    </div>
+                    <div class="travel-price">
+                        <p class="travel-tour-price">55 €/asm.</p>
+                    </div>
+                    <div class="reserve-link">
+                        <a class="btn-buy">Pirkti</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="Programa" class="tabcontent">
+                <div class="programa">
+                    <h3>KELIONĖS PROGRAMA</h3>
+                    <p>Tai, kas gražiausia Kuršių nerijoje: unikalus gamtos grožis, jos didybė ir neaprėpiami toliai...
+                    Ankstyvą rytą autobusu išvyksime link Kuršių nerijos. Vyksime į Smiltynės prieplauką. Iš čia keltu kelsimės į Kuršių neriją.</p>
+                    <div class="travel-program">
+                        <ul>
+                            <li>
+                                <span class="tp-day">1</span>  
+                                <h4>Juodkrantė</h4>
+                                <p>Sustosime Juodkrantėje. Juodkrantėje savarankiškai bus galima aplankyti įdomesnius objektus. Pavyzdžiui, žymiąją medinių skulptūrų ekspoziciją, vadinamajame ,,Raganų kalne“. Ar Juodkrantės Šv. Pranciškaus Asyžiečio bažnyčią. Vaikštant marių pakrante bus galima pamatyti akmens skulptūrų kompoziciją ,,Žemė ir vanduo“. O gal norėsis tiesiog pasėdėti šio jaukaus pamario miesto kavinukėse.</p>
+                                <p>Keliaujant toliau, pravažiuosime žymiąsias garnių ir kormoranų perimvietes.</p>
+
+                                <div class="content-image">
+                                    <img style="max-width: 1000px;" src="img/keliones/Nerija/7.jpg">
+                                </div>
+                                <p>Keliausime į tolimiausią Kuršių nerijos gyvenvietę - Nidą. Nidoje aplankysime žymiausias ir gražiausias jos vietas.</p></li>
+
+                            <li>
+                                <span class="tp-day">2</span>
+                                <h4>Parnidžio kopa ir saulės laikrodis</h4>
+                                <p>Pažintį su Nida pradėsime nuo Parnidžio kopos. Ši kopa yra viena aukščiausių apžvalgos vietų Nidoje (53 m). Jos viršūnėje pastatytas žymusis Saulės laikrodis-kalendorius. Jį sudaro apskrita aikštelė su puslankiu iškilusiomis nedidelėmis pakopėlėmis, žyminčiomis valandas. Pasigėrėję įspūdingais vaizdais, patikrinę vietinį laiką pagal saulės laikrodžio šešėlį, keliausime pėsčiomis toliau.</p></li>
+                            
+                            <li>
+                                <span class="tp-day">3</span>
+                                <h4>Parnidžio pažintinis takas</h4>
+                                <p>Kelionę tęsime Parnidžio kopos pažintiniu taku. Tai vienas gražiausių pažintinių takų Lietuvoje. Atnaujintas takas tapo dar patogesnis ir įdomesnis: su suoleliais poilsiui, įdomiomis skulptūromis, gražiausiose vietose įrengtomis apžvalgos aikštelėmis... Praeisime Tylos slėnį, o nusileidę nuo kopos, pasieksime senąją Nidos dalį.</p></li>
+                                
+                            <li>
+                                <span class="tp-day">4</span>
+                                <h4>Nida</h4>
+                                <p>Nidoje galėsime pasigrožėti savita architektūra, nusagstytu vėtrungėmis pamariu. Prisėsti prie maestro Kernagio skulptūros. Savarankiškai aplankyti įdomesnius muziejus, kaip pvz.: Nidos žvejo etnografinė sodyba, ar moderniai įrengtą Mizgirių gintaro muziejų... Spartesni galės pasiekti ir tolimesnes vietas, pvz.: senąjį Nidos švyturį ant Urbo kalno ar net jūrą.</p>
+                        
+                                <div class="content-image">
+                                    <div class="image-row">
+                                        <img src="img/keliones/Nerija/5.jpg">
+                                        <img src="img/keliones/Nerija/6.jpg">
+                                        <img src="img/keliones/Nerija/7.jpg">
+                                        <img src="img/keliones/Nerija/8.jpg">
+                                        <img src="img/keliones/Nerija/9.jpg">
+                                        <img src="img/keliones/Nerija/10.jpg">
+                                        <img src="img/keliones/Nerija/11.jpg">
+                                    </div>
+                                </div></li>
+                            <li>
+                                <span class="tp-day">5</span>
+                                <h4>Naglių gamtinis rezervatas</h4>
+                                <p>Toliau vyksime į Naglių gamtinį rezervatą. Pažintinis takas ves iki Mirusių (Pilkųjų) kopų. Tako gale, užlipę į apžvalgos bokštelį, galėsime pamatyti tyvuliuojančius smėlynus, marių ir jūros panoramą. Po šiomis kopomis palaidotas senasis Naglių kaimas.</p>
+
+                                <div class="content-image">
+
+                                    <div class="image-row">
+                                        <img class="w-full"  src="img/keliones/Nerija/12.jpg">
+                                        <img class="w-full" src="img/keliones/Nerija/13.jpg">
+                                        <img class="w-full" src="img/keliones/Nerija/14.jpg">
+                                    </div>
+                                
+                                </div>
+
+                                <p>Kviečiame prasmingai ir turiningai praleisti laiką.</p>
+                            </li>
+                        </ul> 
+                    </div>       
+                </div> 
+            </div>
+            <div id="Iskaiciuota" class="tabcontent hidden">
+                <div class="iskaiciuota">
+                    <h4>Į KAINĄ ĮSKAIČIUOTA</h4>
+                    <ul>
+                        <li>Kelionė autobusu</li>
+                        <li>Kelių ir kuro mokesčiai</li>
+                        <li>Ekskursinė programa</li>
+                        <li>Kelionės vadovo paslaugos</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div id="Neiskaiciuota" class="tabcontent hidden">
+                <div class="neiskaiciuota">
+                    <h4>Į KAINĄ NEĮSKAIČIUOTA</h4>
+                    <ul>
+                        <li>Kelto ir įvažiavimo į Neringą mokestis (privalomas) ~4 Eur/asm. (priklauso nuo grupės dydžio)</li>
+                        <li>Naglių rezervato pažintinis takas</li>
+                        <li>Suaugusiems ~5 Eur/asm.; studentams ~2 Eur/asm.; moksleiviams ir neįgaliesiems - nemokamai</li>
+                        <li>Asmeninės išlaidos</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div id="Isvykimo" class="tabcontent hidden">
+                <div class="isvykimo">
+                    <h4>IŠVYKIMO VIETOS IR LAIKAS</h4>
+                    <ul>
+                    Prašome atvykti 10 min. iki autobuso išvykimo
+                        <li>Kaunas
+                            <ul>
+                                <li>prie McDonald's, Savanorių pr. 321 (šalia yra nemokama automobilių stovėjimo aikštelė); išvykimas 07:30, planuojame grįžti tarp 21:00 ir 22:00</li>
+                                <li>autobusų stotelė prie Šilainių Maxima, Šarkuvos g./Žemaičių pl., Maxima pusėje; išvykimas ~07:50</li>
+                            </ul>
+                        </li>
+                        <li>Kėdainiai - stotelė autostradoje, prie Cinkiškio; išvykimas ~08:10></li>
+                        <li>Raseiniai - degalinė BALTIC PETROLEUM, autostradoje prie Kalnujų; išvykimas ~08:40</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div id="Pastabos" class="tabcontent hidden">
+                <div class="pastabos">
+                    <h4>KITOS PASTABOS</h4>
+                    <ul>
+                    Prašome atvykti 10 min. iki autobuso išvykimo
+                        <li>Informaciją atsiųsime trumpąja SMS žinute jūsų nurodytu telefono numeriu:
+                            <ul>
+                                <li>kad susirinko grupė - 3-4 d. iki kelionės pradžios</li>
+                                <li>autobuso valstybinį numerį ir sėdimas vietas (pagal bilieto įsigijimo laiką: anksčiau nusipirkę bilietą sėdi arčiau priekio) - 1-2 d. iki kelionės pradžios</li>
+                            </ul>
+                        </li>
+                        <li>Kelionės vadovas autobuse veda programą ir supažindina su lankomais objektais</li>
+                        <li>Kelionės vadovas lankomuose objektuose ekskursijų neveda</li>
+                        <li>Lankomų objektų skaičius, eiliškumas ir kainos gali kisti</li>
+                        <li>Turėkite atsigerti, kepurę, skėtį, lietpaltį... (pagal orų prognozes)</li>
+                        <li>Ši kelionė nėra pritaikyta riboto judumo asmenims</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div id="Datos" class="tabcontent">
+                <div class="datos">
+                    <div class="travel-reservation">
+                        <h3 class="travel-tour-dates">2024-06-22 - 2024-06-22</h3>
+                        <h5 class="travel-free-places-name">VIETŲ YRA</h5> 
+                        <p class="travel-origin">iš Kauno, Kėdainių ir Raseinių</p>  
+                    </div>
+                    <div class="travel-price">
+                        <p class="travel-tour-price">55 €/asm.</p>
+                    </div>
+                    <div class="reserve-link">
+                        <a class="btn-buy">Pirkti</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        
+    </div>
+    <footer id="site-footer">
+        <div class="container">
+            <div class="column-wrapper">
+                <div class="footer-col info-company">
+                    <div id="logo" class="logo">
+                        <a href="index-2.html">
+                            <span>VšĮ "Prasmingam gyvenimui"</span>
+                        </a>
+                    </div>
+                    <p class="company-desc-1">Kelionės autobusu - Jūsų Prasmingam gyvenimui</p>
+                    <h3 class="company-desc-2">Džiaugiamės, kad domitės mūsų pasiūlymais!</h3>
+                </div>
+                <div class="footer-col info-contact">
+                    <h3 class="info-header">susisiekime</h3>
+                    <div class="contact-info">
+                        <a href="tel:37065955770">
+                            <img class="icon" src="img/phone-svgrepo-com-white.svg" />
+                            <span>(+370) 659 55770</span>
+                        </a>
+                        <a href="#">
+                            <img class="icon" src="img/mail-svgrepo-com-white.svg" />
+                            <span>info@mail.com
+                        </a>
+                    </div>
+                    <div class="social-icons">
+                        <a href="https://www.facebook.com/profile.php?id=100080044436184">
+                            <img class="icon" img src="img/facebook-svgrepo-com-white.svg" />
+                        </a>
+                        <a href="#">
+                            <img class="icon" img src="img/instagram-svgrepo-com-white.svg" /> 
+                        </a>
+                    </div>
+                    <div class="work-hours">
+                        <p>I-V 9-13 val.</p>
+                        <p>IV-IIV nedirbame</p>
+                    </div>
+                </div>
+                <div class="footer-col info-link"> 
+                    <h3 class="info-header">Struktura</h3>
+                    <a href="apie-mus.html" class="link-item">Apie mus</a>
+                    <a href="kontaktai.html" class="link-item">Kontaktai</a>                        
+                </div>
+                <div class="footer-col info-trips">
+                    <h3 class="info-header">Kelionės</h3>
+                    <a href="augustavas.html" class="link-item">Augustavas Lenkija</a>
+                    <a href="balstoge.html" class="link-item">Balstoge Lenkija</a>
+                    <a href="druskininkai.html" class="link-item">Druskininkai</a>
+                    <a href="kursiu-nerija.html" class="link-item">Kursiu nerija</a>
+                    <a href="vilko-guolis.html" class="link-item">Vilko guolis Lenkija</a>
+                    <a href="zarasai.html" class="link-item">Zarasai</a>
+                    <a href="zemaitija.html" class="link-item">Zemaitija</a>
+                </div>
+                <div class="footer-col info-more-links">
+                    <h3 class="info-header">Informacija</h3>
+                    <a href="turizmo-paslaugų-sutartis.html" class="link-item">Turizmo paslaugų sutartis</a>
+                    <a href="informacija-vartotojams-koronaviruso-laikotarpiu.html" class="link-item">Informacija vartotojams koronaviruso laikotarpiu</a>
+                    <a href="es-projektai.html" class="link-item">ES projektai</a>
+                    <a href="privatumo-politika.html" class="link-item">Privatumo politika</a>
+                    <a href="informavimas-apie-asmens-duomenų-tvarkymą.html" class="link-item">Informavimas apie asmens duomenų tvarkymą</a>
+                    <a href="kelionės-kolektyvams-po-lietuvą.html" class="link-item">Kelionės kolektyvams po Lietuvą</a>
+                </div>
+            </div>    
+        </div>
+        <div class="footer-bottom">
+            <p>Copyright 2024. Your company name. All rights reserved.</p>
+        </div>    
+    </footer>
+    <script src="javascript/search-toggle.js"></script>
+    <script src="javascript/range.js"></script>
+    <script src="javascript/tabContent.js"></script>
+</body>
+</html>

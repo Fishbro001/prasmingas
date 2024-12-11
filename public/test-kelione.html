@@ -1,0 +1,604 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/range.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="container">
+                <div id="top-header" class="col-top-header">
+                    <div class="contact-info">
+                        <a href="tel:37065955770">
+                            <img class="icon" src="img/phone-svgrepo-com.svg" />
+                            <span>(+370) 659 55770</span>
+                        </a>
+                        <a href="#">
+                            <img class="icon" src="img/mail-svgrepo-com.svg" />
+                            <span>info@mail.com
+                        </a>
+                    </div>
+                    <div class="top-header-links">
+                        <a href="apie-mus.html">
+                            <img class="icon" src="img/info-circle-svgrepo-com.svg" />
+                            <span>Apie mus</span>
+                        </a>
+                        <a href="kontaktai.html">
+                            <img class="icon" src="img/location-svgrepo-com.svg" />
+                            </span>
+                            <span>Kontaktai</span>
+                        </a>
+                    </div>
+                    <div class="social-icons">
+                        <a href="https://www.facebook.com/profile.php?id=100080044436184">
+                            <img class="icon" img src="img/facebook-svgrepo-com.svg" />
+                        </a>
+                        <a href="#">
+                            <img class="icon" img src="img/instagram-svgrepo-com.svg" /> 
+                        </a>
+                    </div>
+                </div>
+                <div id="main-header" class="col-main-header">
+                    <div id="logo">
+                        <a href="index.html" class="logo">
+                            <span>VšĮ "Prasmingam gyvenimui"</span>
+                        </a>
+                    </div>
+                    <div id="menu">
+                        <a href="autubusu.html">
+                            <img class="icon" src="img/bus-svgrepo-com.svg" />
+                            <span>Autobusu</span>
+                        </a>                           
+                        <a href="lietuvoje.html">
+                            <img class="icon" src="img/flag-for-flag-lithuania-svgrepo-com.svg" />
+                            <span>Lietuvoje</span>
+                        </a>
+                        <a href="uzsienyje.html">
+                            <img class="icon" img src="img/globe-svgrepo-com.svg" />
+                            <span>Užsienyje</span>
+                        </a>
+                        <a href="garantuotos.html">
+                            <img class="icon" src="img/approved-aproved-confirm-2-svgrepo-com.svg" />
+                            <span>Garantuotos</span>
+                        </a>
+                        <a href="kaledines.html">
+                            <img class="icon" src="img/christmas-tree-svgrepo-com.svg" />
+                            <span>Kalėdinės</span>
+                        </a>
+                    </div>
+                    <div id="search">
+                        <a href="#" id="searchIcon">
+                            <img class="icon" src="img/search-svgrepo-com.svg" />
+                        </a>     
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <!-- end mobile search modal -->
+        <!-- Mobile search modal -->
+        <div id="searchMobile" class="hidden">
+            <div class="search-container">
+                <div class="search-content">
+                    <form action="/your-backend-endpoint" method="POST">
+                        <div class="data-input-container">
+                            <div class="data-input-col">
+                                <div class="data-input-field data-input-country">
+                                    <input type="text" placeholder="Kelionė arba šalis" name="tour" id="tour-name" autocomplete="off" class="country">
+                                </div>
+                                <div class="data-input-field data-input-transport">
+                                    <label class="checkbox-icon" title="Autobusu">
+                                        <input type="checkbox" class="select-only-one" name="transport" value="bus">
+                                        <span class="checkbody">
+                                            <span class="checkmark">
+                                                <img src="img/bus-svgrepo-com.svg" />
+                                            </span>
+                                        </span>
+                                    </label>
+                                    <label class="checkbox-icon" title="Lėktuvu">
+                                        <input type="checkbox" class="select-only-one" name="transport" value="plane">
+                                        <span class="checkbody">
+                                            <span class="checkmark">
+                                                <img src="img/airplane-svgrepo-com.svg" />
+                                            </span>
+                                        </span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="data-input-col">
+                                <div class="data-input-field data-input-date">
+                                    <div class="data-input-date-from">
+                                        <input type="date" placeholder="Data nuo" name="date_from" id="d1" class="date-from">
+                                    </div>
+                                    <div class="data-input-field data-input-date-to">
+                                        <input type="date" placeholder="Data iki" name="date_to" id="d2" class="date-to">
+                                    </div>
+                                </div>
+                                <div class="data-input-field data-input-tour-type">
+                                    <select name="travel_type" id="keliones-tipas" class="">
+                                        <option value="" selected>Kelionės tipas</option>
+                                        <option value="1">Pažintinės</option>
+                                        <option value="2">Poilsinės</option>
+                                        <option value="3">Aktyvios</option>
+                                        <option value="4">Egzotinės</option>
+                                        <option value="5">Skrydis + viešbutis</option>
+                                        <option value="š">Kolektyvams</option>
+                                        <option value="1">Moksleiviams</option>
+                                        <option value="1">Ekskursija</option>
+                                        <option value="1">Vestuvės</option>
+                                        <option value="1">Poilsis Lietuvoje</option>
+                                        <option value="1">Dovanų kuponas</option>
+                                        <option value="1">Žygiai</option>
+                                        <option value="1">Slidinėjimas</option>
+                                        <!-- Add more options as needed -->
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="data-input-col">
+                                <div class="data-input-field data-input-price-range">
+                                    <h3 class="range-title">Kelionės kaina</h3>
+                                    <div class="range_container">
+                                        <div class="form_control">
+                                            <div class="form_control_container">
+                                                <div class="form_control_container__time">Min</div>
+                                                <input class="form_control_container__time__input" type="number" id="fromInput" name="price_min" value="80" min="0" max="3999"/>
+                                            </div>
+                                            <div class="form_control_container">
+                                                <div class="form_control_container__time">Max</div>
+                                                <input class="form_control_container__time__input" type="number" id="toInput" name="price_max" value="3000" min="0" max="3999"/>
+                                            </div>
+                                        </div>
+                                        <div class="sliders_control">
+                                            <input id="fromSlider" type="range" value="80" min="0" max="3999"/>
+                                            <input id="toSlider" type="range" value="3000" min="0" max="3999"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="data-input-field data-input-submit">
+                                    <button type="submit" class="btn-search-submit">
+                                        <img src="img/search-svgrepo-com-white.svg" />
+                                        <span>Ieškoti</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>                   
+        <!-- end mobile search modal -->
+    </header>
+    <div id="banner" class="balstoge">
+        <div class="container">
+            <div id="banner-title">
+                <h1>Balstoge, Lenkija</h1>   
+            </div>
+        </div>
+        <div class="overlay"></div>
+    </div>
+    <!-- Tab links -->
+    <div class="tab">
+        <button class="tablinks" onclick="openContent(event, 'Kelione')">Kelionė</button>
+        <button class="tablinks" onclick="openContent(event, 'Programa')">Kelionės Programa</button>
+        <button class="tablinks" onclick="openContent(event, 'Iskaiciuota')">Įskaičiuota</button>
+        <button class="tablinks" onclick="openContent(event, 'Neiskaiciuota')">Neįskaičiuota</button>
+        <button class="tablinks" onclick="openContent(event, 'Isvykimo')">Išvykimo vietos ir laikas</button>
+        <button class="tablinks" onclick="openContent(event, 'Pastabos')">Kitos Pastabos</button>
+        <button class="tablinks" onclick="openContent(event, 'Datos')">Data</button>
+    </div> 
+
+    <div id="main"> 
+
+        <div class="container">      
+            <!-- Tab content -->
+            <div id="Kelione" class="tabcontent">
+                <div class="travel-info-box">
+                    <div class="main-desc">
+                        <div class="main-desc-icons">
+                            <div id="section-title">Balstoge, Lenkija</div>
+                            <p><strong>Barokiškoji Balstogė, Lenkiškasis Versalis - Branickių rūmai, Supraslės ikonų muziejus ir LDK istorijos pėdsakai Tykocine</strong></p>
+                            <p><img src="img/location-svgrepo-com.svg" /> Lenkije</p>
+                            <p><img src="img/bus-svgrepo-com.svg"/> Autobusu, 1 diena</p>
+                                                
+                        </div>
+                        <div class="main-desc-price"><p>55 €</p></div>
+                    </div>
+                    <div class="travel-dates-info">
+                        <strong>iš Vilniaus, Kauno, Marijampolės / Alytaus, Lazdijų</strong>
+                        <p><span>2024-05-11</span><span>vietų yra</span><span>55 €</span></p>
+                    </div> 
+                </div>
+                <div class="programa">
+                    <h3>KELIONĖS PROGRAMA</h3>
+                    <p><em>Daili architektūra, įspūdingos bažnyčios, ramybe dvelkiantys parkai, kultūrų ir religijų įvairovė...</em></p>
+                    <div class="travel-program">
+                        <ul>
+                            <li>
+                                <span class="tp-day">1</span>  
+                                <h4>Balstoge</h4>
+                                <p>Didžiausias miestas šiaurės rytų Lenkijoje, įsikūręs Bialos upės pašonėje. Žavintis dailia architektūra, barokiniu senamiesčiu, įspūdingomis bažnyčiomis, parkais ir žinoma Lenkijos Versaliu tituluojamais - Branickių rūmais. <strong>Ekskursijos po Balstogę</strong> metu aplankysime populiariausias ir gražiausias miesto vietas:</p>
+                                <p>Pasivaikščiosime po <strong>Branickių rūmų parką.</strong> Rūmai garsūs savo prancūziško stiliaus parku, sodais ir skulptūromis, todėl nuo seno vadinami <strong>Lenkijos Versaliu.</strong> Rūmų architektūros stilius taip pat puikiai perteikia barokinę eleganciją bei puošnumą. Šiuo metu rūmuose įsikūręs medicinos muziejus, tad jais pasigrožėsime iš išorės. Šiuos rūmus suplanavo Jan Klemens Branicki, vienas turtingiausių Lenkijos vyrų, kandidatavęs į Lenkijos karaliaus sostą.</p>
+                                <p>Aplankysime ir netoliese esantį <strong>parką Planty,</strong> kuris džiugina šokančiais fontanais.</p>
+                                <p>Janas Klemensas Branickis ne tik pastatė rūmus ir sodus, bet ir turėjo užmojų sukurti ištisą baroko miestą su bažnyčiomis ir rotuše. Tad ekskursiją tęsime po <strong>barokinį Balstogės senamiestį,</strong> <strong>Kosciuškos turgaus aikštę</strong> - ypač mėgiamą susibūrimo vietą. Čia akis džiugins puošnūs aikštės namų fasadai, kavinės, restoranai, poilsio erdvės ir žinoma miesto vizitinė kortelė - <strong>Rotušė.</strong> Matysime pagrindinę miesto šventovę - <strong>Šv. Marijos katedrą.</strong> 17 a. pastatyta katedra labiausiai išsiskiria savo architektūra, nes menininkai puikiai suderino skirtingus architektūros stilius. Pro akis neprasprūs ir kitos ne mažiau įspūdingos miesto šventovės. Susipažinę su Balstoge turėsime <strong>laisvo laiko - savarankiškai</strong> pasivaikščioti, nusipirkti lauktuvių, pamatyti dar neatrastas Balstogės vietas.</p>
+
+                                <div class="content-image">
+                                    <div class="img-row"> 
+                                        <div class="img-column">
+                                            <img src="img/keliones/Balstoge/Balstoge-1.jpg" style="width:100%">
+                                            <img src="img/keliones/Balstoge/Balstoge-2.jpg" style="width:100%">
+                                        </div>
+                                        <div class="img-column">
+                                            <img src="img/keliones/Balstoge/Balstoge-4.jpg" style="width:100%">
+                                            <img src="img/keliones/Balstoge/Balstoge-3.jpg" style="width:100%">                                          
+                                        </div>
+                                        <div class="img-column"></div>
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li>
+                                <span class="tp-day">2</span>
+                                <h4>Supraslės ikonų muziejus</h4>
+                                <p>Supraslė - senasis stačiatikių kultūros centras, garsus savo įspūdingo dydžio cerkve ir vienuolynu. Vienuolyno komplekse pamatysime cerkvę (iš išorės). Apsilankysime viename didžiausių Europoje Ikonų muziejuje, kuris įkurtas vienoje iš vienuolyno dalių. Jame saugoma apie 1200 ikonų. Seniausia ikona siekia net 18 a. Savarankiškai apžiūrėsime šiuolaikiškai ir įtraukiančiai įrengtą ikonų ekspoziciją.</p>
+                                <div class="content-image">
+                                    <div class="img-row"> 
+                                        <div class="img-column">
+                                            <img src="img/keliones/Balstoge/Balstoge-6.jpg" style="width:100%">                                           
+                                        </div>
+                                        <div class="img-column">
+                                            <img src="img/keliones/Balstoge/Balstoge-7.jpg" style="width:100%">                                          
+                                        </div>
+                                        <div class="img-column">
+                                            <img src="img/keliones/Balstoge/Balstoge-5.jpg" style="width:100%">
+                                        </div>
+                                    </div>
+                                </div>         
+                            </li>
+                            
+                            <li>
+                                <span class="tp-day">3</span>
+                                <h4>Tykocinas</h4>
+                                <p>Aplankysime Tykociną - netoli Balstogės esantį nedidelį, žavų miestelį. Jis vadintas baroko perlu, nes 18 a. jį statė ir grąžino Branickių giminė (Balstogės Branickių rūmų savininkai). Tad <strong>pasivaikščiosime</strong> po šį dailų ir turtingą istoriją menantį miestą. Ir šiame miestelyje pastebima religijų įvairovė, maldos namus turėjo katalikai, žydai, stačiatikiai. Apžiūrėsime puošnią Švč. Trejybės bažnyčią, Tykocino sinagogą, - antrus seniausius žydų maldos namus Lenkijoje.</p> 
+                                <p>Ne kartą Tykocine apsilankydavo Lenkijos karaliai ir Lietuvos didieji kunigaikščiai. Pamatysime (iš išorės) visai neseniai atstatytą <strong>Tykocino pilį,</strong> kurioje gyveno Žygimantas Augustas. Šiandien matoma pilis yra XVI a. pastatytos Žygimanto Augusto pilies rekonstrukcija, atkurta remiantis gausiomis iliustracijomis.</p>
+                        
+                                <div class="content-image">
+                                    <div class="img-row"> 
+                                        <div class="img-column">
+                                            <img src="img/keliones/Balstoge/Balstoge-8.jpg" style="width:100%">                                           
+                                        </div>
+                                        <div class="img-column">
+                                            <img src="img/keliones/Balstoge/Balstoge-9.jpg" style="width:100%">                                          
+                                        </div>
+                                        <div class="img-column"></div>
+                                    </div>
+                                </div>
+                                <p>Kviečiame prasmingai ir turiningai praleisti laiką.</p>
+                            </li>
+                        </ul> 
+                    </div>       
+                </div>              
+                <div class="iskaiciuota">
+                    <h4>Į KAINĄ ĮSKAIČIUOTA</h4>
+                    <ul>
+                        <li>Kelionė autobusu</li>
+                        <li>Kelių ir kuro mokesčiai</li>
+                        <li>Ekskursinė programa</li>
+                        <li>Kelionės vadovo paslaugos</li>
+                    </ul>
+                </div>
+
+                <div class="neiskaiciuota">
+                    <h4>Į KAINĄ NEĮSKAIČIUOTA</h4>
+                    <ul>
+                        <li>Supraslės ikonų muziejus, lankytojo bilietas: suaugusiems ~20 zł./asm, su nuolaida ~10 zł./asm.</li>
+                        <li>Ekskursija Balstogėje (rusų k.) ~10 zł./asm.</li>
+                            (Prieš kelionę būtina išsikeisti zlotų mokamiems objektams ir pietums)</li>
+                        <li>Bažnyčių lankymas - laisva auka</li>
+                        <li>Pietūs</li>
+                        <li>Asmeninės išlaidos</li>
+                        <li>Medicininių išlaidų draudimas</li>
+                    </ul>
+                </div>
+
+                <div class="isvykimo">
+                    <h4>IŠVYKIMO VIETOS IR LAIKAS</h4>
+                    <ul>
+                        Prašome atvykti 10 min. iki autobuso išvykimo
+                        <li><strong>Vilnius</strong> - ERGO stovėjimo aikštelė, Geležinio Vilko g. 6A, prie Gerosios Vilties žiedo; išvykimas 05:30, grįžimas tarp 00:00 ir 01:00</li>
+                        <li><strong>Kaunas</strong>  
+                            <ul>
+                                <li>prie McDonald's, Savanorių pr. 321 (šalia yra nemokama automobilių stovėjimo aikštelė); išvykimas 07:00, grįžimas tarp 23:00 ir 24:00</li>
+                                <li>autobusų stotelė prie Šilainių Maxima, Šarkuvos g. 1A/Žemaičių pl. (Maxima pusėje); išvykimas 07:20</li>
+                            </ul>
+                        </li>
+                        <li><strong>Grigiškės</strong> - EMSI degalinė, prie autostrados, Neravų k.; išvykimas ~05:40</li>
+                        <li><strong>Vievis</strong> - sustojimas link Kauno; išvykimas ~06:00</li>
+                        <li><strong>Elektrėnai</strong> - degalinė ORLEN, prie autostrados, link Kauno; išvykimas ~06:10</li>
+                        <li><strong>Žiežmariai</strong> - sustojimas link Kauno; išvykimas ~06:25</li>
+                        <li><strong>Rumšiškės</strong> - sustojimas link Kauno; išvykimas ~06:40</li>
+                        <li><strong>Alytus</strong> - degalinė Viada, prie autobusų stoties; išvykimas 08:20</li>
+                        <li><strong>Lazdijai</strong> - degalinė Circle K Lazdijai, Nekrūnų k., Lazdijų r. (LT pasienis prie Lazdijų); išvykimas 09:00</li>
+                        <li><strong>Marijampolė</strong> - aikštelė prie geležinkelio stoties; išvykimas ~08:10</li>
+                    </ul>
+                </div>
+
+                <div class="pastabos">
+                    <h4>KITOS PASTABOS</h4>
+                    <ul>
+                        <li>Kelionei BŪTINAS galiojantis asmens dokumentas - asmens tapatybės kortelė arba pasas. Jų galiojimo laikas turi būti ne trumpesnis nei 3 mėn. kelionei pasibaigus</li>
+                        <li>Turėti Europos sveikatos draudimo kortelę (išduoda ligonių kasos)</li>
+                        <li>Vykstantiems į kelionę, rekomenduojame (neprivaloma) turėti papildomą 1 dienos medicininių išlaidų draudimą, garantuojantį būtinosios medicinos pagalbos užsienyje ir papildomų išlaidų, susidariusių dėl draudiminio įvykio, apmokėjimą.
+                                Tokį draudimą galite įsigyti internetu draudimo bendrovėse, bankuose... Vienas iš jų: https://www.draudimas.lt/kelioniu-draudimas</li>
+                        <li>Informaciją atsiųsime trumpąja SMS žinute jūsų nurodytu telefono numeriu:
+                            <ul>
+                                <li>kad susirinko grupė - 3-4 d. iki kelionės pradžios</li>
+                                <li>autobuso valstybinį numerį ir sėdimas vietas (pagal bilieto įsigijimo laiką: anksčiau nusipirkę bilietą sėdi arčiau priekio) - 1-2 d. iki kelionės pradžios</li>
+                            </ul>
+                        </li>
+                        <li>Kelionės vadovas autobuse veda programą ir supažindina su lankomais objektais</li>
+                        <li>Kelionės vadovas lankomuose objektuose ekskursijų neveda</li>
+                        <li>Lankomų objektų skaičius, eiliškumas ir kainos gali kisti</li>
+                        <li>Turėkite atsigerti, kepurę, skėtį, lietpaltį... (pagal orų prognozes)</li>
+                        <li>Keliaujant rugsėjo-balandžio mėn., rekomenduojame turėti atšvaitus dėl jūsų saugumo</li>
+                        <li>Ši kelionė nėra pritaikyta riboto judumo asmenims</li>
+                    </ul>
+                </div>
+                <p>Kelionę organizuoja: VšĮ „Prasmingam gyvenimui“</p>
+
+                <div class="datos">
+                    <div class="travel-reservation">
+                        <h3 class="travel-tour-dates">2024-05-11 - 2024-05-11</h3>
+                        <h5 class="travel-free-places-name">VIETŲ YRA</h5> 
+                        <p class="travel-origin">iš Vilniaus, Kauno ir Marijampolės</p>  
+                    </div>
+                    <div class="travel-price">
+                        <p class="travel-tour-price">55 €/asm.</p>
+                    </div>
+                    <div class="reserve-link">
+                        <a class="btn-buy">Pirkti</a>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div id="Programa" class="tabcontent">
+                <div class="programa">
+                    <h3>KELIONĖS PROGRAMA</h3>
+                    <p><em>Daili architektūra, įspūdingos bažnyčios, ramybe dvelkiantys parkai, kultūrų ir religijų įvairovė...</em></p>
+                    <div class="travel-program">
+                        <ul>
+                            <li>
+                                <span class="tp-day">1</span>  
+                                <h4>Balstoge</h4>
+                                <p>Didžiausias miestas šiaurės rytų Lenkijoje, įsikūręs Bialos upės pašonėje. Žavintis dailia architektūra, barokiniu senamiesčiu, įspūdingomis bažnyčiomis, parkais ir žinoma Lenkijos Versaliu tituluojamais - Branickių rūmais. <strong>Ekskursijos po Balstogę</strong> metu aplankysime populiariausias ir gražiausias miesto vietas:</p>
+                                <p>Pasivaikščiosime po <strong>Branickių rūmų parką.</strong> Rūmai garsūs savo prancūziško stiliaus parku, sodais ir skulptūromis, todėl nuo seno vadinami <strong>Lenkijos Versaliu.</strong> Rūmų architektūros stilius taip pat puikiai perteikia barokinę eleganciją bei puošnumą. Šiuo metu rūmuose įsikūręs medicinos muziejus, tad jais pasigrožėsime iš išorės. Šiuos rūmus suplanavo Jan Klemens Branicki, vienas turtingiausių Lenkijos vyrų, kandidatavęs į Lenkijos karaliaus sostą.</p>
+                                <p>Aplankysime ir netoliese esantį <strong>parką Planty,</strong> kuris džiugina šokančiais fontanais.</p>
+                                <p>Janas Klemensas Branickis ne tik pastatė rūmus ir sodus, bet ir turėjo užmojų sukurti ištisą baroko miestą su bažnyčiomis ir rotuše. Tad ekskursiją tęsime po <strong>barokinį Balstogės senamiestį,</strong> <strong>Kosciuškos turgaus aikštę</strong> - ypač mėgiamą susibūrimo vietą. Čia akis džiugins puošnūs aikštės namų fasadai, kavinės, restoranai, poilsio erdvės ir žinoma miesto vizitinė kortelė - <strong>Rotušė.</strong> Matysime pagrindinę miesto šventovę - <strong>Šv. Marijos katedrą.</strong> 17 a. pastatyta katedra labiausiai išsiskiria savo architektūra, nes menininkai puikiai suderino skirtingus architektūros stilius. Pro akis neprasprūs ir kitos ne mažiau įspūdingos miesto šventovės. Susipažinę su Balstoge turėsime <strong>laisvo laiko - savarankiškai</strong> pasivaikščioti, nusipirkti lauktuvių, pamatyti dar neatrastas Balstogės vietas.</p>
+
+                                <div class="content-image">
+                                    <div class="img-row"> 
+                                        <div class="img-column">
+                                            <img src="img/keliones/Balstoge/Balstoge-1.jpg" style="width:100%">
+                                            <img src="img/keliones/Balstoge/Balstoge-2.jpg" style="width:100%">
+                                        </div>
+                                        <div class="img-column">
+                                            <img src="img/keliones/Balstoge/Balstoge-4.jpg" style="width:100%">
+                                            <img src="img/keliones/Balstoge/Balstoge-3.jpg" style="width:100%">                                          
+                                        </div>
+                                        <div class="img-column"></div>
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li>
+                                <span class="tp-day">2</span>
+                                <h4>Supraslės ikonų muziejus</h4>
+                                <p>Supraslė - senasis stačiatikių kultūros centras, garsus savo įspūdingo dydžio cerkve ir vienuolynu. Vienuolyno komplekse pamatysime cerkvę (iš išorės). Apsilankysime viename didžiausių Europoje Ikonų muziejuje, kuris įkurtas vienoje iš vienuolyno dalių. Jame saugoma apie 1200 ikonų. Seniausia ikona siekia net 18 a. Savarankiškai apžiūrėsime šiuolaikiškai ir įtraukiančiai įrengtą ikonų ekspoziciją.</p>
+                                <div class="content-image">
+                                    <div class="img-row"> 
+                                        <div class="img-column">
+                                            <img src="img/keliones/Balstoge/Balstoge-6.jpg" style="width:100%">                                           
+                                        </div>
+                                        <div class="img-column">
+                                            <img src="img/keliones/Balstoge/Balstoge-7.jpg" style="width:100%">                                          
+                                        </div>
+                                        <div class="img-column">
+                                            <img src="img/keliones/Balstoge/Balstoge-5.jpg" style="width:100%">
+                                        </div>
+                                    </div>
+                                </div>         
+                            </li>
+                            
+                            <li>
+                                <span class="tp-day">3</span>
+                                <h4>Tykocinas</h4>
+                                <p>Aplankysime Tykociną - netoli Balstogės esantį nedidelį, žavų miestelį. Jis vadintas baroko perlu, nes 18 a. jį statė ir grąžino Branickių giminė (Balstogės Branickių rūmų savininkai). Tad <strong>pasivaikščiosime</strong> po šį dailų ir turtingą istoriją menantį miestą. Ir šiame miestelyje pastebima religijų įvairovė, maldos namus turėjo katalikai, žydai, stačiatikiai. Apžiūrėsime puošnią Švč. Trejybės bažnyčią, Tykocino sinagogą, - antrus seniausius žydų maldos namus Lenkijoje.</p> 
+                                <p>Ne kartą Tykocine apsilankydavo Lenkijos karaliai ir Lietuvos didieji kunigaikščiai. Pamatysime (iš išorės) visai neseniai atstatytą <strong>Tykocino pilį,</strong> kurioje gyveno Žygimantas Augustas. Šiandien matoma pilis yra XVI a. pastatytos Žygimanto Augusto pilies rekonstrukcija, atkurta remiantis gausiomis iliustracijomis.</p>
+                        
+                                <div class="content-image">
+                                    <div class="img-row"> 
+                                        <div class="img-column">
+                                            <img src="img/keliones/Balstoge/Balstoge-8.jpg" style="width:100%">                                           
+                                        </div>
+                                        <div class="img-column">
+                                            <img src="img/keliones/Balstoge/Balstoge-9.jpg" style="width:100%">                                          
+                                        </div>
+                                        <div class="img-column"></div>
+                                    </div>
+                                </div>
+                                <p>Kviečiame prasmingai ir turiningai praleisti laiką.</p>
+                            </li>
+                        </ul> 
+                    </div>
+                </div> 
+            </div>
+            <div id="Iskaiciuota" class="tabcontent hidden">
+                <div class="iskaiciuota">
+                    <h4>Į KAINĄ ĮSKAIČIUOTA</h4>
+                    <ul>
+                        <li>Kelionė autobusu</li>
+                        <li>Kelių ir kuro mokesčiai</li>
+                        <li>Ekskursinė programa</li>
+                        <li>Kelionės vadovo paslaugos</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div id="Neiskaiciuota" class="tabcontent hidden">
+                <div class="neiskaiciuota">
+                    <h4>Į KAINĄ NEĮSKAIČIUOTA</h4>
+                    <ul>
+                        <li>Supraslės ikonų muziejus, lankytojo bilietas: suaugusiems ~20 zł./asm, su nuolaida ~10 zł./asm.</li>
+                        <li>Ekskursija Balstogėje (rusų k.) ~10 zł./asm.</li>
+                            (Prieš kelionę būtina išsikeisti zlotų mokamiems objektams ir pietums)</li>
+                        <li>Bažnyčių lankymas - laisva auka</li>
+                        <li>Pietūs</li>
+                        <li>Asmeninės išlaidos</li>
+                        <li>Medicininių išlaidų draudimas</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div id="Isvykimo" class="tabcontent hidden">
+                <div class="isvykimo">
+                    <h4>IŠVYKIMO VIETOS IR LAIKAS</h4>
+                    <ul>
+                        Prašome atvykti 10 min. iki autobuso išvykimo
+                        <li><strong>Vilnius</strong> - ERGO stovėjimo aikštelė, Geležinio Vilko g. 6A, prie Gerosios Vilties žiedo; išvykimas 05:30, grįžimas tarp 00:00 ir 01:00</li>
+                        <li><strong>Kaunas</strong>  
+                            <ul>
+                                <li>prie McDonald's, Savanorių pr. 321 (šalia yra nemokama automobilių stovėjimo aikštelė); išvykimas 07:00, grįžimas tarp 23:00 ir 24:00</li>
+                                <li>autobusų stotelė prie Šilainių Maxima, Šarkuvos g. 1A/Žemaičių pl. (Maxima pusėje); išvykimas 07:20</li>
+                            </ul>
+                        </li>
+                        <li><strong>Grigiškės</strong> - EMSI degalinė, prie autostrados, Neravų k.; išvykimas ~05:40</li>
+                        <li><strong>Vievis</strong> - sustojimas link Kauno; išvykimas ~06:00</li>
+                        <li><strong>Elektrėnai</strong> - degalinė ORLEN, prie autostrados, link Kauno; išvykimas ~06:10</li>
+                        <li><strong>Žiežmariai</strong> - sustojimas link Kauno; išvykimas ~06:25</li>
+                        <li><strong>Rumšiškės</strong> - sustojimas link Kauno; išvykimas ~06:40</li>
+                        <li><strong>Alytus</strong> - degalinė Viada, prie autobusų stoties; išvykimas 08:20</li>
+                        <li><strong>Lazdijai</strong> - degalinė Circle K Lazdijai, Nekrūnų k., Lazdijų r. (LT pasienis prie Lazdijų); išvykimas 09:00</li>
+                        <li><strong>Marijampolė</strong> - aikštelė prie geležinkelio stoties; išvykimas ~08:10</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div id="Pastabos" class="tabcontent hidden">
+                <div class="pastabos">
+                    <h4>KITOS PASTABOS</h4>
+                    <ul>
+                        <li>Kelionei BŪTINAS galiojantis asmens dokumentas - asmens tapatybės kortelė arba pasas. Jų galiojimo laikas turi būti ne trumpesnis nei 3 mėn. kelionei pasibaigus</li>
+                        <li>Turėti Europos sveikatos draudimo kortelę (išduoda ligonių kasos)</li>
+                        <li>Vykstantiems į kelionę, rekomenduojame (neprivaloma) turėti papildomą 1 dienos medicininių išlaidų draudimą, garantuojantį būtinosios medicinos pagalbos užsienyje ir papildomų išlaidų, susidariusių dėl draudiminio įvykio, apmokėjimą.
+                                Tokį draudimą galite įsigyti internetu draudimo bendrovėse, bankuose... Vienas iš jų: https://www.draudimas.lt/kelioniu-draudimas</li>
+                        <li>Informaciją atsiųsime trumpąja SMS žinute jūsų nurodytu telefono numeriu:
+                            <ul>
+                                <li>kad susirinko grupė - 3-4 d. iki kelionės pradžios</li>
+                                <li>autobuso valstybinį numerį ir sėdimas vietas (pagal bilieto įsigijimo laiką: anksčiau nusipirkę bilietą sėdi arčiau priekio) - 1-2 d. iki kelionės pradžios</li>
+                            </ul>
+                        </li>
+                        <li>Kelionės vadovas autobuse veda programą ir supažindina su lankomais objektais</li>
+                        <li>Kelionės vadovas lankomuose objektuose ekskursijų neveda</li>
+                        <li>Lankomų objektų skaičius, eiliškumas ir kainos gali kisti</li>
+                        <li>Turėkite atsigerti, kepurę, skėtį, lietpaltį... (pagal orų prognozes)</li>
+                        <li>Keliaujant rugsėjo-balandžio mėn., rekomenduojame turėti atšvaitus dėl jūsų saugumo</li>
+                        <li>Ši kelionė nėra pritaikyta riboto judumo asmenims</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div id="Datos" class="tabcontent">
+                <div class="datos">
+                    <div class="travel-reservation">
+                        <h3 class="travel-tour-dates">2024-05-11 - 2024-05-11</h3>
+                        <h5 class="travel-free-places-name">VIETŲ YRA</h5> 
+                        <p class="travel-origin">iš Vilniaus, Kauno ir Marijampolės</p>  
+                    </div>
+                    <div class="travel-price">
+                        <p class="travel-tour-price">55 €/asm.</p>
+                    </div>
+                    <div class="reserve-link">
+                        <a class="btn-buy">Pirkti</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+       
+    </div>
+    <footer id="site-footer">
+        <div class="container">
+            <div class="column-wrapper">
+                <div class="footer-col info-company">
+                    <div id="logo" class="logo">
+                        <a href="index-2.html">
+                            <span>VšĮ "Prasmingam gyvenimui"</span>
+                        </a>
+                    </div>
+                    <p class="company-desc-1">Kelionės autobusu - Jūsų Prasmingam gyvenimui</p>
+                    <h3 class="company-desc-2">Džiaugiamės, kad domitės mūsų pasiūlymais!</h3>
+                </div>
+                <div class="footer-col info-contact">
+                    <h3 class="info-header">susisiekime</h3>
+                    <div class="contact-info">
+                        <a href="tel:37065955770">
+                            <img class="icon" src="img/phone-svgrepo-com-white.svg" />
+                            <span>(+370) 659 55770</span>
+                        </a>
+                        <a href="#">
+                            <img class="icon" src="img/mail-svgrepo-com-white.svg" />
+                            <span>info@mail.com
+                        </a>
+                    </div>
+                    <div class="social-icons">
+                        <a href="https://www.facebook.com/profile.php?id=100080044436184">
+                            <img class="icon" img src="img/facebook-svgrepo-com-white.svg" />
+                        </a>
+                        <a href="#">
+                            <img class="icon" img src="img/instagram-svgrepo-com-white.svg" /> 
+                        </a>
+                    </div>
+                    <div class="work-hours">
+                        <p>I-V 9-13 val.</p>
+                        <p>IV-IIV nedirbame</p>
+                    </div>
+                </div>
+                <div class="footer-col info-link"> 
+                    <h3 class="info-header">Struktura</h3>
+                    <a href="apie-mus.html" class="link-item">Apie mus</a>
+                    <a href="kontaktai.html" class="link-item">Kontaktai</a>                        
+                </div>
+                <div class="footer-col info-trips">
+                    <h3 class="info-header">Kelionės</h3>
+                    <a href="augustavas.html" class="link-item">Augustavas Lenkija</a>
+                    <a href="balstoge.html" class="link-item">Balstoge Lenkija</a>
+                    <a href="druskininkai.html" class="link-item">Druskininkai</a>
+                    <a href="kursiu-nerija.html" class="link-item">Kursiu nerija</a>
+                    <a href="vilko-guolis.html" class="link-item">Vilko guolis Lenkija</a>
+                    <a href="zarasai.html" class="link-item">Zarasai</a>
+                    <a href="zemaitija.html" class="link-item">Zemaitija</a>
+                </div>
+                <div class="footer-col info-more-links">
+                    <h3 class="info-header">Informacija</h3>
+                    <a href="turizmo-paslaugų-sutartis.html" class="link-item">Turizmo paslaugų sutartis</a>
+                    <a href="informacija-vartotojams-koronaviruso-laikotarpiu.html" class="link-item">Informacija vartotojams koronaviruso laikotarpiu</a>
+                    <a href="es-projektai.html" class="link-item">ES projektai</a>
+                    <a href="privatumo-politika.html" class="link-item">Privatumo politika</a>
+                    <a href="informavimas-apie-asmens-duomenų-tvarkymą.html" class="link-item">Informavimas apie asmens duomenų tvarkymą</a>
+                    <a href="kelionės-kolektyvams-po-lietuvą.html" class="link-item">Kelionės kolektyvams po Lietuvą</a>
+                </div>
+            </div>    
+        </div>
+        <div class="footer-bottom">
+            <p>Copyright 2024. Your company name. All rights reserved.</p>
+        </div>    
+    </footer>
+    <script src="javascript/search-toggle.js"></script>
+    <script src="javascript/range.js"></script>
+    <script src="javascript/tabContent.js"></script>
+</body>
+</html>

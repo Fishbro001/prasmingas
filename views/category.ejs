@@ -1,0 +1,508 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="/css/range.css">
+  
+</head>
+<body class="font-sans">
+
+    <header class="absolute inset-x-0 top-0 z-50">
+        <nav class="bg-white flex flex-col p-2 lg:p-6 lg:px-8 lg:divide-y lg:divide-gray-300" aria-label="Global">
+            <div id="top-header" class="hidden lg:flex items-center container mx-auto justify-between p-4 lg:px-8" aria-label="Global">
+                <div class="contact-info lg:flex basis-2/5 lg:gap-x-12 hidden lg:block">
+                    <a href="#" class="flex items-center gap-2 text-xs font-normal leading-6 text-slate-500">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z" />
+                        </svg> (+370) 1 234 56 78
+                    </a>
+                    <a href="#" class="flex items-center gap-2 text-xs font-normal leading-6 text-slate-500">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
+                        </svg> info@mail.com
+                    </a>
+                </div>
+                <div id="top-header-links" class="hidden lg:flex justify-end basis-2/5 lg:gap-x-12">
+                    <a href="#" class="flex items-center gap-1 text-xs font-normal leading-6 text-slate-500">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" class="size-4">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
+                        </svg>Apie mus</a>
+                    <a href="#" class="flex items-center gap-1 text-xs font-normal leading-6 text-slate-500">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
+                        </svg>Kontaktai
+                    </a>
+                </div>
+                <div id="social-icons" class="hidden lg:flex basis-1/5 lg:gap-x-4 lg:justify-end">
+                    <a href="#" class="icon-facebook flex items-center gap-2 text-xs font-normal leading-6 text-slate-500">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" stroke-width="1.5" stroke="currentColor" class="size-4"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M512 256C512 114.6 397.4 0 256 0S0 114.6 0 256C0 376 82.7 476.8 194.2 504.5V334.2H141.4V256h52.8V222.3c0-87.1 39.4-127.5 125-127.5c16.2 0 44.2 3.2 55.7 6.4V172c-6-.6-16.5-1-29.6-1c-42 0-58.2 15.9-58.2 57.2V256h83.6l-14.4 78.2H287V510.1C413.8 494.8 512 386.9 512 256h0z"/></svg>
+                    </a>
+                    <a href="#" class="icon-instagram flex items-center gap-2 text-xs font-normal leading-6 text-slate-500">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" stroke-width="1.5" stroke="currentColor" class="size-4"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/></svg>
+                    </a>
+                </div>
+            </div>
+            <div id="main-header" class="flex items-center container mx-auto justify-between p-4 lg:px-8" aria-label="Global">
+                <div class="logo flex lg:flex-1 basis-1/2">
+                    <a href="#" class="-m-1.5 p-1.5">
+                        <span class="sr-only">Your Company</span>
+                        <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="">
+                    </a>
+                </div>
+
+                <!-- start Mobile Header Menu -->
+                <div class="lg:hidden">
+                    <!-- Show/hide Buttons, Menu, Links -->
+                    <div class="dropdown">
+                        <div class="mobButtons relative inline-block text-right">
+                            <button type="button" class="gap-x-1.5 relative z-10 block overflow-hidden" id="menu-button">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                                </svg>                  
+                            </button>
+                            <button type="button" class="gap-x-1.5 relative z-10 block overflow-hidden" id="search-button">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+                                </svg>                                    
+                            </button>
+                        </div>
+                        <div id="mobMenuContents" class="hidden absolute right-0 mt-2 py-2 w-48 bg-white rounded-md shadow-xl z-20">
+                            <a href="#" class="flex items-center gap-x-2 text-sm font-semibold leading-6 text-slate-500">
+                                <svg class="size-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                                        <path d="M288 0C422.4 0 512 35.2 512 80V96l0 32c17.7 0 32 14.3 32 32v64c0 17.7-14.3 32-32 32l0 160c0 17.7-14.3 32-32 32v32c0 17.7-14.3 32-32 32H416c-17.7 0-32-14.3-32-32V448H192v32c0 17.7-14.3 32-32 32H128c-17.7 0-32-14.3-32-32l0-32c-17.7 0-32-14.3-32-32l0-160c-17.7 0-32-14.3-32-32V160c0-17.7 14.3-32 32-32h0V96h0V80C64 35.2 153.6 0 288 0zM128 160v96c0 17.7 14.3 32 32 32H272V128H160c-17.7 0-32 14.3-32 32zM304 288H416c17.7 0 32-14.3 32-32V160c0-17.7-14.3-32-32-32H304V288zM144 400a32 32 0 1 0 0-64 32 32 0 1 0 0 64zm288 0a32 32 0 1 0 0-64 32 32 0 1 0 0 64zM384 80c0-8.8-7.2-16-16-16H208c-8.8 0-16 7.2-16 16s7.2 16 16 16H368c8.8 0 16-7.2 16-16z"/>
+                                </svg>Autobusu
+                            </a>
+                            <a href="#" class="flex items-center gap-x-2 text-sm font-semibold leading-6 text-slate-500">
+                                <svg class="size-6" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+                                    <path fill="#2d6946" d="M1 11H31V21H1z"></path><path d="M5,4H27c2.208,0,4,1.792,4,4v4H1v-4c0-2.208,1.792-4,4-4Z" fill="#f3bd43"></path><path d="M5,20H27c2.208,0,4,1.792,4,4v4H1v-4c0-2.208,1.792-4,4-4Z" transform="rotate(180 16 24)" fill="#b33431"></path><path d="M27,4H5c-2.209,0-4,1.791-4,4V24c0,2.209,1.791,4,4,4H27c2.209,0,4-1.791,4-4V8c0-2.209-1.791-4-4-4Zm3,20c0,1.654-1.346,3-3,3H5c-1.654,0-3-1.346-3-3V8c0-1.654,1.346-3,3-3H27c1.654,0,3,1.346,3,3V24Z" opacity=".15"></path><path d="M27,5H5c-1.657,0-3,1.343-3,3v1c0-1.657,1.343-3,3-3H27c1.657,0,3,1.343,3,3v-1c0-1.657-1.343-3-3-3Z" fill="#fff" opacity=".2"></path>
+                                </svg>Lietuvoje
+                            </a>
+                            <a href="#" class="flex items-center gap-x-2 text-sm font-semibold leading-6 text-slate-500">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 0 0 8.716-6.747M12 21a9.004 9.004 0 0 1-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 0 1 7.843 4.582M12 3a8.997 8.997 0 0 0-7.843 4.582m15.686 0A11.953 11.953 0 0 1 12 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0 1 21 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0 1 12 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 0 1 3 12c0-1.605.42-3.113 1.157-4.418" />
+                                </svg>Užsienyje
+                            </a>
+                            <a href="#" class="flex items-center gap-x-2 text-sm font-semibold leading-6 text-slate-500">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="size-6">
+                                        <path fill-rule="evenodd" d="M11.986 3H12a2 2 0 0 1 2 2v6a2 2 0 0 1-1.5 1.937V7A2.5 2.5 0 0 0 10 4.5H4.063A2 2 0 0 1 6 3h.014A2.25 2.25 0 0 1 8.25 1h1.5a2.25 2.25 0 0 1 2.236 2ZM10.5 4v-.75a.75.75 0 0 0-.75-.75h-1.5a.75.75 0 0 0-.75.75V4h3Z" clip-rule="evenodd" />
+                                        <path fill-rule="evenodd" d="M2 7a1 1 0 0 1 1-1h7a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V7Zm6.585 1.08a.75.75 0 0 1 .336 1.005l-1.75 3.5a.75.75 0 0 1-1.16.234l-1.75-1.5a.75.75 0 0 1 .977-1.139l1.02.875 1.321-2.64a.75.75 0 0 1 1.006-.336Z" clip-rule="evenodd" />
+                                </svg>Garantuotos
+                            </a>
+                            <a href="#" class="flex items-center gap-x-2 text-sm font-semibold leading-6 text-slate-500">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="size-6">
+                                    <path fill-rule="evenodd" d="M3.75 3.5c0 .563.186 1.082.5 1.5H2a1 1 0 0 0 0 2h5.25V5h1.5v2H14a1 1 0 1 0 0-2h-2.25A2.5 2.5 0 0 0 8 1.714 2.5 2.5 0 0 0 3.75 3.5Zm3.499 0v-.038A1 1 0 1 0 6.25 4.5h1l-.001-1Zm2.5-1a1 1 0 0 0-1 .962l.001.038v1h.999a1 1 0 0 0 0-2Z" clip-rule="evenodd" />
+                                    <path d="M7.25 8.5H2V12a2 2 0 0 0 2 2h3.25V8.5ZM8.75 14V8.5H14V12a2 2 0 0 1-2 2H8.75Z" />
+                                </svg>Kalėdinės
+                            </a>
+                                
+                            <a href="#" class="flex items-center gap-1 text-xs font-normal leading-6 text-slate-500">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" class="size-4">
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
+                                </svg>Apie mus
+                            </a>
+                            <a href="#" class="flex items-center gap-1 text-xs font-normal leading-6 text-slate-500">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
+                                </svg>Kontaktai
+                            </a>
+                            <a href="#" class="flex items-center gap-2 text-xs font-normal leading-6 text-slate-500">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z" />
+                                </svg> (+370) 1 234 56 78
+                            </a>
+                            <a href="#" class="flex items-center gap-2 text-xs font-normal leading-6 text-slate-500">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
+                                </svg> info@mail.com
+                            </a>
+                            <a href="#" class="icon-facebook flex items-start gap-2 text-xs font-normal leading-6 text-slate-500">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" stroke-width="1.5" stroke="currentColor" class="size-4">
+                                    <path d="M512 256C512 114.6 397.4 0 256 0S0 114.6 0 256C0 376 82.7 476.8 194.2 504.5V334.2H141.4V256h52.8V222.3c0-87.1 39.4-127.5 125-127.5c16.2 0 44.2 3.2 55.7 6.4V172c-6-.6-16.5-1-29.6-1c-42 0-58.2 15.9-58.2 57.2V256h83.6l-14.4 78.2H287V510.1C413.8 494.8 512 386.9 512 256h0z"/>
+                                    </svg>
+                            </a>
+                            <a href="#" class="icon-instagram flex items-start gap-2 text-xs font-normal leading-6 text-slate-500">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" stroke-width="1.5" stroke="currentColor" class="size-4">
+                                    <path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- end Show/hide Buttons, Menu, Links -->
+                    <!-- show/hide Mobile Search modal -->
+                    <div id="searchMobile" class="container mx-auto hidden">
+                        <div class="search-container">
+                            <div class="search-content lg:px-8 lg:py-4 bg-white opacity-90 lg:w-5/6 w-full mx-auto">
+                                <form action="#" method="POST">
+                                    <div class="flex flex-row justify-between gap-x-2 gap-y-6">
+                                        <div class="mt-2.5 basis-1/3">
+                                            <input type="text" placeholder="Kelionė arba šalis" name="Kelionė arba šalis" id="tour-name" autocomplete="given-name" class="block w-full border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-slate-500 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                                        </div>
+                                        <div class="mt-2.5 basis-1/6">
+                                            <input type="date" placeholder="Data nuo" name="Data nuo" id="d1" autocomplete="given-name" class="block w-full border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-slate-500 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                                        </div>
+                                        <div class="mt-2.5 basis-1/6">
+                                            <input type="date" placeholder="Data iki" name="Data iki" id="d2" autocomplete="given-name" class="block w-full border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-slate-500 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                                        </div>
+                                        <div class="mt-2.5 basis-1/3">
+                                            <h3 class="text-lg font-bold text-center">Kelionės kaina</h3>
+                                            <div class="range_container">
+                                                <div class="form_control">
+                                                    <div class="form_control_container">
+                                                        <div class="form_control_container__time">Min</div>
+                                                        <input class="form_control_container__time__input" type="number" id="fromInput" value="80" min="0" max="3999"/>
+                                                    </div>
+                                                    <div class="form_control_container">
+                                                        <div class="form_control_container__time">Max</div>
+                                                        <input class="form_control_container__time__input" type="number" id="toInput" value="3000" min="0" max="3999"/>
+                                                    </div>
+                                                </div>
+                                                <div class="sliders_control">
+                                                    <input id="fromSlider" type="range" value="80" min="0" max="3999"/>
+                                                    <input id="toSlider" type="range" value="3000" min="0" max="3999"/>
+                                                </div>
+                                                    
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-row justify-between gap-x-2 gap-y-6">
+                                        <div class="mt-2 basis-1/3 flex gap-x-2 content-center">
+                                            <label class="checkbox-icon flex relative" title="Autobusu">
+                                                <input type="checkbox" class="select-only-one opacity-0" name="Autobusu" value="1">
+                                                <span class="checkbody">
+                                                    <span class="checkmark text-slate-500">
+                                                        <svg class="size-8" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M288 0C422.4 0 512 35.2 512 80V96l0 32c17.7 0 32 14.3 32 32v64c0 17.7-14.3 32-32 32l0 160c0 17.7-14.3 32-32 32v32c0 17.7-14.3 32-32 32H416c-17.7 0-32-14.3-32-32V448H192v32c0 17.7-14.3 32-32 32H128c-17.7 0-32-14.3-32-32l0-32c-17.7 0-32-14.3-32-32l0-160c-17.7 0-32-14.3-32-32V160c0-17.7 14.3-32 32-32h0V96h0V80C64 35.2 153.6 0 288 0zM128 160v96c0 17.7 14.3 32 32 32H272V128H160c-17.7 0-32 14.3-32 32zM304 288H416c17.7 0 32-14.3 32-32V160c0-17.7-14.3-32-32-32H304V288zM144 400a32 32 0 1 0 0-64 32 32 0 1 0 0 64zm288 0a32 32 0 1 0 0-64 32 32 0 1 0 0 64zM384 80c0-8.8-7.2-16-16-16H208c-8.8 0-16 7.2-16 16s7.2 16 16 16H368c8.8 0 16-7.2 16-16z"/></svg>
+                                                    </span>
+                                                </span>
+                                            </label>
+                                            <label class="checkbox-icon flex relative" title="Lėktuvu">
+                                                <input type="checkbox" class="select-only-one opacity-0" name="Lėktuvu" value="1">
+                                                <span class="checkbody">
+                                                    <span class="checkmark text-slate-500">
+                                                        <svg class="size-8" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M482.3 192c34.2 0 93.7 29 93.7 64c0 36-59.5 64-93.7 64l-116.6 0L265.2 495.9c-5.7 10-16.3 16.1-27.8 16.1l-56.2 0c-10.6 0-18.3-10.2-15.4-20.4l49-171.6L112 320 68.8 377.6c-3 4-7.8 6.4-12.8 6.4l-42 0c-7.8 0-14-6.3-14-14c0-1.3 .2-2.6 .5-3.9L32 256 .5 145.9c-.4-1.3-.5-2.6-.5-3.9c0-7.8 6.3-14 14-14l42 0c5 0 9.8 2.4 12.8 6.4L112 192l102.9 0-49-171.6C162.9 10.2 170.6 0 181.2 0l56.2 0c11.5 0 22.1 6.2 27.8 16.1L365.7 192l116.6 0z"/></svg>
+                                                    </span>
+                                                </span>
+                                            </label>
+                                        </div>
+                                        <div class="mt-2.5 basis-1/3">
+                                            <select placeholder="Kelionės tipas" name="Kelionės tipas" id="keliones-tipas" autocomplete="given-name" class="block w-full border-0 px-3.5 py-2.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                                                <option value selected>Kelionės tipas</option>
+                                                <option value="1">Pažintinės</option>
+                                                <option value="2">Poilsinės</option>
+                                                <option value="3">Aktyvios</option>
+                                                <option value="4">Egzotinės</option>
+                                                <option value="5">Skrydis + viešbutis</option>
+                                                <option value="š">Kolektyvams</option>
+                                                <option value="1">Moksleiviams</option>
+                                                <option value="1">Ekskursija</option>
+                                                <option value="1">Vestuvės</option>
+                                                <option value="1">Poilsis Lietuvoje</option>
+                                                <option value="1">Dovanų kuponas</option>
+                                                <option value="1">Žygiai</option>
+                                                <option value="1">Slidinėjimas</option>
+                                            </select>
+                                        </div>
+                                        <div class="mt-2.5 basis-1/3">
+                                            <button placeholder="Kelionės tipas" name="Kelionės tipas" id="keliones-tipas" autocomplete="given-name" class="bg-lime-500 text-white flex justify-center w-full border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+                                                </svg>
+                                                <span>Ieškoti</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end mobile search modal --> 
+                </div>
+                <!-- end Mobile Header Menu -->
+                
+
+                <div id="menu" class="hidden lg:flex lg:gap-x-12 justify-end basis-1/2">
+                    <a href="#" class="flex items-center gap-x-2 text-sm font-semibold leading-6 text-slate-500">
+                        <svg class="size-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M288 0C422.4 0 512 35.2 512 80V96l0 32c17.7 0 32 14.3 32 32v64c0 17.7-14.3 32-32 32l0 160c0 17.7-14.3 32-32 32v32c0 17.7-14.3 32-32 32H416c-17.7 0-32-14.3-32-32V448H192v32c0 17.7-14.3 32-32 32H128c-17.7 0-32-14.3-32-32l0-32c-17.7 0-32-14.3-32-32l0-160c-17.7 0-32-14.3-32-32V160c0-17.7 14.3-32 32-32h0V96h0V80C64 35.2 153.6 0 288 0zM128 160v96c0 17.7 14.3 32 32 32H272V128H160c-17.7 0-32 14.3-32 32zM304 288H416c17.7 0 32-14.3 32-32V160c0-17.7-14.3-32-32-32H304V288zM144 400a32 32 0 1 0 0-64 32 32 0 1 0 0 64zm288 0a32 32 0 1 0 0-64 32 32 0 1 0 0 64zM384 80c0-8.8-7.2-16-16-16H208c-8.8 0-16 7.2-16 16s7.2 16 16 16H368c8.8 0 16-7.2 16-16z"/></svg>
+                        Autobusu</a>
+                    <a href="#" class="flex items-center gap-x-2 text-sm font-semibold leading-6 text-slate-500">
+                        <svg class="size-6" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path fill="#2d6946" d="M1 11H31V21H1z"></path><path d="M5,4H27c2.208,0,4,1.792,4,4v4H1v-4c0-2.208,1.792-4,4-4Z" fill="#f3bd43"></path><path d="M5,20H27c2.208,0,4,1.792,4,4v4H1v-4c0-2.208,1.792-4,4-4Z" transform="rotate(180 16 24)" fill="#b33431"></path><path d="M27,4H5c-2.209,0-4,1.791-4,4V24c0,2.209,1.791,4,4,4H27c2.209,0,4-1.791,4-4V8c0-2.209-1.791-4-4-4Zm3,20c0,1.654-1.346,3-3,3H5c-1.654,0-3-1.346-3-3V8c0-1.654,1.346-3,3-3H27c1.654,0,3,1.346,3,3V24Z" opacity=".15"></path><path d="M27,5H5c-1.657,0-3,1.343-3,3v1c0-1.657,1.343-3,3-3H27c1.657,0,3,1.343,3,3v-1c0-1.657-1.343-3-3-3Z" fill="#fff" opacity=".2"></path></svg>
+                        Lietuvoje</a>
+                    <a href="#" class="flex items-center gap-x-2 text-sm font-semibold leading-6 text-slate-500">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 0 0 8.716-6.747M12 21a9.004 9.004 0 0 1-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 0 1 7.843 4.582M12 3a8.997 8.997 0 0 0-7.843 4.582m15.686 0A11.953 11.953 0 0 1 12 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0 1 21 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0 1 12 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 0 1 3 12c0-1.605.42-3.113 1.157-4.418" />
+                          </svg>Užsienyje</a>
+                    <a href="#" class="flex items-center gap-x-2 text-sm font-semibold leading-6 text-slate-500"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="size-6">
+                        <path fill-rule="evenodd" d="M11.986 3H12a2 2 0 0 1 2 2v6a2 2 0 0 1-1.5 1.937V7A2.5 2.5 0 0 0 10 4.5H4.063A2 2 0 0 1 6 3h.014A2.25 2.25 0 0 1 8.25 1h1.5a2.25 2.25 0 0 1 2.236 2ZM10.5 4v-.75a.75.75 0 0 0-.75-.75h-1.5a.75.75 0 0 0-.75.75V4h3Z" clip-rule="evenodd" />
+                        <path fill-rule="evenodd" d="M2 7a1 1 0 0 1 1-1h7a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V7Zm6.585 1.08a.75.75 0 0 1 .336 1.005l-1.75 3.5a.75.75 0 0 1-1.16.234l-1.75-1.5a.75.75 0 0 1 .977-1.139l1.02.875 1.321-2.64a.75.75 0 0 1 1.006-.336Z" clip-rule="evenodd" />
+                      </svg>
+                      Garantuotos</a>
+                    <a href="#" class="flex items-center gap-x-2 text-sm font-semibold leading-6 text-slate-500"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="size-6">
+                        <path fill-rule="evenodd" d="M3.75 3.5c0 .563.186 1.082.5 1.5H2a1 1 0 0 0 0 2h5.25V5h1.5v2H14a1 1 0 1 0 0-2h-2.25A2.5 2.5 0 0 0 8 1.714 2.5 2.5 0 0 0 3.75 3.5Zm3.499 0v-.038A1 1 0 1 0 6.25 4.5h1l-.001-1Zm2.5-1a1 1 0 0 0-1 .962l.001.038v1h.999a1 1 0 0 0 0-2Z" clip-rule="evenodd" />
+                        <path d="M7.25 8.5H2V12a2 2 0 0 0 2 2h3.25V8.5ZM8.75 14V8.5H14V12a2 2 0 0 1-2 2H8.75Z" />
+                      </svg>
+                      Kalėdinės</a>
+                </div>
+                <div id="search" class="hidden lg:flex lg:flex-1 lg:justify-end basis-1/4">
+                    <a href="#" class="text-sm font-normal leading-6 text-slate-500">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+                        </svg>                      
+                    </a>
+                </div>
+            </div>
+        </nav>
+        
+    </header>
+    <div id="banner" class="relative isolate px-6 pt-32 pb-16 lg:px-8 bg-local bg-cover bg-center" style="background-image: url(img/6518_large.jpg)">
+        <div id="banner-title" class="mx-auto container lg:px-8 sm:pt-48 lg:pt-56 lg:w-5/6 w-full">
+            <h1 class="text-left text-4xl font-bold tracking-tight text-white sm:text-6xl">LIETUVOJE</h1>   
+        </div>
+        
+    </div>
+    <div id="main" class="bg-white"> 
+        <div id="search-form" class="container mx-auto">
+            <div class="search-container">
+                <div class="hidden lg:block search-content lg:px-8 lg:py-8 bg-white w-full mx-auto">
+                    <form action="#" method="POST">
+                        <div class="flex flex-row justify-between gap-x-2 gap-y-6">
+                            <div class="mt-2.5 basis-1/3">
+                                <select placeholder="Lietuva" name="Kelionės tipas" id="keliones-tipas" autocomplete="given-name" class="block w-full border-0 px-3.5 py-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                                    <option value selected>Lietuva</option>
+                                </select>
+                            </div>
+                            <div class="mt-2.5 basis-1/6">
+                                <input type="date" placeholder="Data nuo" name="Data nuo" id="d1" autocomplete="given-name" class="block w-full border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-slate-500 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                            </div>
+                            <div class="mt-2.5 basis-1/6">
+                                <input type="date" placeholder="Data iki" name="Data iki" id="d2" autocomplete="given-name" class="block w-full border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-slate-500 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                            </div>
+                            <div class="mt-2.5 basis-1/3">
+                                <h3 class="text-lg font-bold text-center">Kelionės kaina</h3>
+                                <div class="range_container">
+                                    <div class="form_control">
+                                        <div class="form_control_container">
+                                            <div class="form_control_container__time">Min</div>
+                                            <input class="form_control_container__time__input" type="number" id="fromInput" value="80" min="0" max="3999"/>
+                                        </div>
+                                        <div class="form_control_container">
+                                            <div class="form_control_container__time">Max</div>
+                                            <input class="form_control_container__time__input" type="number" id="toInput" value="3000" min="0" max="3999"/>
+                                        </div>
+                                    </div>
+                                    <div class="sliders_control">
+                                        <input id="fromSlider" type="range" value="80" min="0" max="3999"/>
+                                        <input id="toSlider" type="range" value="3000" min="0" max="3999"/>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="resultBar" class="border-b-2 border-gray-300">
+                        <p class="font-bold text-gray-400 py-4">Radome <span class="text-gray-500">71</span> kelionę</p>
+                    </div>
+                </div>
+            </div>
+        </div>      
+
+        <!--start tour-->
+        <div id="tours" class="col-tours">
+            <% let row = 0; let count = -1; %>
+           
+                <% trips.forEach((trip) => { %>
+                    <% count++; %>
+                    <% if (count == 0 && row !==3) {%>
+                        <div id="tours-wrapper" class="row-tours">
+                    <% }else if (count !== 0 && count % 3 === 0) { %>
+                        </div>
+                        <div id="tours-wrapper" class="row-tours">
+                    <% } %>
+                    <article class="tour-item">
+                        <div class="tour-info">
+                            <div class="image">
+                                <img class="tour-img" src="<%= trip.trip_fotos[0].replace(/C:\\Users\\puskoedg\\Downloads\\Prasmingas\\Prasmingas\\public\\/g, '/').replace(/\\/g, '/') %>" alt="">
+                            </div>
+                            <div class="marks">
+                                <span class="icon">
+                                    <% let temp = ""; %>
+                                    <% if (trip.trip_transport === "Autobusas") { %>
+                                        <% temp = "img/bus-svgrepo-com.svg"; %>
+                                    <% } else if (trip.trip_transport === "Lektuvas") { %>
+                                        <% temp = "img/airplane-svgrepo-com-white.svg"; %>
+                                    <% } %>
+                                    <img src="<%= temp %>" />
+                                </span>
+                                <span class="num-days">
+                                    <%= trip.trip_duration %><small>d.</small>
+                                </span>
+                            </div>
+                            <div class="price-mark">
+                                <% let lowestPrice = Infinity; %>
+                                <% let lowestPriceDiscount = 0; %>
+                                <% trip.trips.forEach(one => { %>
+                                    <% const cost = parseFloat(one.cost); %>
+                                    <% if (cost < lowestPrice) { %>
+                                        <% lowestPriceDiscount = one.discount; %>
+                                        <% lowestPrice = cost; %>
+                                    <% } %>
+                                <% }); %>
+                                <p class="price-info">nuo</p>
+                                <p class="price"><%= lowestPrice %></p>
+                            </div>
+                            <div class="discount-mark">
+                                <p class="discount-info">
+                                    <span class="discount-percentage">-<%= lowestPriceDiscount %></span> <small>%</small>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="tour-dates-available">
+                            <div id="tour-content" class="tour-content-box">
+                                <div class="tour-title-box">
+                                    <h3 class="tour-title"><%= trip.trip_name %></h3>
+                                </div>
+                                <div class="tour-dates">
+                                    <% trip.trips.forEach((t) => { %>
+                                        <div class="tour-date-content">
+                                            <div class="date">
+                                                <a href="trip/<%=trip._id %>"><%= t.date %></a>
+                                            </div>
+                                            <div class="free-places">
+                                                <% let seatsLeft = t.seatstotal - t.seatsoccupied.length %>
+                                                <span><small>liko <%= seatsLeft %> viet.</small></span>
+                                                <% if (seatsLeft < t.seatstotal / 2) { %>
+                                                    <span class="guaranteed" title="Garantuotas išvykimas">G</span>
+                                                <% } %>
+                                            </div>
+                                            <div class="col-date-price">
+                                                <span class="date-price"><%= t.cost %> €</span>
+                                            </div>
+                                        </div>
+                                    <% }); %>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                <% }); %>
+            
+        </div>
+        <!--end tour-->
+        <!--pagination-->
+        <div class="flex items-center justify-between border-t border-gray-200 bg-white px-4 py-3 sm:px-6">
+            <div class="flex flex-1 justify-between sm:hidden">
+              <a href="#" class="relative inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">Previous</a>
+              <a href="#" class="relative ml-3 inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">Next</a>
+            </div>
+            <div class="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
+              <div>
+                <p class="text-sm text-gray-700">
+                  Showing
+                  <span class="font-medium">1</span>
+                  to
+                  <span class="font-medium">10</span>
+                  of
+                  <span class="font-medium">97</span>
+                  results
+                </p>
+              </div>
+              <div>
+                <nav class="isolate inline-flex -space-x-px rounded-md shadow-sm" aria-label="Pagination">
+                  <a href="#" class="relative inline-flex items-center rounded-l-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0">
+                    <span class="sr-only">Previous</span>
+                    <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                      <path fill-rule="evenodd" d="M12.79 5.23a.75.75 0 01-.02 1.06L8.832 10l3.938 3.71a.75.75 0 11-1.04 1.08l-4.5-4.25a.75.75 0 010-1.08l4.5-4.25a.75.75 0 011.06.02z" clip-rule="evenodd" />
+                    </svg>
+                  </a>
+                  <!-- Current: "z-10 bg-indigo-600 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600", Default: "text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:outline-offset-0" -->
+                  <a href="#" aria-current="page" class="relative z-10 inline-flex items-center bg-lime-500 px-4 py-2 text-sm font-semibold text-white focus:z-20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">1</a>
+                  <a href="#" class="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0">2</a>
+                  <a href="#" class="relative hidden items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0 md:inline-flex">3</a>
+                  <span class="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-700 ring-1 ring-inset ring-gray-300 focus:outline-offset-0">...</span>
+                  <a href="#" class="relative hidden items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0 md:inline-flex">8</a>
+                  <a href="#" class="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0">9</a>
+                  <a href="#" class="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0">10</a>
+                  <a href="#" class="relative inline-flex items-center rounded-r-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0">
+                    <span class="sr-only">Next</span>
+                    <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                      <path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" />
+                    </svg>
+                  </a>
+                </nav>
+              </div>
+            </div>
+          </div>
+          
+        <!--end pagination-->
+    </div>
+    <footer class="bg-slate-900 pt-8">
+        <div class="container mx-auto p-4 lg:px-8">
+            <div class="column-wrapper flex justify-between items-start gap-x-8">
+                <div class="info-company basis-1/5">
+                    <div class="logo">
+                        <a href="#" class="-m-1.5 p-1.5">
+                            <span class="sr-only">Your Company</span>
+                            <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="">
+                        </a>
+                    </div>
+                    <p class="text-slate-300 text-xs leading-6">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin iaculis tortor ante, eu imperdiet ante bibendum vehicula. Aliquam erat volutpat. Vestibulum sit amet lacus nulla. Mauris accumsan mi ex, sit amet porta risus suscipit eget.</p>
+                </div>
+                <div class="info-contact basis-1/5">
+                    <h3 class="text-lg font-bold text-left text-slate-300 pb-4">Your Company Name</h3>
+                    <div class="contact-info flex flex-col">
+                        <a href="#" class="flex items-center gap-2 text-xs font-normal leading-6 text-slate-300">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z" />
+                            </svg> (+370) 1 234 56 78
+                        </a>
+                        <a href="#" class="flex items-center gap-2 text-xs font-normal leading-6 text-slate-300">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
+                            </svg> info@mail.com
+                        </a>
+                    </div>
+                    <div id="social-icons" class="flex">
+                        <a href="#" class="icon-facebook flex items-center gap-2 text-slate-300">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" stroke-width="1.5" stroke="currentColor" class="size-4"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M512 256C512 114.6 397.4 0 256 0S0 114.6 0 256C0 376 82.7 476.8 194.2 504.5V334.2H141.4V256h52.8V222.3c0-87.1 39.4-127.5 125-127.5c16.2 0 44.2 3.2 55.7 6.4V172c-6-.6-16.5-1-29.6-1c-42 0-58.2 15.9-58.2 57.2V256h83.6l-14.4 78.2H287V510.1C413.8 494.8 512 386.9 512 256h0z"/></svg>
+                        </a>
+                        <a href="#" class="icon-instagram flex items-center gap-2 text-slate-500">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" stroke-width="1.5" stroke="currentColor" class="size-4"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/></svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="info-link flex flex-col basis-1/5"> 
+                    <h3 class="text-lg font-bold text-left text-slate-300 pb-4">Struktura</h3>
+                    <a href="#" class="text-slate-300 text-xs leading-6">Apie mus</a>
+                    <a href="#" class="text-slate-300 text-xs leading-6">Kontaktai</a>                        
+                </div>
+                <div class="info-trips flex flex-col basis-1/5">
+                    <h3 class="text-lg font-bold text-left text-slate-300 pb-4">Kelionės</h3>
+                    <a href="#" class="text-slate-300 text-xs leading-6">Augustavas Lenkija</a>
+                    <a href="#" class="text-slate-300 text-xs leading-6">Balstoge Lenkija</a>
+                    <a href="#" class="text-slate-300 text-xs leading-6">Druskininkai</a>
+                    <a href="#" class="text-slate-300 text-xs leading-6">Kursiu nerija</a>
+                    <a href="#" class="text-slate-300 text-xs leading-6">Vilko guolis Lenkija</a>
+                    <a href="#" class="text-slate-300 text-xs leading-6">Zarasai</a>
+                    <a href="#" class="text-slate-300 text-xs leading-6">Zemaitija</a>
+                </div>
+                <div class="info-more-links flex flex-col basis-1/5">
+                    <h3 class="text-lg font-bold text-left text-slate-300 pb-4">Informacija</h3>
+                    <a href="#" class="text-slate-300 text-xs leading-6">Turizmo paslaugų sutartis</a>
+                    <a href="#" class="text-slate-300 text-xs leading-6">Informacija vartotojams koronaviruso laikotarpiu</a>
+                    <a href="#" class="text-slate-300 text-xs leading-6">ES projektai</a>
+                    <a href="#" class="text-slate-300 text-xs leading-6">Privatumo politika</a>
+                    <a href="#" class="text-slate-300 text-xs leading-6">Informavimas apie asmens duomenų tvarkymą</a>
+                    <a href="#" class="text-slate-300 text-xs leading-6">Kelionės kolektyvams po Lietuvą</a>
+                </div>
+            </div>    
+        </div>
+        <div class="footer-bottom py-8 bg-black">
+            <p class="text-slate-300 text-xs text-center leading-6">Copyright 2024. Your company name. All rights reserved.</p>
+        </div>    
+    </footer>
+    <script src="/javascript/range.js"></script>
+    <script src="/javascript/mobMenu.js"></script>
+</body>
+</html>

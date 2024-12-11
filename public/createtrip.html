@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="/node_modules/tinymce/tinymce.min.js" referrerpolicy="origin"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create a New Trip</title>
+    <script>
+        tinymce.init({
+            selector: '#trip_description',  // change this value according to your HTML
+            license_key: 'gpl',
+            plugins: [
+            'a11ychecker','advlist','advcode','advtable','autolink','checklist','markdown',
+            'lists','link','image','charmap','preview','anchor','searchreplace','visualblocks',
+            'powerpaste','fullscreen','formatpainter','insertdatetime','media','table','help','wordcount'
+            ],
+            toolbar: 'undo redo | formatpainter casechange blocks | bold italic backcolor | ' +
+            'alignleft aligncenter alignright alignjustify | ' +
+            'bullist numlist checklist outdent indent | removeformat | a11ycheck code table help'
+            });
+    </script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        form {
+            max-width: 600px;
+            margin: auto;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            margin-bottom: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .day-fields, .trip-fields {
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Create a New Trip</h1>
+    <form id="tripForm" enctype="multipart/form-data">
+        <label for="trip_name">Trip Name:</label>
+        <input type="text" id="trip_name" name="trip_name" required>
+
+        <label for="trip_category">Trip Category:</label>
+        <input type="text" id="trip_category" name="trip_category" required>
+
+        <label for="trip_transport">Trip Transport:</label>
+        <input type="text" id="trip_transport" name="trip_transport" required>
+
+        <label for="trip_duration">Trip Duration:</label>
+        <input type="text" id="trip_duration" name="trip_duration" required>
+
+        <label for="trip_description">Trip Description:</label>
+        <textarea id="trip_description" name="trip_description"></textarea>
+
+        <label for="trip_fotos">Trip Photos (comma-separated):</label>
+        <input type="file" id="trip_fotos" name="photos" multiple>
+
+        <label for="trip_programme_sdesc">Trip Programme Short Description:</label>
+        <textarea id="trip_programme_sdesc" name="trip_programme_sdesc"></textarea>
+
+        <label for="trip_programme">Trip Programme:</label>
+        <div id="trip_programme_container">
+            <!-- Day fields will be dynamically added here -->
+        </div>
+        <button type="button" id="addDayButton">Add Day</button>
+
+        <label for="trip_pickuppoints">Trip Pickup Points (comma-separated):</label>
+        <input type="text" id="trip_pickuppoints" name="trip_pickuppoints">
+
+        <label for="trip_comment">Trip Comments:</label>
+        <textarea id="trip_comment" name="trip_comment">
+[
+    {"comment": "This is a great trip!", "author": "John Doe"},
+    {"comment": "I enjoyed the scenery.", "author": "Jane Smith"}
+]
+        </textarea>
+
+        <label for="trips">Trips:</label>
+        <div id="trips_container">
+            <!-- Trip fields will be dynamically added here -->
+        </div>
+        <button type="button" id="addTripButton">Add Trip</button>
+
+        <label for="isactive">Is Active:</label>
+        <input type="checkbox" id="isactive" name="isactive">
+
+        <button type="submit">Create Trip</button>
+    </form>
+
+    <script>
+        let dayCount = 0;
+        let tripCount = 0;
+
+        document.getElementById('addDayButton').addEventListener('click', function() {
+            const container = document.getElementById('trip_programme_container');
+
+            const dayFields = document.createElement('div');
+            dayFields.className = 'day-fields';
+            dayFields.innerHTML = `
+                <label for="day_title_${dayCount}">Day Title:</label>
+                <input type="text" id="day_title_${dayCount}" name="day_title_${dayCount}" required>
+
+                <label for="day_desc_${dayCount}">Day Description:</label>
+                <textarea id="day_desc_${dayCount}" name="day_desc_${dayCount}"></textarea>
+
+                <label for="day_media_${dayCount}">Day Media (comma-separated):</label>
+                <input type="file" id="day_media_${dayCount}" name="day_media_${dayCount}" multiple>
+            `;
+
+            container.appendChild(dayFields);
+            dayCount++;
+        });
+
+        document.getElementById('addTripButton').addEventListener('click', function() {
+            const container = document.getElementById('trips_container');
+
+            const tripFields = document.createElement('div');
+            tripFields.className = 'trip-fields';
+            tripFields.innerHTML = `
+                <label for="trip_date_${tripCount}">Date:</label>
+                <input type="date" id="trip_date_${tripCount}" name="trip_date_${tripCount}" required>
+
+                <label for="trip_discount_${tripCount}">Discount:</label>
+                <input type="number" id="trip_discount_${tripCount}" name="trip_discount_${tripCount}" required>
+
+                <label for="trip_cost_${tripCount}">Cost:</label>
+                <input type="number" id="trip_cost_${tripCount}" name="trip_cost_${tripCount}" required>
+
+                <label for="trip_isguaranteed_${tripCount}">Is Guaranteed:</label>
+                <input type="checkbox" id="trip_isguaranteed_${tripCount}" name="trip_isguaranteed_${tripCount}">
+
+                <label for="trip_seatstotal_${tripCount}">Seats Total:</label>
+                <input type="text" id="trip_seatstotal_${tripCount}" name="trip_seatstotal_${tripCount}" required>
+
+                <label for="trip_seatstaken_${tripCount}">Seats Taken:</label>
+                <input type="text" id="trip_seatstaken_${tripCount}" name="trip_seatstaken_${tripCount}" required>
+
+                <label for="trip_seatsoccupied_${tripCount}">Seats Occupied (comma-separated):</label>
+                <input type="text" id="trip_seatsoccupied_${tripCount}" name="trip_seatsoccupied_${tripCount}">
+            `;
+
+            container.appendChild(tripFields);
+            tripCount++;
+        });
+
+        document.getElementById('tripForm').addEventListener('submit', async function(event) {
+            event.preventDefault();
+
+            const formData = new FormData(document.getElementById('tripForm'));
+            //console.log("formData");
+            //console.log(formData);
+            const response = await fetch('/upload2', {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'daycount': dayCount
+                }
+            });
+            let filePaths = await response.json();
+            let photos = []; 
+            let dayPhotos = [];
+            let count = 0;
+            let tempArr = [];
+            let arrLen = filePaths.length-1;
+
+            filePaths.forEach((e, id) => {
+                if (e.fieldname === "photos") {
+                    photos.push(e.path);
+                } else if (e.fieldname.startsWith("day_media_")) {
+                    // Extract the index from the fieldname
+                    let index = parseInt(e.fieldname.split("_")[2]);
+
+                    // Initialize the sub-array if it doesn't exist
+                    if (!dayPhotos[index]) {
+                        dayPhotos[index] = [];
+                    }
+
+                    // Push the path to the corresponding sub-array
+                    dayPhotos[index].push(e.path);
+
+                    // Update the count if the index is greater than the current count
+                    if (index > count) {
+                        count = index;
+                    }
+                }
+            });
+
+            const tripData = {
+                trip_name: formData.get('trip_name'),
+                trip_category: formData.get('trip_category'),
+                trip_transport: formData.get('trip_transport'),
+                trip_duration: formData.get('trip_duration'),
+                trip_description: tinymce.get('trip_description').getContent(),
+                trip_fotos: photos,
+                trip_programme_sdesc: formData.get('trip_programme_sdesc'),
+                trip_programme: [],
+                trip_pickuppoints: formData.get('trip_pickuppoints').split(','),
+                trip_comment: JSON.parse(formData.get('trip_comment')),
+                trips: [],
+                isactive: formData.get('isactive') === 'on'
+            };
+
+            const dayFields = document.getElementsByClassName('day-fields');
+            for (let i = 0; i < dayFields.length; i++) {
+                const day_title = formData.get(`day_title_${i}`);
+                const day_desc = formData.get(`day_desc_${i}`);
+                const day_media = dayPhotos[i];
+                tripData.trip_programme.push({ day_title, day_desc, day_media: Array.from(day_media) });
+            }
+
+            const tripFields = document.getElementsByClassName('trip-fields');
+            for (let i = 0; i < tripFields.length; i++) {
+                const trip_date = formData.get(`trip_date_${i}`);
+                const trip_discount = formData.get(`trip_discount_${i}`);
+                const trip_cost = formData.get(`trip_cost_${i}`);
+                const trip_isguaranteed = formData.get(`trip_isguaranteed_${i}`) === 'on';
+                const trip_seatstotal = formData.get(`trip_seatstotal_${i}`);
+                const trip_seatstaken = formData.get(`trip_seatstaken_${i}`);
+                let trip_seatsoccupied = formData.getAll(`trip_seatsoccupied_${i}`);
+                trip_seatsoccupied = trip_seatsoccupied[0].split(','); //shitty workaround 
+                tripData.trips.push({
+                    date: trip_date,
+                    discount: trip_discount,
+                    cost: trip_cost,
+                    isguaranteed: trip_isguaranteed,
+                    seatstotal: trip_seatstotal,
+                    seatstaken: trip_seatstaken,
+                    seatsoccupied: trip_seatsoccupied
+                });
+            }
+
+            try {
+                console.log(`trip data :`);
+                console.log(JSON.stringify(tripData));
+                console.log(`formdata :`);
+                console.log(JSON.stringify(formData));
+                const createResponse = await fetch('http://localhost:3000/api/trips', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(tripData)
+                });
+
+                if (createResponse.ok) {
+                    alert('Trip created successfully!');
+                } else {
+                    const errorData = await createResponse.json();
+                    console.error('Error:', errorData);
+                    console.log(tripData);
+                    alert('Failed to create trip. Error: ' + errorData.message);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('An error occurred while creating the trip.');
+            }
+        });
+    </script>
+</body>
+</html>
+
