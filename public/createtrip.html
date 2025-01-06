@@ -251,10 +251,6 @@
             }
 
             try {
-                console.log(`trip data :`);
-                console.log(JSON.stringify(tripData));
-                console.log(`formdata :`);
-                console.log(JSON.stringify(formData));
                 const createResponse = await fetch('http://localhost:3000/api/trips', {
                     method: 'POST',
                     headers: {

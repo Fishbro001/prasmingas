@@ -184,8 +184,8 @@
     <!-- Tab links -->
     <div class="tab">
         <button class="tablinks" onclick="openContent(event, 'Kelione')">Kelionė</button>
-        <button class="tablinks" onclick="openContent(event, 'Programa')">Kelionės Programa</button>
-        <button class="tablinks" onclick="openContent(event, 'Data')">Data</button>
+        <!-- <button class="tablinks" onclick="openContent(event, 'Programa')">Kelionės Programa</button> -->
+        <button class="tablinks" onclick="openContent(event, 'Data')">Datos ir išvykimo vietos</button>
         <button class="tablinks" onclick="openContent(event, 'Atmintine')">Atmintinė</button>
     </div>
 
@@ -274,33 +274,33 @@
 
                 </div>
             </div>
-            <div id="Programa" class="tabcontent">
+            <!-- <div id="Programa" class="tabcontent">
                 <h3>KELIONĖS PROGRAMA</h3>
-                <p><em><%= trip.trip_programme_sdesc %></em></p>
+                <p><em><%=// trip.trip_programme_sdesc %></em></p>
                 <div class="travel-program">
                     <ul>
-                        <% let k = 1; %>
-                        <% trip.trip_programme.forEach(function(oneDay) { %>
+                        <% //let k = 1; %>
+                        <% //trip.trip_programme.forEach(function(oneDay) { %>
                             <li>
-                                <span class="tp-day"><%= k %></span>
-                                <h4><%= oneDay.day_title %></h4>
-                                <p><%= oneDay.day_desc %></p>
+                                <span class="tp-day"><%= //k %></span>
+                                <h4><%= //oneDay.day_title %></h4>
+                                <p><%= //oneDay.day_desc %></p>
                                 <div class="content-image">
                                     <div class="img-row">
                                         <div class="img-column">
-                                            <% oneDay.day_media.forEach(function(media) { %>
-                                                <% media = media.replace(/C:\\Users\\puskoedg\\Downloads\\Prasmingas\\Prasmingas\\public\\/g, '/').replace(/\\/g, '/') %>
-                                                <img src="<%= media %>" style="width:100%">
-                                            <% }); %>
+                                            <% //oneDay.day_media.forEach(function(media) { %>
+                                                <%// media = media.replace(/C:\\Users\\puskoedg\\Downloads\\Prasmingas\\Prasmingas\\public\\/g, '/').replace(/\\/g, '/') %>
+                                                <img src="<%=// media %>" style="width:100%">
+                                            <%// }); %>
                                         </div>
                                     </div>
                                 </div>
                             </li>
-                            <% k++; %>
-                        <% }); %>
+                            <%// k++; %>
+                        <% //}); %>
                     </ul>
                 </div>
-            </div>
+            </div> -->
             <div id="Data" class="tabcontent">
                 <% trip.trips.forEach(function(e) { %>
                     <div class="datos">
@@ -315,7 +315,7 @@
                             <p class="travel-tour-price"><%=e.cost%>/asm.</p>
                         </div>
                         <div class="reserve-link">
-                            <a class="btn-buy">Pirkti</a>
+                            <a class="btn-buy" href="<%=trip._id %>/buy1">Pirkti</a>
                         </div>
                     </div>
                 <% }); %>

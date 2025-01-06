@@ -6,13 +6,66 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const crudRoute = require('./routes/crudRoute');
 const mainRoute = require('./routes/mainRoute');
+const authRoute = require('./routes/authRoute');
 const multer = require('multer');
+const session = require('express-session');
+const passport = require('passport');
+const bcrypt = require('bcryptjs');
+const LocalStrategy = require('passport-local').Strategy
+const isLoggedIn = require('./middleware/auth');
+const cors = require('cors');
+const dashboardRoutes = require('./routes/dashboardRoute');
+const User = require('./models/userModel')
+
+//express-session passport passport-local bcryptjs
 //const convert = require('../Prasmingas/models/convert.js');
 
 
 const app = express();
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use(session({
+    secret: 'your_secret_key',
+    resave: false,
+    saveUninitialized: false
+}));
 
-const cors = require('cors');
+app.use(passport.initialize());
+app.use(passport.session())
+
+
+passport.use(new LocalStrategy(
+    async (user_name, user_password, done) => {
+        try {
+            const user = await User.findOne({ user_name: user_name }).exec();
+            if (!user) {
+                return done(null, false, { message: 'Incorrect username.' });
+            }
+            const isMatch = await bcrypt.compare(user_password, user.user_password);
+            if (!isMatch) {
+                return done(null, false, { message: 'Incorrect password.' });
+            }
+            return done(null, user);
+        } catch (err) {
+            return done(err);
+        }
+    }
+));
+passport.serializeUser((user, done) => {
+    done(null, user.id);
+});
+
+passport.deserializeUser(async (id, done) => {
+    try {
+        const user = await User.findById(id).exec();
+        done(null, user);
+    } catch (err) {
+        done(err);
+    }
+});
+
+app.use('/auth', authRoute);
+
 app.use(cors({
     allowedHeaders: ['Content-Type', 'daycount']
 }));
@@ -42,13 +95,13 @@ app.post('/upload', upload.array('photos', 12), (req, res) => {
 });
 
 app.use('/uploads', express.static(path.join(__dirname, 'public/uploads')));
-app.use(bodyParser.json());
+
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Set up EJS as the view engine
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
-
+app.use('/dashboard', dashboardRoutes);
 
 
 
@@ -89,8 +142,34 @@ module.exports = app;
 
 
 //TODO: NORMALIZE DB - LIKE EARLIER TRIPS HAVE TO BE FIRST IN DB AND STUFF DO IT BEFORE SUBMITTING SO NO EXTRA THINGS NEEDED ON FRONT END LESS LOAD TIME 
-//TODO: Discount
+//TODO: D
 //TODO: BUYING BUTTONS 
-//TODO: createtrip.html make it so its either Autobusas/Lektuvas, put defaults 
+//TODO: createtrip.html make it so its either Autobusas/Lektuvas, put defaults iscount
 //TODO: Pagination
-//DONE: Date change from String ok?
+
+
+/*kelione -> keliones programa
+isvykimo laikas ir vietos
+1920 fonine plotis
+800 plotis max width
+
+tinypng optimizacijai
+1.plocius susitvarkyt*/
+
+
+
+// pavyzdi bilieto?
+// kaip sulygint vieta su bilieto vieta?
+// del vietu imituoti kelioniulaikas.lt
+
+
+//timestamp kada sukurtas vartotojas
+//el pastas telefonas
+//uzsakymas pakeisti vieta uzsakyme
+
+
+//TODO buying fix, the seats, not checking currently how many empty and stuff
+//TODO DB empty seats number cuz using it alot
+//TODO isvaziavimo vietos turi buti array
+
+
