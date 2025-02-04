@@ -1,4 +1,4 @@
-const Crud = require('../models/crudModel');
+const { Crud, CrudInactive } = require('../models/crudModel');
 
 // Create a new trip
 exports.createTrip = async (req, res) => {
@@ -12,6 +12,16 @@ exports.createTrip = async (req, res) => {
     }
 };
 
+exports.createTripInactive = async (req, res) => {
+    try {
+        const newTrip = new Crud(req.body);
+        await newTrip.save();
+        res.status(201).send(newTrip);
+    } catch (error) {
+        //console.error('Error creating trip:', error);
+        res.status(500).send({ error: 'Internal Server Error', message: error.message });
+    }
+};
 
 exports.searchTrips = async (category, name, startDate, endDate, minPrice, maxPrice) => {
     try {

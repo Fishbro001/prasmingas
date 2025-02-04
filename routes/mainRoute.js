@@ -17,7 +17,12 @@ const fetchTripMiddleware = async (req, res, next) => {
 
 };
 
+router.get('/stripe', (req,res)=> {
+    res.render('stripe');
 
+
+
+})
 
 router.get('/trip/:id', fetchTripMiddleware, (req, res) => {
     res.render('tripDetails', { trip: req.trip });
@@ -32,16 +37,60 @@ router.get('/trip/:id/buy1', fetchTripMiddleware, (req, res) => {
 router.get('/trip/:id/buy2', fetchTripMiddleware, (req, res) => {
     //console.log(req.trip);
     console.log(req.session);
+    if(req.session.travelObj){
     // Use req.trip to access the trip data
     res.render('tripDetailsBuy2', { trip: req.trip,
         ses: req.session
      });
+    }
+    else { 
+        res.status(400).send('ERROR: No session data found.');
+    }
+});
+router.get('/trip/:id/buy3', fetchTripMiddleware, (req, res) => {
+    //console.log(req.trip);
+    //let x = JSON.parse(req.session.travelObj.tripobj);
+    //console.log(x);
+    if(req.session.travellersArr){
+    // Use req.trip to access the trip data
+    res.render('tripDetailsBuy3', { trip: req.trip,
+        ses: req.session
+     });
+    }
+    else {
+        res.status(400).send('ERROR: No session data found.');
+    }
 });
 
-router.post('/update-session', (req, res) => {
-    const { tripobj, amount } = req.body;
+router.get('/trip/:id/buy4', fetchTripMiddleware, (req, res) => {
+    //console.log(req.trip);
+    //let x = JSON.parse(req.session.travelObj.tripobj);
+    //console.log(x);
+    console.log(req.session);
+    if(req.session.travellersArr){
+    // Use req.trip to access the trip data
+    res.render('tripDetailsBuy4', { trip: req.trip,
+        ses: req.session
+     });
+    }
+    else {
+        res.status(400).send('ERROR: No session data found.');
+    }
+});
+
+router.post('/update-session-tripobj', (req, res) => {
+    const tripobj = req.body;
     req.session.travelObj = tripobj;
+    res.json({ message: 'Session updated successfully', session: req.session });
+  });
+  router.post('/update-session-travellersCount', (req, res) => {
+    const amount = req.body;
     req.session.travellersCount = amount;
+    res.json({ message: 'Session updated successfully', session: req.session });
+  });
+  router.post('/update-session2', (req, res) => {
+    const { travArr } = req.body;
+    req.session.travellersArr = travArr;
     res.json({ message: 'Session updated successfully', session: req.session });
   });
 

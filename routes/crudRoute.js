@@ -3,6 +3,7 @@ const router = express.Router();
 const crudController = require('../controllers/crudController');
 
 router.post('/trips', crudController.createTrip);
+router.post('/trips/inactive', crudController.createTripInactive);
 router.get('/trips', crudController.getAllTrips);
 router.get('/trips/:id', crudController.getTripById);
 router.patch('/trips/:id', crudController.updateTripById);

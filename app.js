@@ -7,6 +7,7 @@ const path = require('path');
 const crudRoute = require('./routes/crudRoute');
 const mainRoute = require('./routes/mainRoute');
 const authRoute = require('./routes/authRoute');
+const stripeRoute = require('./routes/stripeRoute');
 const multer = require('multer');
 const session = require('express-session');
 const passport = require('passport');
@@ -113,6 +114,7 @@ mongoose.connect(process.env.MONGO_URI, {
 
 // Api route
 app.use('/api', crudRoute);
+//app.use('/pay', stripeRoute);
 // Trip route
 app.use('/', mainRoute); // Use the tripRoutes for /trip/:trip_id
 
@@ -121,8 +123,25 @@ app.use('/', mainRoute); // Use the tripRoutes for /trip/:trip_id
 //     res.sendFile(path.join(__dirname, 'public', 'index.html'));
 // });
 
+const stripe = require('stripe')(process.env.STRIPE_PRIVATE);
 
 
+app.post('/create-payment-intent', async (req, res) => {
+    const { amount } = req.body;
+
+    try {
+        const paymentIntent = await stripe.paymentIntents.create({
+            amount,
+            currency: 'usd',
+        });
+
+        res.send({
+            clientSecret: paymentIntent.client_secret,
+        });
+    } catch (error) {
+        res.status(500).send({ error: error.message });
+    }
+});
 
 
 // Middleware
@@ -173,3 +192,8 @@ tinypng optimizacijai
 //TODO isvaziavimo vietos turi buti array
 
 
+
+
+//WHEN MOVING:
+//In create html:
+//Change from localhost all fetch requests to domain.
