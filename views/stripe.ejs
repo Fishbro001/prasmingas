@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stripe Payment Element</title>
+    <script src="https://js.stripe.com/v3/"></script>
+    <style>
+        /* Basic styling for the payment form */
+        #payment-form {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        #payment-element {
+            margin-bottom: 20px;
+        }
+        #card-errors {
+            color: red;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <form id="payment-form">
+        <div id="payment-element"></div>
+        <div id="card-errors" role="alert"></div>
+        <button type="submit">Pay</button>
+    </form>
+
+    <script>
+        // Replace with your Stripe Publishable Key
+        const stripe = Stripe('pk_test_51Mbn3kJYx0LYhUzyaeDUUEceTphKuP1B7hr5MlrqTv8E0LOsmVPDDS0Y6Ur9q4HtgIg0q2kkoTshVTB7596Fz51E00DBJDRUFW');
+
+        const appearance = {
+            theme: 'stripe',
+            variables: {
+                colorPrimary: '#0570de',
+                colorBackground: '#ffffff',
+                colorText: '#30313d',
+                colorDanger: '#df1b41',
+                fontFamily: 'Ideal Sans, system-ui, sans-serif',
+                spacingUnit: '2px',
+                borderRadius: '4px',
+            },
+        };
+
+        const options = {
+            layout: {
+                type: 'tabs',
+                defaultCollapsed: false,
+            }
+        };
+
+        // Fetch the client secret from your server
+        fetch('/create-payment-intent', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ amount: 1099 }) // Amount in cents
+        })
+        .then(response => response.json())
+        .then(data => {
+            const clientSecret = data.clientSecret;
+
+            const elements = stripe.elements({ clientSecret, appearance });
+            const paymentElement = elements.create('payment', options);
+            paymentElement.mount('#payment-element');
+
+            const form = document.getElementById('payment-form');
+            form.addEventListener('submit', async (event) => {
+                event.preventDefault();
+
+                const { error } = await stripe.confirmPayment({
+                    elements,
+                    confirmParams: {
+                        return_url: 'https://your-domain.com/success',
+                    },
+                });
+
+                if (error) {
+                    const errorElement = document.getElementById('card-errors');
+                    errorElement.textContent = error.message;
+                } else {
+                    alert('Payment successful!');
+                }
+            });
+        })
+        .catch(error => {
+            console.error('Error fetching client secret:', error);
+        });
+    </script>
+</body>
+</html>

@@ -65,7 +65,10 @@
         <input type="text" id="trip_category" name="trip_category" required>
 
         <label for="trip_transport">Trip Transport:</label>
-        <input type="text" id="trip_transport" name="trip_transport" required>
+        <select name="trip_transport" id="trip_transport" required>
+            <option value="Lėktuvas">Lėktuvas</option>
+            <option value="Autobusas">Autobusas</option>
+        </select>
 
         <label for="trip_duration">Trip Duration:</label>
         <input type="text" id="trip_duration" name="trip_duration" required>
@@ -88,8 +91,8 @@
         <label for="trip_pickuppoints">Trip Pickup Points (comma-separated):</label>
         <input type="text" id="trip_pickuppoints" name="trip_pickuppoints">
 
-        <label for="trip_comment">Trip Comments:</label>
-        <textarea id="trip_comment" name="trip_comment">
+        <label for="trip_comment">Trip Comments:</label hidden>
+        <textarea id="trip_comment" name="trip_comment" hidden>
 [
     {"comment": "This is a great trip!", "author": "John Doe"},
     {"comment": "I enjoyed the scenery.", "author": "Jane Smith"}
@@ -103,7 +106,7 @@
         <button type="button" id="addTripButton">Add Trip</button>
 
         <label for="isactive">Is Active:</label>
-        <input type="checkbox" id="isactive" name="isactive">
+        <input type="checkbox" id="isactive" name="isactive" checked>
 
         <button type="submit">Create Trip</button>
     </form>
@@ -249,31 +252,55 @@
                     seatsoccupied: trip_seatsoccupied
                 });
             }
+            if(isactive)
+            {
+                try {
+                    const createResponse = await fetch('http://localhost:3000/api/trips', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(tripData)
+                    });
 
-            try {
-                console.log(`trip data :`);
-                console.log(JSON.stringify(tripData));
-                console.log(`formdata :`);
-                console.log(JSON.stringify(formData));
-                const createResponse = await fetch('http://localhost:3000/api/trips', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(tripData)
-                });
-
-                if (createResponse.ok) {
-                    alert('Trip created successfully!');
-                } else {
-                    const errorData = await createResponse.json();
-                    console.error('Error:', errorData);
-                    console.log(tripData);
-                    alert('Failed to create trip. Error: ' + errorData.message);
+                    if (createResponse.ok) {
+                        alert('Trip created successfully!');
+                    } else {
+                        const errorData = await createResponse.json();
+                        console.error('Error:', errorData);
+                        console.log(tripData);
+                        alert('Failed to create trip. Error: ' + errorData.message);
+                    }
+                } catch (error) {
+                    console.error('Error:', error);
+                    alert('An error occurred while creating the trip.');
                 }
-            } catch (error) {
-                console.error('Error:', error);
-                alert('An error occurred while creating the trip.');
+
+            }
+            else 
+            {
+                try {
+                    const createResponse = await fetch('http://localhost:3000/api/trips/inactive', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(tripData)
+                    });
+
+                    if (createResponse.ok) {
+                        alert('Trip created successfully!');
+                    } else {
+                        const errorData = await createResponse.json();
+                        console.error('Error:', errorData);
+                        console.log(tripData);
+                        alert('Failed to create trip. Error: ' + errorData.message);
+                    }
+                } catch (error) {
+                    console.error('Error:', error);
+                    alert('An error occurred while creating the trip.');
+                }
+
             }
         });
     </script>

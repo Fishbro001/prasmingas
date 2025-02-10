@@ -1,0 +1,53 @@
+
+
+
+<!-- views/register.html -->
+<form id="register">
+    <input type="text" name="username" placeholder="Username" required>
+    <input type="password" name="password" placeholder="Password" required>
+    <button type="submit">Register</button>
+</form>
+
+<!-- views/login.html -->
+<form action="/auth/login" method="POST">
+    <input type="text" name="username" placeholder="Username" required>
+    <input type="password" name="password" placeholder="Password" required>
+    <button type="submit">Login</button>
+</form>
+
+<script>
+
+document.getElementById('register').addEventListener('submit', async function(event) {
+            event.preventDefault();
+            const formData = new FormData(document.getElementById('register'));
+            console.log(formData.get('username'));
+            
+            const userData = {
+                user_name: formData.get('username'),
+                user_password: formData.get('password')
+            };
+            console.log(JSON.stringify(userData));
+
+            try {
+                const createResponse = await fetch('/auth/register', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(userData)
+                });
+
+                if (createResponse.ok) {
+                    alert('Registered Success');
+                } else {
+                    const errorData = await createResponse.json();
+                    console.error('Error:', errorData);
+                    alert('Failed to create user. Error: ' + errorData.message);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('An error occurred while creating the user.');
+            }
+        });
+
+</script>

@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/range.css">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600,600i,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700" rel="stylesheet">
+    <script src="/javascript/seats.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header class="navbar-sticky">
+        <nav>
+            <div class="container">
+                <div id="top-header" class="col-top-header">
+                    <div class="contact-info">
+                        <a href="tel:37065955770">
+                            <img class="icon" src="/img/phone-svgrepo-com.svg" />
+                            <span>(+370) 659 55770</span>
+                        </a>
+                        <a href="#">
+                            <img class="icon" src="/img/mail-svgrepo-com.svg" />
+                            <span>info@mail.com</span>
+                        </a>
+                    </div>
+                    <div class="top-header-links">
+                        <a href="apie-mus.html">
+                            <img class="icon" src="/img/info-circle-svgrepo-com.svg" />
+                            <span>Apie mus</span>
+                        </a>
+                        <a href="kontaktai.html">
+                            <img class="icon" src="/img/location-svgrepo-com.svg" />
+                            <span>Kontaktai</span>
+                        </a>
+                    </div>
+                    <div class="social-icons">
+                        <a href="https://www.facebook.com/profile.php?id=100080044436184">
+                            <img class="icon" src="/img/facebook-svgrepo-com.svg" />
+                        </a>
+                        <a href="#">
+                            <img class="icon" src="/img/instagram-svgrepo-com.svg" />
+                        </a>
+                    </div>
+                </div>
+                <div id="main-header" class="col-main-header">
+                    <div id="logo">
+                        <a href="index-2.html" class="logo">
+                            <span>VšĮ "Prasmingam gyvenimui"</span>
+                        </a>
+                    </div>
+                    <div id="menu">
+                        <a href="autubusu.html">
+                            <img class="icon" src="/img/bus-svgrepo-com.svg" />
+                            <span>Autobusu</span>
+                        </a>
+                        <a href="lietuvoje.html">
+                            <img class="icon" src="/img/flag-for-flag-lithuania-svgrepo-com.svg" />
+                            <span>Lietuvoje</span>
+                        </a>
+                        <a href="uzsienyje.html">
+                            <img class="icon" src="/img/globe-svgrepo-com.svg" />
+                            <span>Užsienyje</span>
+                        </a>
+                        <a href="garantuotos.html">
+                            <img class="icon" src="/img/approved-aproved-confirm-2-svgrepo-com.svg" />
+                            <span>Garantuotos</span>
+                        </a>
+                        <a href="kaledines.html">
+                            <img class="icon" src="/img/christmas-tree-svgrepo-com.svg" />
+                            <span>Kalėdinės</span>
+                        </a>
+                    </div>
+                    <div id="search">
+                        <a href="#" id="searchIcon">
+                            <img class="icon" src="/img/search-svgrepo-com.svg" />
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <iframe name="__uspapiLocator" tabindex="-1" role="presentation" aria-hidden="true" title="Blank" style="display: none; position: absolute; width: 1px; height: 1px; top: -9999px;"></iframe>
+
+    <div class="innerpage-banner" style="background-image: url();">
+        <div class="container">
+            <h1 class="innerpage-title"> <%= trip.trip_name %> </h1>
+            <div class="dynamic-filter-links"></div>
+            </nav>
+        </div>
+    </div>
+
+    <section class="pt50 pb50 book-page">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="booking-tabs">
+                        <ul class="nav nav-tabs">
+                            <li class="nav-item">
+                                <i class="fa fa-calendar"></i> Data
+                            </li>
+                            <li class="nav-item active">
+                                <i class="fa fa-users"></i> Keliautojai
+                            </li>
+                            <li class="nav-item">
+                                <i class="fa fa-bus"></i> Vieta autobuse
+                            </li>
+                            <li class="nav-item">
+                                <i class="fa fa-check"></i> Patvirtinimas
+                            </li>
+                        </ul>
+                    </div>
+
+                    <form id="booking_form" method="POST" action="">
+
+                        <div class="booking booking-step-2">
+                           <div id="booking_customer_form"></div>
+                           <h2>Keliautojai</h2>
+                           <div class="travellers">
+
+                           <% for(let i = 0; i<+ses.travellersCount.amount; i++) {%>
+
+                              <div id="traveller-<%=i%>" class="traveller">
+                                 <h4 class="traveller-title"><%=i+1%>-asis keliautojas <small class="red">(kaip nurodyta pase ar tapatybės kortelėje)</small></h4>
+                                 <div class="row">
+                                    <div class="col-sm-12 col-sm-6  col-md-6 form-group">
+                                       <label>Vardas *</label>
+                                       <input type="text" id="traveller-<%=i%>-firstname" name="travellers[<%=i%>][person][firstname]" class="form-control " value="">
+                                    </div>
+                                    <div class="col-sm-12 col-sm-6  col-md-6 form-group">
+                                       <label>Pavardė *</label>
+                                       <input type="text" id="traveller-<%=i%>-lastname" name="travellers[<%=i%>[person][lastname]" class="form-control " value="">
+                                    </div>
+                                 </div>
+                                 <div class="row">
+                                    <div class="col-sm-12 col-sm-6  col-md-6 form-group">
+                                       <label>Gimimo data *</label>
+                                       <input type="text" id="traveller-<%=i%>-birthday" name="travellers[<%=i%>][person][birthday]" class="form-control " value="" placeholder="Formatas 2024-12-20">
+                                    </div>
+                                    <div class="col-sm-12 col-sm-6  col-md-6 form-group">
+                                       <label>Asmens kodas </label>
+                                       <input type="text" id="traveller-<%=i%>-personcode" name="travellers[<%=i%>][person][personcode]" class="form-control " value="">
+                                    </div>
+                                 </div>
+                                 <div class="row">
+                                    <div class="col-sm-12 col-sm-6  col-md-6 form-group">
+                                       <label for="traveller-<%=i%>-email">El. paštas <span id="first-traveller-email-asterisk">*</span></label>
+                                       <input id="traveller-<%=i%>-email" name="travellers[<%=i%>][person][email]" type="email" value="" class="form-control ">
+                                    </div>
+                                    <div class="col-sm-12 col-sm-6  col-md-6 form-group">
+                                       <label for="traveller-<%=i%>-city">Miestas <span id="first-traveller-city-asterisk">*</span></label>
+                                       <input id="traveller-<%=i%>-city" name="travellers[<%=i%>][person][city]" type="text" value="" class="form-control ">
+                                    </div>
+                                 </div>
+                                 </div>
+                                 <div class="row">
+                                    <div class="col-sm-12 col-sm-6  col-md-6 form-group">
+                                       <label>Telefonas *</label>
+                                       <input type="text" id="travellers-<%=i%>-phone" name="travellers[<%=i%>][person][phone]" class="form-control " value="" placeholder="+370 6...">
+                                    </div>
+                                    <div class="col-sm-12 col-sm-6 col-md-6 form-group">
+                                       <label>Išvykimo miestas *</label>
+                                       <select id="travellers[<%=i%>][departurecityid]" name="travellers[<%=i%>][departurecityid]" class="form-control ">
+                                          <option value="">-- pasirinkite --</option>
+                                          <option value="1">Kaunas</option>
+                                          <option value="2">Vilnius</option>
+                                          <option value="6">Panevėžys</option>
+                                          <option value="9">Grigiškės</option>
+                                          <option value="10">Vievis</option>
+                                          <option value="11">Elektrėnai</option>
+                                          <option value="12">Žiežmariai</option>
+                                       </select>
+                                    </div>
+                                 </div>
+                              </div>
+                              
+                            <%}%>
+                           </div>
+                           <div class="total-row clearfix">
+                              Viso:
+                              <span id="booking_total_price_loading" class="total-price-loading" style="display: none;"><i class="fa fa-spinner fa-pulse"></i></span>
+                              <span id="booking_total_price" class="total-price">118,00 €</span>
+                           </div>
+                           <div class="actions-row clearfix">
+                              <button id="go_back_button" type="button" class="btn btn-primary btn-large btn-secondary" onclick="booking_go_back(); return false;"><i class="fa fa-chevron-left"></i> GRĮŽTI</button>
+                              <button id="go_next_button" type="button" class="btn btn-primary btn-large btn-primary" onclick="booking_go_next(); return false;">TĘSTI <i class="fa fa-chevron-right"></i></button>
+                           </div>
+                        </div>
+                     </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer position-relative">
+        <div class="footer-content">
+            <div class="container">
+                <div class="row">
+                    <!-- Footer widget 1 -->
+                    <div class="col-lg-3 col-sm-7 order-sm-1">
+                        <div class="widget address">
+                            <a href="" class="footer-logo">
+                                <img src="">
+                            </a>
+                            <div class="footer-post">
+                                <p><strong>“Kelionių Laikas” </strong>yra kelionių organizatorius siūlantis išvykstamojo, atvykstamojo bei vietinio turizmo paslaugas. Turizmo srityje dirbame nuo 2002 metų, turime subūrę didelį puikiai savo darbą išmanančių ir jį mylinčių asmenų komandą. Organizuojame įvairias keliones pavieniams asmenims bei kolektyvams, taip pat specializuotas keliones moksleivių grupėms, senjorams.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Footer widget 2 -->
+                    <div class="col-lg-2 col-sm-4 order-sm-3">
+                        <div class="widget">
+                            <h4>Struktūra</h4>
+                            <ul class="nav">
+                                <li class="nav-item"><a class="nav-link" href="" target="">Atsiliepimai</a></li>
+                                <li class="nav-item"><a class="nav-link" href="" target="">Apie mus</a></li>
+                                <li class="nav-item"><a class="nav-link" href="" target="">Kontaktai</a></li>
+                                <li class="nav-item"><a class="nav-link" href="" target="">Dovanų kuponas</a></li>
+                                <li class="nav-item"><a class="nav-link" href="" target="">Kelionės užklausa</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- Footer widget 3 -->
+                    <div class="col-lg-2 col-sm-4 order-sm-4">
+                        <div class="widget">
+                            <h4>Kelionės</h4>
+                            <ul class="nav">
+                                <li class="nav-item"><a class="nav-link" href="" target="">Kelionės po Lietuvą</a></li>
+                                <li class="nav-item"><a class="nav-link" href="" target="">Poilsis Lietuvoje</a></li>
+                                <li class="nav-item"><a class="nav-link" href="" target="">Skrydis + viešbutis</a></li>
+                                <li class="nav-item"><a class="nav-link" href="" target="">Ekskursija pėsčiomis</a></li>
+                                <li class="nav-item"><a class="nav-link" href="" target="">Kelionės autobusu</a></li>
+                                <li class="nav-item"><a class="nav-link" href="" target="">Kelionės lėktuvu</a></li>
+                                <li class="nav-item"><a class="nav-link" href="" target="">Poilsinės kelionės</a></li>
+                                <li class="nav-item"><a class="nav-link" href="" target="">Pažintinės kelionės</a></li>
+                                <li class="nav-item"><a class="nav-link" href="" target="">Savaitgalio kelionės</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- Footer widget 4 -->
+                    <div class="col-lg-2 col-sm-4 order-sm-5">
+                        <div class="widget">
+                            <h4>Informacija</h4>
+                            <ul class="nav">
+                                <li class="nav-item"><a class="nav-link" href="" target="">Turizmo paslaugų sutartis</a></li>
+                                <li class="nav-item"><a class="nav-link" href="" target="">Informacija vartotojams koronaviruso laikotarpiu</a></li>
+                                <li class="nav-item"><a class="nav-link" href="" target="">ES projektai</a></li>
+                                <li class="nav-item"><a class="nav-link" href="" target="">Privatumo politika</a></li>
+                                <li class="nav-item"><a class="nav-link" href="" target="">Informavimas apie asmens duomenų tvarkymą</a></li>
+                                <li class="nav-item"><a class="nav-link" href="" target="_blank">Kelionės kolektyvams po Lietuvą</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- Footer widget 5 -->
+                    <div class="col-lg-3 col-sm-5 order-sm-2">
+                        <div class="widget">
+                            <h4>UAB „Kelionių laikas“</h4>
+                            <ul class="list-unstyled footer-contacts">
+                                <li><i class="fas fa-phone"></i><script type="text/javascript">var p11 = '(+37', p21 = '(+37', p12 = '0)52', p13 = '751797', p23 = ' 275 17 97', p22 = '0) 5'; document.write('<a href="tel:' + p11 + p12 + p13 + '" target="_blank">' + p21 + p22 + p23 + '</a>');</script><a href="tel:(+370)52751797" target="_blank">(+370) 5 275 17 97</a></li>
+                                <li><i class="far fa-envelope"></i><script type="text/javascript">var e2 = 'kelioniulaikas.lt', e1 = 'info'; document.write('<a href="mailto:' + e1 + '@' + e2 + '" target="_blank">' + e1 + '@' + e2 + '</a>');</script><a href="mailto:info@kelioniulaikas.lt" target="_blank">info@kelioniulaikas.lt</a></li>
+                                <li><i class="fas fa-map-marked-alt"></i><p>Kalvarijų g. 14, LT 09309 Vilnius</p></li>
+                                <li><i class="far fa-clock"></i><p>I-V <strong>9.00 - 18.00</strong><br>VI-VII <strong>nedirbame</strong></p></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="divider mt-3"></div>
+        <!--footer copyright -->
+        <div class="footer-copyright">
+            <div class="container">
+                © 2024 Kopijuoti turinį be sutikimo draudžiama. Sprendimas <a target="_blank" href="http://digis.lt">digis.lt</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Root element of PhotoSwipe. Must have class pswp. -->
+    <div class="pswp" tabindex="0" role="dialog" aria-hidden="true">
+        <div class="pswp__bg"></div>
+        <div class="pswp__scroll-wrap">
+            <div class="pswp__container">
+                <div class="pswp__item"></div>
+                <div class="pswp__item"></div>
+                <div class="pswp__item"></div>
+            </div>
+            <div class="pswp__ui pswp__ui--hidden">
+                <div class="pswp__top-bar">
+                    <div class="pswp__counter"></div>
+                    <button class="pswp__button pswp__button--close" title="Uždaryti"></button>
+                    <button class="pswp__button pswp__button--share" title="Dalintis"></button>
+                    <button class="pswp__button pswp__button--fs" title="Pilnas ekranas"></button>
+                    <button class="pswp__button pswp__button--zoom" title="Padidinti / sumažinti"></button>
+                    <div class="pswp__preloader">
+                        <div class="pswp__preloader__icn">
+                            <div class="pswp__preloader__cut">
+                                <div class="pswp__preloader__donut"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                    <div class="pswp__share-tooltip"></div>
+                </div>
+                <button class="pswp__button pswp__button--arrow--left" title="Atgal"></button>
+                <button class="pswp__button pswp__button--arrow--right" title="Toliau"></button>
+                <div class="pswp__caption">
+                    <div class="pswp__caption__center"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/assets/site/js/popper.js" type="text/javascript"></script>
+    <script src="/assets/site/js/script.min.js?v=1.52" type="text/javascript"></script>
+    <iframe tabindex="-1" role="presentation" aria-hidden="true" title="Blank" src="https://consentcdn.cookiebot.com/sdk/bc-v4.min.html" style="position: absolute; width: 1px; height: 1px; top: -9999px;"></iframe>
+
+    <script>
+
+        const booking_go_next = function () {
+            let travArr = [];
+            let tempObj = {};
+            let fname, lname, personcode, email, city, birthdate, departureCity, tel;
+            let travCount = '<%= ses.travellersCount.amount %>'
+            let tripid = '<%= trip._id %>';
+            console.log('travcount ', travCount);
+            for (let b = 0; b < travCount ; b++) {
+                fname = document.getElementById(`traveller-${b}-firstname`).value;
+                lname = document.getElementById(`traveller-${b}-lastname`).value;
+                birthdate = document.getElementById(`traveller-${b}-birthday`).value;
+                personcode = document.getElementById(`traveller-${b}-personcode`).value;
+                email = document.getElementById(`traveller-${b}-email`).value;
+                city = document.getElementById(`traveller-${b}-city`).value;
+                const selectElement = document.getElementById(`travellers[${b}][departurecityid]`);
+                const selectedIndex = selectElement.selectedIndex;
+                const departureCity = selectElement.options[selectedIndex].text;
+
+
+                tel = document.getElementById(`travellers-${b}-phone`).value;
+                tempObj = {
+                    fname: fname,
+                    lname: lname,
+                    birthdate: birthdate,
+                    personcode: personcode,
+                    email: email,
+                    city: city,
+                    departureCity: departureCity,
+                    tel: tel
+
+                };
+                travArr.push(tempObj);
+            }
+            fetch('/update-session2', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ travArr })
+            }).then(response => response.json())
+            .then(data => {
+                console.log('Session updated:', data);
+                // You can redirect or update the UI here
+                return fetch(`/trip/${tripid}/buy3`);
+            }).then(html => {
+                console.log('Trip details fetched:', html);
+                // Redirect to a different page
+                window.location.href = '/trip/' + tripid + '/buy3';
+            })
+            .catch(error => console.error('Error:', error));
+ 
+        }
+            
+       
+    </script>
+
+    <ul id="ui-id-1" tabindex="0" class="ui-menu ui-widget ui-widget-content ui-autocomplete ui-front" style="display: none;"></ul>
+    <div role="status" aria-live="assertive" aria-relevant="additions" class="ui-helper-hidden-accessible"></div>
+    <ul id="ui-id-2" tabindex="0" class="ui-menu ui-widget ui-widget-content ui-autocomplete ui-front" style="display: none;"></ul>
+    <div role="status" aria-live="assertive" aria-relevant="additions" class="ui-helper-hidden-accessible"></div>
+    <div id="ui-datepicker-div" class="ui-datepicker ui-widget ui-widget-content ui-helper-clearfix ui-corner-all"></div>
+    <div id="veepn-breach-alert"></div>
+    <style>@font-face{font-family:FigtreeVF;src:url(chrome-extension://majdfhpaihoncoakbjgbdhglocklcgno/fonts/FigtreeVF.woff2) format("woff2 supports variations"),url(chrome-extension://majdfhpaihoncoakbjgbdhglocklcgno/fonts/FigtreeVF.woff2) format("woff2-variations");font-weight:100 1000;font-display:swap}</style>
+
+</body>
+</html>

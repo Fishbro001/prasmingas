@@ -39,4 +39,28 @@ const crudSchema = new mongoose.Schema({
     isactive: { type: Boolean, default: true },
 }, { collection: 'prasmingas' });
 
-module.exports = mongoose.model('Crud', crudSchema);
+
+//Inactive Schema
+const crudSchemaInactive = new mongoose.Schema({
+    trip_name: { type: String, required: true },
+    trip_category: { type: String, required: true },
+    trip_transport: { type: String, required: true },
+    trip_duration: { type: String, required: true },
+    trip_description: { type: String },
+    trip_fotos: [{ type: String }],
+    trip_programme_sdesc: { type: String },
+    trip_programme: { type: [daySchema], default: [] },
+    trip_pickuppoints: { type: [String], default: [] },
+    trip_comment: { type: [commentSchema], default: [] },
+    trips: { type: [tripsSchema], default: [] },
+    isactive: { type: Boolean, default: true },
+}, { collection: 'InactiveTrips' });
+
+const Crud = mongoose.model('Crud', crudSchema);
+const CrudInactive = mongoose.model('CrudInactive', crudSchemaInactive);
+
+// Export both models
+module.exports = {
+  Crud,
+  CrudInactive
+};
