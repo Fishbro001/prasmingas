@@ -1,6 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const crudController = require('../controllers/crudController');
+const stripe = require('stripe')(process.env.STRIPE_PRIVATE);
+
+
 
 const fetchTripMiddleware = async (req, res, next) => {
     try {
@@ -17,12 +20,46 @@ const fetchTripMiddleware = async (req, res, next) => {
 
 };
 
-router.get('/stripe', (req,res)=> {
-    res.render('stripe');
+router.post('/checkout', async (req, res) =>{
+    console.log(req.body);
+    const session = await stripe.checkout.sessions.create({
+        line_items: [
+            {
+                price_data: {
+                    currency: 'eur',
+                    product_data: {
+                        name: 'kelione'
+                    },
+                    unit_amount: 100
+                },
+                quantity: 1
+            },       
+        ],
+        mode: 'payment',
+        success_url: `${process.env.BASE_URL}/complete?session_id={CHECKOUT_SESSION_ID}`,
+        cancel_url: `${process.env.BASE_URL}/cancel`
+    })
+   // console.log(session);
+    res.redirect(303, session.url)
+});
 
+router.get('/complete', async (req, res) => {
+    const result = Promise.all([
+        stripe.checkout.sessions.retrieve(req.query.session_id, { expand: ['payment_intent.payment_method'] }),
+        stripe.checkout.sessions.listLineItems(req.query.session_id)
+    ])
 
+    console.log(JSON.stringify(await result))
 
+    res.send('Your payment was successful')
 })
+
+router.get('/cancel', (req, res) => {
+    res.redirect('/')
+});
+
+
+
 
 router.get('/trip/:id', fetchTripMiddleware, (req, res) => {
     res.render('tripDetails', { trip: req.trip });

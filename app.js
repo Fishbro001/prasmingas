@@ -17,6 +17,7 @@ const isLoggedIn = require('./middleware/auth');
 const cors = require('cors');
 const dashboardRoutes = require('./routes/dashboardRoute');
 const User = require('./models/userModel')
+const stripe = require('stripe')(process.env.STRIPE_PRIVATE);
 
 //express-session passport passport-local bcryptjs
 //const convert = require('../Prasmingas/models/convert.js');
@@ -34,7 +35,12 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session())
 
-
+app.use(cors({
+    allowedHeaders: ['Content-Type', 'daycount'],
+    origin: 'http://localhost:3000', // Allow requests from your frontend
+    methods: 'GET,POST',
+    credentials: true
+}));
 passport.use(new LocalStrategy(
     async (user_name, user_password, done) => {
         try {
@@ -67,9 +73,6 @@ passport.deserializeUser(async (id, done) => {
 
 app.use('/auth', authRoute);
 
-app.use(cors({
-    allowedHeaders: ['Content-Type', 'daycount']
-}));
 
 // Set up storage engine for multer
 const storage = multer.diskStorage({
@@ -123,7 +126,7 @@ app.use('/', mainRoute); // Use the tripRoutes for /trip/:trip_id
 //     res.sendFile(path.join(__dirname, 'public', 'index.html'));
 // });
 
-const stripe = require('stripe')(process.env.STRIPE_PRIVATE);
+
 
 
 app.post('/create-payment-intent', async (req, res) => {
