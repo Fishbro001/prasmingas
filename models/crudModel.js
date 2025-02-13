@@ -12,6 +12,26 @@ const commentSchema = new mongoose.Schema({
     author: { type: String, required: true },
 });
 
+// maybe use this for creating users?
+const clientSchema = new mongoose.Schema({
+    fname: { type: String},
+    lname: { type: String},
+    birthdate: { type: String},
+    pcode: { type: String},
+    phone: { type: String}, 
+    email: { type: String},
+    city: { type: String},
+    departCity: { type: String}, 
+    seat: { type: String},
+});   
+
+const ordersSchema = new mongoose.Schema({ // orders to be inside crudSchema -> tripsSchema -> ordersSchema
+    clients: { type: [clientSchema], default: [] },
+
+
+
+});
+
 const tripsSchema = new mongoose.Schema({
     date: { type: Date, required: true },
     discount: { type: String, required: true },
@@ -20,6 +40,7 @@ const tripsSchema = new mongoose.Schema({
     seatstotal: { type: String, required: true },
     seatstaken: { type: String, required: true },
     seatsoccupied: { type: [String], default: [] },
+    orders: { type: [ordersSchema], default: [] }
 });
 //*---End
 
