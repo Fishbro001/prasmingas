@@ -1068,50 +1068,22 @@
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ totalamount: 100, numberofUsers: 2, priceperuser: 60  }) // Amount in cents
         })
-        .then (response => response.json())
-            .then(html => {
-                console.log('Trip details fetched:', html);
-                // Redirect to a different page
-                window.location.href = data.url
+        .then (response => {
+                    if (response.redirected) {
+                    // Follow the redirect URL
+                    window.location.href = response.url;
+                } else {
+                    return response.json();
+                }
+            })
+            .then(data => {
+                console.log('Trip details fetched:', data);
+                // Handle any additional logic if needed
             })
             .catch((error) => {
-                console.log('Error', error);
+                console.error('Error:', error);
+                // Handle the error as needed
             });
-        // .then(response => response.json())
-        // .then(data => {
-        //     const clientSecret = data.clientSecret;
-
-        //     const elements = stripe.elements({ clientSecret });
-        //     const paymentElement = elements.create('payment', {
-        //         layout: {
-        //             type: 'tabs',
-        //             defaultCollapsed: false,
-        //         }
-        //     });
-        //     paymentElement.mount('#payment-element');
-
-        //     const form = document.getElementById('payment-form');
-        //     form.addEventListener('submit', async (event) => {
-        //         event.preventDefault();
-
-        //         const { error } = await stripe.confirmCardPayment(clientSecret, {
-        //             payment_method: {
-        //                 card: paymentElement,
-        //                 billing_details: { name: 'Customer Name' }
-        //             }
-        //         });
-
-        //         if (error) {
-        //             const errorElement = document.getElementById('card-errors');
-        //             errorElement.textContent = error.message;
-        //         } else {
-        //             alert('Payment successful!');
-        //         }
-        //     });
-        // })
-        // .catch(error => {
-        //     console.error('Error fetching client secret:', error);
-        // });
     };
 
 
