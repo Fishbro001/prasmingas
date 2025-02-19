@@ -288,7 +288,7 @@
 
     <script>
     const tripsData = <%- JSON.stringify(trip.trips) %>;
-    const tripOBJECT = tripsData[0];
+    let tripOBJECT = tripsData[0];
     console.log('tripobj ',tripOBJECT);
 
     function selectBookingTravelDate() {
@@ -298,7 +298,7 @@
 
                 // Get the selected index
         const selectedIndex = travelDateSelect.selectedIndex;
-        console.log(tripsData);
+        //console.log(tripsData);
         
         if (selectedIndex) {
             const tripOBJECT = tripsData[selectedIndex];
@@ -341,6 +341,11 @@
             
             let amount = document.getElementById('travellers_count_select').value;
             let tripid = '<%= trip._id %>';
+            let tripname = '<%= trip.trip_name %>';
+            let trip_pickup = '<%= trip.trip_pickuppoints %>';
+            tripOBJECT.trip_name = tripname;
+            tripOBJECT.trip_pickup = trip_pickup;
+            tripOBJECT.parent_tripid = tripid;
                 // First fetch call
             fetch('/update-session-tripobj', {
                 method: 'POST',

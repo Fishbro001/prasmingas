@@ -18,6 +18,8 @@ const cors = require('cors');
 const dashboardRoutes = require('./routes/dashboardRoute');
 const User = require('./models/userModel')
 const stripe = require('stripe')(process.env.STRIPE_PRIVATE);
+const nodemailer = require('nodemailer');
+const PDFDocument = require('pdfkit');
 
 //express-session passport passport-local bcryptjs
 //const convert = require('../Prasmingas/models/convert.js');
@@ -36,9 +38,9 @@ app.use(passport.initialize());
 app.use(passport.session())
 
 app.use(cors({
-    allowedHeaders: ['Content-Type', 'daycount'],
-    origin: 'http://localhost:3000', // Allow requests from your frontend
-    methods: 'GET,POST',
+    exposedHeaders: ['Content-Type', 'daycount'],
+    origin: process.env.BASE_URL, // Allow requests from your frontend
+    methods: ['GET,POST'],
     credentials: true
 }));
 passport.use(new LocalStrategy(
