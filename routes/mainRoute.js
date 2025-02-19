@@ -19,20 +19,21 @@ const fetchTripMiddleware = async (req, res, next) => {
     }
 
 };
-
-router.post('/checkout', async (req, res) =>{
+// cost-(cost/100*discount)
+router.post('/checkout', async (req, res) => {
     console.log(req.body);
+    let final_amount = (req.body.priceperuser-(req.body.priceperuser/100*req.body.discount))*100;
     const session = await stripe.checkout.sessions.create({
         line_items: [
             {
                 price_data: {
                     currency: 'eur',
                     product_data: {
-                        name: 'kelione'
+                        name: 'Kelionė' // name of trip?
                     },
-                    unit_amount: 100
+                    unit_amount: final_amount
                 },
-                quantity: 1
+                quantity: req.body.numberofUsers
             },       
         ],
         mode: 'payment',
@@ -40,7 +41,7 @@ router.post('/checkout', async (req, res) =>{
         cancel_url: `${process.env.BASE_URL}/cancel`
     })
    // console.log(session);
-    res.redirect(303, session.url)
+     res.json({url: session.url});
 });
 
 router.get('/complete', async (req, res) => {
@@ -132,16 +133,21 @@ router.post('/update-session-tripobj', (req, res) => {
   });
 
 router.get('/', async (req, res) => {
+    const baseUrl = process.env.BASE_URL
     try {
         const trips = await crudController.getAllTripsObj(req);
         if (!trips) {
             return res.status(404).send('trip not found bruh');
         }
-        res.render('index', { trips });
+        res.render('index', { trips, baseUrl });
     } catch (error) {
         console.error('Error fetching trip:', error);
         res.status(500).send('Internal Server Error');
     }
+});
+router.get('/createtrip', async (req, res) => {
+    const baseUrl = process.env.BASE_URL;
+    res.render('createtrip', {baseUrl});
 });
 router.get('/category/:category', async (req, res) => {
     try {

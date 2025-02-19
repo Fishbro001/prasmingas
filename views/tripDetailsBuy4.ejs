@@ -1066,23 +1066,20 @@
         fetch('/checkout', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ totalamount: 100, numberofUsers: 2, priceperuser: 60  }) // Amount in cents
+            body: JSON.stringify({ 
+                totalamount: <%= ses.travelObj.cost %>, 
+                numberofUsers: <%= ses.travellersCount.amount %>, 
+                priceperuser: <%= ses.travelObj.cost %>, 
+                discount: <%= ses.travelObj.discount %> }) // Amount in cents
         })
-        .then (response => {
-                    if (response.redirected) {
-                    // Follow the redirect URL
-                    window.location.href = response.url;
-                } else {
-                    return response.json();
-                }
-            })
-            .then(data => {
-                console.log('Trip details fetched:', data);
-                // Handle any additional logic if needed
+        .then (response => response.json())
+            .then(html => {
+                console.log('Trip details fetched:', html);
+                // Redirect to a different page
+                window.location.href = html.url
             })
             .catch((error) => {
-                console.error('Error:', error);
-                // Handle the error as needed
+                console.log('Error', error);
             });
     };
 

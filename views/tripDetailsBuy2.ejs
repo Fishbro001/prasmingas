@@ -167,13 +167,10 @@
                                        <label>Išvykimo miestas *</label>
                                        <select id="travellers[<%=i%>][departurecityid]" name="travellers[<%=i%>][departurecityid]" class="form-control ">
                                           <option value="">-- pasirinkite --</option>
-                                          <option value="1">Kaunas</option>
-                                          <option value="2">Vilnius</option>
-                                          <option value="6">Panevėžys</option>
-                                          <option value="9">Grigiškės</option>
-                                          <option value="10">Vievis</option>
-                                          <option value="11">Elektrėnai</option>
-                                          <option value="12">Žiežmariai</option>
+                                          <% let pickupArr = ses.travelObj.trip_pickup.split(', '); %>
+                                          <% for(let a = 0 ; a<pickupArr.length; a++) { %>
+                                            <option value="<%=a%>"><%=pickupArr[a] %></option> %>
+                                          <% }%>
                                        </select>
                                     </div>
                                  </div>
@@ -182,7 +179,7 @@
                             <%}%>
                            </div>
                            <div class="total-row clearfix">
-                              Viso:
+                              Viso: <%= (ses.travelObj.cost-(ses.travelObj.cost/100*ses.travelObj.discount))*ses.travellersCount.amount; %>
                               <span id="booking_total_price_loading" class="total-price-loading" style="display: none;"><i class="fa fa-spinner fa-pulse"></i></span>
                               <span id="booking_total_price" class="total-price">118,00 €</span>
                            </div>
