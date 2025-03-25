@@ -2,8 +2,18 @@ const express = require('express');
 const router = express.Router();
 const crudController = require('../controllers/crudController');
 const stripe = require('stripe')(process.env.STRIPE_PRIVATE);
+const {transporter, message} = require('../middleware/mailer');
 
+router.get('/test-email', async (req, res, next) =>{
+    try {
+        // Send the email
+        let info = await transporter.sendMail(message);
+        console.log('Message sent: %s', info.messageId);
+    } catch (error) {
+        console.error('Error sending email:', error);
+    }
 
+});
 
 const fetchTripMiddleware = async (req, res, next) => {
     try {
@@ -19,6 +29,8 @@ const fetchTripMiddleware = async (req, res, next) => {
     }
 
 };
+
+
 // cost-(cost/100*discount)
 router.post('/checkout', async (req, res) => {
     console.log(req.body);
