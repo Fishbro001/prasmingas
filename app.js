@@ -75,7 +75,24 @@ passport.deserializeUser(async (id, done) => {
 
 app.use('/auth', authRoute);
 
-
+// async function uploadFile(filePath) {
+//     try {
+//       // Read the file from the local filesystem
+//       const fileBuffer = fs.readFileSync(filePath);
+  
+//       // Upload the file to Vercel Blob Storage
+//       const response = await client.put('your-blob-path', fileBuffer, {
+//         access: 'public', // or 'private'
+//       });
+  
+//       console.log('File uploaded successfully:', response.url);
+//     } catch (error) {
+//       console.error('Error uploading file:', error);
+//     }
+//   }
+  
+//   // Example usage
+//   uploadFile('path/to/your/file.txt');
 // Set up storage engine for multer
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -166,8 +183,7 @@ module.exports = app;
 
 
 //TODO: NORMALIZE DB - LIKE EARLIER TRIPS HAVE TO BE FIRST IN DB AND STUFF DO IT BEFORE SUBMITTING SO NO EXTRA THINGS NEEDED ON FRONT END LESS LOAD TIME 
-//TODO: D
-//TODO: BUYING BUTTONS 
+
 //TODO: createtrip.html make it so its either Autobusas/Lektuvas, put defaults iscount
 //TODO: Pagination
 
