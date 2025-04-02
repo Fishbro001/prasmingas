@@ -173,7 +173,7 @@
         </div>
         <!-- end mobile search modal -->
     </header>
-    <%  var correctedPath = trip.trip_fotos[0].replace(/C:\\Users\\puskoedg\\Downloads\\Prasmingas\\Prasmingas\\public\\/g, '/').replace(/\\/g, '/'); %>
+    <%  var correctedPath = trip.trip_fotos[0].replace(/.*\/public\//, '/').replace(/\\/g, '/'); %>
     <div id="banner" class="balstoge" style="background-image: url('<%= correctedPath %>'); background-position: center center;">
         <div class="container">
             <div id="banner-title">
@@ -218,7 +218,7 @@
                             <% if (index % 2 === 0) { %>
                                 <div class="img-column">
                             <% } %>
-                            <%  foto = foto.replace(/C:\\Users\\puskoedg\\Downloads\\Prasmingas\\Prasmingas\\public\\/g, '/').replace(/\\/g, '/'); %>
+                            <%  foto = foto.replace(/.*\/public\//, '/').replace(/\\/g, '/'); %>
                                     <img src="<%= foto; %>" style="width:100%">
                             <% if (index % 2 === 1 || index === trip.trip_fotos.length - 1) { %>
                                 </div>
@@ -242,7 +242,7 @@
                                         <div class="img-row">
                                             <div class="img-column">
                                                 <% oneDay.day_media.forEach(function(media) { %>
-                                                    <% media = media.replace(/C:\\Users\\puskoedg\\Downloads\\Prasmingas\\Prasmingas\\public\\/g, '/').replace(/\\/g, '/') %>
+                                                    <% media = media.replace(/.*\/public\//, '/').replace(/\\/g, '/').replace(/\\/g, '/') %>
                                                     <img src="<%= media %>" style="width:100%">
                                                 <% }); %>
                                             </div>

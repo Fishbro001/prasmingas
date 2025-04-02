@@ -29,6 +29,11 @@ const fetchTripMiddleware = async (req, res, next) => {
     }
 
 };
+router.get('/edittrip', async (req, res) => {
+    const baseUrl = process.env.BASE_URL;
+    const trips = await crudController.getAllTripsObj(req); // Implement this method in your controller
+    res.render('edittrip', { baseUrl, trips });
+});
 
 
 // cost-(cost/100*discount)
