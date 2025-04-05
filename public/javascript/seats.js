@@ -17078,11 +17078,11 @@ function bookingFlightSummaryLoadingEnd() {
     $("#flight_info_loading").hide();
     $("#flight_info_details").show()
 }
-function booking_go_back() {
-    $("#go_back_button").prop("disabled", !0);
-    $("#go_next_button").prop("disabled", !0);
-    $("#booking_form").append('<input type="hidden" name="go_back" value="1" />').submit()
-}
+// function booking_go_back() {
+//     $("#go_back_button").prop("disabled", !0);
+//     $("#go_next_button").prop("disabled", !0);
+//     $("#booking_form").append('<input type="hidden" name="go_back" value="1" />').submit()
+// }
 // function booking_go_next() {
 //     $("#go_back_button").prop("disabled", !0);
 //     $("#go_next_button").prop("disabled", !0);

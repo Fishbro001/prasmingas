@@ -261,10 +261,10 @@
             </div>
             <div id="tours-wrapper" class="row-tours">
           <% } %>
-          <article class="tour-item">
+          <article class="tour-item"> <!--root/main/Prasmingas/public -->
             <div class="tour-info">
               <div class="image">
-                <img class="tour-img" src="<%= trip.trip_fotos[0] ? trip.trip_fotos[0].replace(/C:\\Users\\puskoedg\\Downloads\\Prasmingas\\Prasmingas\\public\\/g, '/').replace(/\\/g, '/') : '' %>" alt="Trip Image">
+                <img class="tour-img" src="<%= trip.trip_fotos[0] ? trip.trip_fotos[0].replace(/.*\/public\//, '/') : '' %>" alt="Trip Image">
               </div>
               <div class="marks">
                 <span class="icon">
@@ -274,7 +274,9 @@
                   <% } else if (trip.trip_transport === "Lektuvas") { %>
                     <% temp = baseUrl + "/img/airplane-svgrepo-com-white.svg"; %>
                   <% } %>
-                  <img src="<%= temp %>" />
+                <a href="<%= baseUrl %>/trip/<%= trip._id %>">
+                    <img src="<%= temp %>" alt="Trip Image" />
+                </a>
                 </span>
                 <span class="num-days">
                   <%= trip.trip_duration %><small>d.</small>
@@ -302,7 +304,10 @@
             <div class="tour-dates-available">
               <div id="tour-content" class="tour-content-box">
                 <div class="tour-title-box">
-                  <h3 class="tour-title"><%= trip.trip_name %></h3>
+                  <a href="<%= baseUrl %>/trip/<%= trip._id %>">
+                    <h3 hclass="tour-title"><%= trip.trip_name %></h3>
+                  </a>
+                  
                 </div>
                 <div class="tour-dates">
                   <% trip.trips.forEach((t) => { %>

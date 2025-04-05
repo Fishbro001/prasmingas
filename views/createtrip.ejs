@@ -66,8 +66,8 @@
 
         <label for="trip_transport">Trip Transport:</label>
         <select name="trip_transport" id="trip_transport" required>
-            <option value="Lėktuvas">Lėktuvas</option>
             <option value="Autobusas">Autobusas</option>
+            <option value="Lėktuvas">Lėktuvas</option>
         </select>
 
         <label for="trip_duration">Trip Duration:</label>
@@ -154,10 +154,10 @@
                 <input type="checkbox" id="trip_isguaranteed_${tripCount}" name="trip_isguaranteed_${tripCount}">
 
                 <label for="trip_seatstotal_${tripCount}">Seats Total:</label>
-                <input type="text" id="trip_seatstotal_${tripCount}" name="trip_seatstotal_${tripCount}" required>
+                <input type="text" id="trip_seatstotal_${tripCount}" name="trip_seatstotal_${tripCount}" value="48" required>
 
                 <label for="trip_seatstaken_${tripCount}">Seats Taken:</label>
-                <input type="text" id="trip_seatstaken_${tripCount}" name="trip_seatstaken_${tripCount}" required>
+                <input type="text" id="trip_seatstaken_${tripCount}" name="trip_seatstaken_${tripCount}" value="1" required>
 
                 <label for="trip_seatsoccupied_${tripCount}">Seats Occupied (comma-separated):</label>
                 <input type="text" id="trip_seatsoccupied_${tripCount}" name="trip_seatsoccupied_${tripCount}">
