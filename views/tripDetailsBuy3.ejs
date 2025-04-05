@@ -759,7 +759,7 @@
             <div class="total-row clearfix">
             Viso:
             <span id="booking_total_price_loading" class="total-price-loading" style="display: none;"><i class="fa fa-spinner fa-pulse"></i></span>
-            <span id="booking_total_price" class="total-price">678,00 €</span>
+            <span id="booking_total_price" class="total-price"><%= (ses.travelObj.cost-(ses.travelObj.cost/100*ses.travelObj.discount))*ses.travellersCount.amount; %> €</span>
         </div>
     
     <div class="actions-row clearfix">
@@ -1146,10 +1146,12 @@ bus_plan_update_height(1, 2647, 13);
 var arrayOccupied = <%- JSON.stringify(ses.travelObj) %>;
 
 let arrSeats = arrayOccupied.seatsoccupied[0].split(',');
-arrSeats = arrSeats.map(str => str.trim());
+//arrSeats = arrSeats.map(str => str.trim());
+arrSeats = arrayOccupied.seatsoccupied.map(str => str.trim());
 
 arrSeats.forEach((e) => {
     e = e.toUpperCase();
+    console.log(e);
  
     bus_plan_set_seat_status(1, 2647, e, 'used');
 });
@@ -1224,6 +1226,10 @@ let booking_go_next = function() {
             .catch(error => console.error('Error:', error));
    
 };
+let booking_go_back = function() {
+        window.location.href = '/trip/' + tripid + '/buy2';
+    };
+
 
 // END Book JavaScript
 

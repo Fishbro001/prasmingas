@@ -181,7 +181,8 @@
                            <div class="total-row clearfix">
                               Viso: <%= (ses.travelObj.cost-(ses.travelObj.cost/100*ses.travelObj.discount))*ses.travellersCount.amount; %>
                               <span id="booking_total_price_loading" class="total-price-loading" style="display: none;"><i class="fa fa-spinner fa-pulse"></i></span>
-                              <span id="booking_total_price" class="total-price">118,00 €</span>
+                              <span id="booking_total_price" class="total-price">€</span>
+                              
                            </div>
                            <div class="actions-row clearfix">
                               <button id="go_back_button" type="button" class="btn btn-primary btn-large btn-secondary" onclick="booking_go_back(); return false;"><i class="fa fa-chevron-left"></i> GRĮŽTI</button>
@@ -318,13 +319,13 @@
     <iframe tabindex="-1" role="presentation" aria-hidden="true" title="Blank" src="https://consentcdn.cookiebot.com/sdk/bc-v4.min.html" style="position: absolute; width: 1px; height: 1px; top: -9999px;"></iframe>
 
     <script>
-
+        let tripid = '<%= trip._id %>';
         const booking_go_next = function () {
             let travArr = [];
             let tempObj = {};
             let fname, lname, personcode, email, city, birthdate, departureCity, tel;
             let travCount = '<%= ses.travellersCount.amount %>'
-            let tripid = '<%= trip._id %>';
+            
             console.log('travcount ', travCount);
             for (let b = 0; b < travCount ; b++) {
                 fname = document.getElementById(`traveller-${b}-firstname`).value;
@@ -371,6 +372,10 @@
             .catch(error => console.error('Error:', error));
  
         }
+        let booking_go_back = function() {
+            window.location.href = '/trip/' + tripid + '/buy1';
+    };
+
             
        
     </script>

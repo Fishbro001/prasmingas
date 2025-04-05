@@ -69,7 +69,22 @@ router.get('/complete', async (req, res) => {
 
     console.log(JSON.stringify(await result))
 
-    res.send('Your payment was successful')
+    res.send(`
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <title>Mokėjimas buvo sėkmingas</title>
+        </head>
+        <body>
+            <h1>Your payment was successful</h1>
+            <script>
+                setTimeout(function() {
+                    window.location.href = '/';
+                }, 3000); // Redirect after 3 seconds
+            </script>
+        </body>
+        </html>
+    `);
 })
 
 router.get('/cancel', (req, res) => {
@@ -106,6 +121,8 @@ router.get('/trip/:id/buy3', fetchTripMiddleware, (req, res) => {
     //console.log(req.trip);
     //let x = JSON.parse(req.session.travelObj.tripobj);
     //console.log(x);
+    
+    console.log('TE');
     if(req.session.travellersArr){
     // Use req.trip to access the trip data
     res.render('tripDetailsBuy3', { trip: req.trip,
