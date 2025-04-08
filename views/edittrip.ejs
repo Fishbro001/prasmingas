@@ -157,11 +157,19 @@
             const tripContainer = document.getElementById('trips_container');
             tripContainer.innerHTML = '';
             tripData.trips.forEach((trip, index) => {
+                let date = new Date(trip.date);
+                let formattedDate = date.toISOString().split('T')[0];
+                let formattedTime = date.toISOString().split('T')[1];
+                // console.table(tripData);
+                // console.table(tripData.trips);
                 const tripFields = document.createElement('div');
                 tripFields.className = 'trip-fields';
                 tripFields.innerHTML = `
                     <label for="trip_date_${index}">Date:</label>
-                    <input type="date" id="trip_date_${index}" name="trip_date_${index}" value="${trip.date}" required>
+                    <input type="date" id="trip_date_${index}" name="trip_date_${index}" value="${formattedDate}" required>
+                   
+                    <label for="trip_time_${index}">Time:</label>
+                    <input type="time" id="trip_time_${index}" name="trip_time_${index}" value="${trip.time}" required>
                     <label for="trip_discount_${index}">Discount:</label>
                     <input type="number" id="trip_discount_${index}" name="trip_discount_${index}" value="${trip.discount}" required>
                     <label for="trip_cost_${index}">Cost:</label>
@@ -214,7 +222,6 @@
 
         <label for="trip_programme">Trip Programme:</label>
         <div id="trip_programme_container">
-            <!-- Day fields will be dynamically added here -->
         </div>
 
         <label for="trip_pickuppoints">Trip Pickup Points (comma-separated):</label>
@@ -225,7 +232,6 @@
 
         <label for="trips">Trips:</label>
         <div id="trips_container">
-            <!-- Trip fields will be dynamically added here -->
         </div>
 
         <label for="isactive">Is Active:</label>

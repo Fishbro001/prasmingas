@@ -124,7 +124,8 @@
                                 <select id="travel_date_select" name="traveldateid" class="form-control" onchange="selectBookingTravelDate();" data-trips="<%= JSON.stringify(trip.trips) %>">
                                     <option value="">-- nepasirinkta --</option>
                                     <% trip.trips.forEach( (e) => { %>
-                                        <option value="<%= e %>" ><%=e.date %></option>
+                                        <% let formattedDate = e.date.toISOString().split('T')[0]; %>
+                                        <option value="<%= e %>" ><%=formattedDate %> <%=e.time %></option>
                                     <% }); %>
                                 </select>
                             </div>

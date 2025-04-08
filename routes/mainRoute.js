@@ -122,7 +122,7 @@ router.get('/trip/:id/buy3', fetchTripMiddleware, (req, res) => {
     //let x = JSON.parse(req.session.travelObj.tripobj);
     //console.log(x);
     
-    console.log('TE');
+   // console.log('TE');
     if(req.session.travellersArr){
     // Use req.trip to access the trip data
     res.render('tripDetailsBuy3', { trip: req.trip,

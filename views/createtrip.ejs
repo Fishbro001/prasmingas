@@ -144,6 +144,9 @@
                 <label for="trip_date_${tripCount}">Date:</label>
                 <input type="date" id="trip_date_${tripCount}" name="trip_date_${tripCount}" required>
 
+                <label for="trip_time_${tripCount}">Time:</label>
+                <input type="time" id="trip_time_${tripCount}" name="trip_time_${tripCount}" required>
+
                 <label for="trip_discount_${tripCount}">Discount:</label>
                 <input type="number" id="trip_discount_${tripCount}" name="trip_discount_${tripCount}" required>
 
@@ -224,6 +227,7 @@
             const tripFields = document.getElementsByClassName('trip-fields');
             for (let i = 0; i < tripFields.length; i++) {
                 const trip_date = formData.get(`trip_date_${i}`);
+                const trip_time = formData.get(`trip_time_${i}`);
                 const trip_discount = formData.get(`trip_discount_${i}`);
                 const trip_cost = formData.get(`trip_cost_${i}`);
                 const trip_isguaranteed = formData.get(`trip_isguaranteed_${i}`) === 'on';
@@ -231,8 +235,13 @@
                 const trip_seatstaken = formData.get(`trip_seatstaken_${i}`);
                 let trip_seatsoccupied = formData.getAll(`trip_seatsoccupied_${i}`);
                 trip_seatsoccupied = trip_seatsoccupied[0].split(',');
+
+                //combine date and time into ISO format to submit.
+               // const trip_datetime = new Date(`${trip_date}T${trip_time}:00`).toISOString();
+
                 tripData.trips.push({
                     date: trip_date,
+                    time: trip_time,
                     discount: trip_discount,
                     cost: trip_cost,
                     isguaranteed: trip_isguaranteed,

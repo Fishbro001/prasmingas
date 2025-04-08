@@ -401,14 +401,15 @@
         <div class="row">
             <div class="col col-sm-12">
                 <h2>Kelionė</h2>
-    <table class="extras">
-        <tbody><tr><th>Kelionė</th><td><%= trip.trip_name %></td></tr>
-                <tr><th>Kelionės data</th><td><%= ses.travelObj.date %> </td></tr>
-            <tr><th>Kelionės trukmė</th><td><%= trip.trip_duration %>.</td></tr>
-            </tbody>
-    </table>        
-    </div>
-                </div>
+                <table class="extras">
+                    <tbody><tr><th>Kelionė</th><td><%= trip.trip_name %></td></tr>
+                        <% let formattedDate = ses.travelObj.date.split('T')[0]; %>
+                        <tr><th>Kelionės data</th><td><%= formattedDate %> <%=ses.travelObj.time %> </td></tr>
+                        <tr><th>Kelionės trukmė</th><td><%= trip.trip_duration %>.</td></tr>
+                        </tbody>
+                </table>        
+            </div>
+        </div>
     
                 <h2>Keliautojai</h2>
                 <%let cost, discount;  %>

@@ -207,8 +207,8 @@
                     <div class="travel-dates-info">
                         <strong><%= trip.trip_pickuppoints %></strong>
                         <% trip.trips.forEach(function(oneTrip) { %>
-                            <p><span><% oneTrip.date %> </span><span></span><span><% oneTrip.cost %></span></p>
-                            <p><span><%=oneTrip.date%></span><span><%= (oneTrip.seatstotal - oneTrip.seatstaken.length > 0) ? "vietų yra" : "nėra vietų" %></span><span><%=oneTrip.cost%>€</span></p>
+                            <% let formattedDate = oneTrip.date.toISOString().split('T')[0]; %>
+                            <p><span><%=formattedDate%> <%=oneTrip.time %></span><span><%= (oneTrip.seatstotal - oneTrip.seatstaken.length > 0) ? "vietų yra" : "nėra vietų" %></span><span><%=oneTrip.cost%>€</span></p>
                         <% }); %>
                     </div>
                 </div>
@@ -256,9 +256,10 @@
                     <%- trip.trip_description %>
 
                     <% trip.trips.forEach(function(e) { %>
+                        <% let formattedDate = e.date.toISOString().split('T')[0]; %>
                         <div class="datos">
                             <div class="travel-reservation">
-                                <h3 class="travel-tour-dates"><%=e.date %></h3>
+                                <h3 class="travel-tour-dates"><%=formattedDate %> <%=e.time %></h3>
                                 <h5 class="travel-free-places-name"><%= (e.seatstotal - e.seatstaken > 0) ? "VIETŲ YRA" : "NĖRA VIETŲ" %></h5>
                                 <% trip.trip_pickuppoints.forEach((b)=> {%>
                                     <p class="travel-origin"><%=b%></p>
