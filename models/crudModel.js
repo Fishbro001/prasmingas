@@ -34,6 +34,7 @@ const ordersSchema = new mongoose.Schema({ // orders to be inside crudSchema -> 
 
 const tripsSchema = new mongoose.Schema({
     date: { type: Date, required: true },
+    time: { type: String, required: true },
     discount: { type: String, required: true },
     cost: { type: String, required: true },
     isguaranteed: { type: Boolean, default: false },

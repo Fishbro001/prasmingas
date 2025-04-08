@@ -311,9 +311,11 @@
                 </div>
                 <div class="tour-dates">
                   <% trip.trips.forEach((t) => { %>
+                    <% let formattedDate = t.date.toISOString().split('T')[0]; %>
                     <div class="tour-date-content">
                       <div class="date">
-                        <a href="<%= baseUrl %>/trip/<%=trip._id %>"><%= t.date %></a>
+                        <a href="<%= baseUrl %>/trip/<%=trip._id %>"><%= formattedDate %></a>
+                        <%= t.time %>
                       </div>
                       <div class="free-places">
                         <% let seatsLeft = t.seatstotal - t.seatsoccupied.length %>
