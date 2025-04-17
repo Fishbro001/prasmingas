@@ -5,4 +5,15 @@ function isLoggedIn(req, res, next) {
     res.redirect('/auth/register');
 }
 
-module.exports = isLoggedIn;
+function checkAdmin(req, res, next) {
+    console.log(req.user);
+    if (req.isAuthenticated() && req.user.user_admin) {
+      
+        return next();
+    } else {
+        return res.status(403).send('Forbidden: You do not have admin access.');
+    }
+}
+
+
+module.exports = { isLoggedIn, checkAdmin };

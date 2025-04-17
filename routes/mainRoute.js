@@ -1,9 +1,11 @@
 const express = require('express');
 const router = express.Router();
 const crudController = require('../controllers/crudController');
+const orderController = require('../controllers/orderController');
+const orderRoute = require('../routes/orderRoute');
 const stripe = require('stripe')(process.env.STRIPE_PRIVATE);
 const {transporter, message} = require('../middleware/mailer');
-
+const baseUrl = process.env.BASE_URL;
 router.get('/test-email', async (req, res, next) =>{
     try {
         // Send the email
@@ -12,7 +14,6 @@ router.get('/test-email', async (req, res, next) =>{
     } catch (error) {
         console.error('Error sending email:', error);
     }
-
 });
 
 const fetchTripMiddleware = async (req, res, next) => {
@@ -27,10 +28,11 @@ const fetchTripMiddleware = async (req, res, next) => {
         console.log('error ', err);
         res.status(500).send('Internal Server Error');
     }
-
 };
+
+
 router.get('/edittrip', async (req, res) => {
-    const baseUrl = process.env.BASE_URL;
+    //const baseUrl = process.env.BASE_URL;
     const trips = await crudController.getAllTripsObj(req); // Implement this method in your controller
     res.render('edittrip', { baseUrl, trips });
 });
@@ -79,13 +81,69 @@ router.get('/complete', async (req, res) => {
             <h1>Your payment was successful</h1>
             <script>
                 setTimeout(function() {
-                    window.location.href = '/';
+                    window.location.href = '/order-complete';
                 }, 3000); // Redirect after 3 seconds
             </script>
         </body>
         </html>
     `);
 })
+router.get('/order-complete', async (req, res) => {
+    if(!req.session.travelObj || !req.session.travelObj){
+        res.status(500).send('ERROR');
+    }
+
+    try {
+        const { travelObj, travellersArr } = req.session;
+        const orderData = {
+            tripTypeId: travelObj.parent_tripid, // Assuming parent_tripid is the tripTypeId
+            tripId: travelObj._id, // Assuming _id is the tripId
+            users: travellersArr.map(traveller => ({
+                firstName: traveller.fname,
+                lastName: traveller.lname,
+                birthday: traveller.birthdate,
+                socNumber: traveller.personcode,
+                telNumber: traveller.tel,
+                email: traveller.email,
+                city: traveller.city,
+                cityOfDeparture: traveller.departureCity,
+                placeOnBus: traveller.seat,
+                pricePaid: travelObj.cost, // Assuming cost is the price paid
+                extras: null // Add extras if applicable
+            })),
+            userEmail: travellersArr[0].email, // Assuming the first traveller's email
+            userPhoneNumber: travellersArr[0].tel, // Assuming the first traveller's phone number
+            userAcc: null, // TODO CHANGE THIS LATER
+            extras: null, // TODO CHANGE THIS LATER
+            cityOfDeparture: travellersArr[0].departureCity // TODO CHANGE THIS LATER
+        };
+
+        // Create the order using the controller function
+        console.log('Order: ');
+        console.table(orderData);
+        //let tempobj = {body: orderData};
+        const newOrder = await orderController.createOrderFromData(orderData);
+        const taken = travelObj.seatstaken + travellersArr.length;
+        let seats = travelObj.seatsoccupied[0];
+        console.log('seats before:', seats);
+
+        travellersArr.forEach( user => {
+           seats = seats.concat(', ' + user.seat);
+        });
+        
+        console.log('seats after:', seats);
+        
+        const updateSeats = crudController.updateTripSeats(travelObj._id, taken, seats);
+        console.table(newOrder);
+        // Send a success response with the created order
+        res.status(201).json(newOrder);
+    } catch (error) {
+        // Handle errors and send an error response
+        res.status(400).json({ error: error.message });
+    }
+    });
+
+
 
 router.get('/cancel', (req, res) => {
     res.redirect('/')
@@ -102,7 +160,7 @@ router.get('/trip/:id', fetchTripMiddleware, (req, res) => {
 router.get('/trip/:id/buy1', fetchTripMiddleware, (req, res) => {
    // console.log(req.trip);
     // Use req.trip to access the trip data
-    res.render('tripDetailsBuy1', { trip: req.trip });
+    res.render('tripDetailsBuy1', { trip: req.trip, baseUrl });
 });
 router.get('/trip/:id/buy2', fetchTripMiddleware, (req, res) => {
     //console.log(req.trip);
@@ -110,7 +168,8 @@ router.get('/trip/:id/buy2', fetchTripMiddleware, (req, res) => {
     if(req.session.travelObj){
     // Use req.trip to access the trip data
     res.render('tripDetailsBuy2', { trip: req.trip,
-        ses: req.session
+        ses: req.session,
+        baseUrl
      });
     }
     else { 
@@ -126,7 +185,8 @@ router.get('/trip/:id/buy3', fetchTripMiddleware, (req, res) => {
     if(req.session.travellersArr){
     // Use req.trip to access the trip data
     res.render('tripDetailsBuy3', { trip: req.trip,
-        ses: req.session
+        ses: req.session,
+        baseUrl
      });
     }
     else {
@@ -141,9 +201,7 @@ router.get('/trip/:id/buy4', fetchTripMiddleware, (req, res) => {
     console.log(req.session);
     if(req.session.travellersArr){
     // Use req.trip to access the trip data
-    res.render('tripDetailsBuy4', { trip: req.trip,
-        ses: req.session
-     });
+    res.render('tripDetailsBuy4', { trip: req.trip, ses: req.session, baseUrl });
     }
     else {
         res.status(400).send('ERROR: No session data found.');
@@ -167,7 +225,7 @@ router.post('/update-session-tripobj', (req, res) => {
   });
 
 router.get('/', async (req, res) => {
-    const baseUrl = process.env.BASE_URL
+    //const baseUrl = process.env.BASE_URL
     try {
         const trips = await crudController.getAllTripsObj(req);
         if (!trips) {
@@ -180,7 +238,7 @@ router.get('/', async (req, res) => {
     }
 });
 router.get('/createtrip', async (req, res) => {
-    const baseUrl = process.env.BASE_URL;
+   // const baseUrl = process.env.BASE_URL;
     res.render('createtrip', {baseUrl});
 });
 router.get('/category/:category', async (req, res) => {

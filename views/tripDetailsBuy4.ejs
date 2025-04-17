@@ -17,120 +17,161 @@
    
 <body>
 
-    <header class="navbar-sticky">
-    
-
-        <!-- Navbar top-->
-        <div class="navbar-top d-none d-lg-block">
-            <div class="container">
-                <div class="d-flex justify-content-between align-items-center">
-        <!-- navbar top Left-->
-        <div class="d-flex align-items-center">
-            
-            <!-- Top info -->
-            <ul class="nav list-unstyled">
-                <li class="nav-item"><script type="text/javascript">var p11 = '(+37', p21 = '(+37', p12 = '0)52', p13 = '751797', p23 = ' 275 17 97', p22 = '0) 5'; document.write('<a href="tel:' + p11 + p12 + p13 + '" target="_blank"><i class="fas fa-phone"></i> ' + p21 + p22 + p23 + '</a>');</script><a href="tel:(+370)52751797" target="_blank"><i class="fas fa-phone"></i> (+370) 5 275 17 97</a></li>
-                <li class="nav-item"><script type="text/javascript">var e2 = '', e1 = 'info'; document.write('<a href="mailto:' + e1 + '@' + e2 + '" target="_blank"><i class="far fa-envelope"></i> ' + e1 + '@' + e2 + '</a>');</script><a href="mailto:info@kelioniulaikas.lt" target="_blank"><i class="far fa-envelope"></i> info@kelioniulaikas.lt</a></li>
-            </ul>
-        </div>
-    
-        <!-- navbar top Right-->
-        <div class="d-flex align-items-center">
-            
-            <!-- top link -->
-            <ul class="nav">
-                                                        <li class="nav-item "> <a class="nav-link" href=""><i class="fas fa-gift"></i> Dovanų kuponas</a></li>
-                        
-                                                                        <li class="nav-item "> <a class="nav-link" href=""><i class="fas fa-suitcase-rolling"></i> Kelionės užklausa</a></li>
-                        
-                                                                        <li class="nav-item "> <a class="nav-link" href=""><i class="far fa-clock"></i> Išvykimo laikai</a></li>
-                        
-                                                                        <li class="nav-item "> <a class="nav-link" href=""><i class="fas fa-star"></i> Atsiliepimai</a></li>
-                        
-                                                                        <li class="nav-item "> <a class="nav-link" href=""><i class="fas fa-info-circle"></i> Apie mus</a></li>
-                        
-                                                                        <li class="nav-item "> <a class="nav-link" href=""><i class="fas fa-map-marker-alt"></i> Kontaktai</a></li>
-                        
-                                            <li class="nav-item"> <a class="nav-link" href="" target="_blank"><i class="fas fa-sign-in-alt"></i> Agentams</a></li>
-            </ul>
-            <!-- top social -->
-            <ul class="social-icons">
-                <li class="social-icons-item social-facebook m-0"> <a class="social-icons-link w-auto px-2" href="" target="_blank"><i class="fab fa-facebook-f"></i></a> </li>                        <li class="social-icons-item social-twitter m-0"> <a class="social-icons-link w-auto pl-2" href="https://www.instagram.com/kelioniu_laikas/" target="_blank"><i class="fab fa-instagram"></i></a> </li>                    </ul>
-        </div>
-    </div>
+    <header>
+        <nav>
+          <div class="container">
+            <div id="top-header" class="col-top-header">
+              <div class="contact-info">
+                <a href="tel:37065955770">
+                  <img class="icon" src="<%= baseUrl %>/img/phone-svgrepo-com.svg" />
+                  <span>(+370) 659 55770</span>
+                </a>
+                <a href="#">
+                  <img class="icon" src="<%= baseUrl %>/img/mail-svgrepo-com.svg" />
+                  <span>info@mail.com</span>
+                </a>
+              </div>
+              <div class="top-header-links">
+                <a href="<%= baseUrl %>/apie-mus.html">
+                  <img class="icon" src="<%= baseUrl %>/img/info-circle-svgrepo-com.svg" />
+                  <span>Apie mus</span>
+                </a>
+                <a href="<%= baseUrl %>/kontaktai.html">
+                  <img class="icon" src="<%= baseUrl %>/img/location-svgrepo-com.svg" />
+                  <span>Kontaktai</span>
+                </a>
+                <a href="<%= baseUrl %>/dashboard">
+                    <img class="icon" src="<%= baseUrl %>/img/user-svgrepo-com.svg" />
+                    <span>Login</span>
+                </a>
+              </div>
+              <div class="social-icons">
+                <a href="https://www.facebook.com/profile.php?id=100080044436184">
+                  <img class="icon" src="<%= baseUrl %>/img/facebook-svgrepo-com.svg" />
+                </a>
+                <a href="#">
+                  <img class="icon" src="<%= baseUrl %>/img/instagram-svgrepo-com.svg" />
+                </a>
+              </div>
             </div>
-        </div>
-    
-        <!-- Navbar main -->
-        <nav class="navbar navbar-expand-lg">
-            <div class="container">
-                <!-- Logo -->
-                <a class="navbar-brand" href=""><img src=""></a>
-                <!-- Mobile menu buttons -->
-                <div class="mobile-menu-buttons"><a href="#" data-target="#mobile-menu" class="mobile-menu-button mobile-menu-button-menu"><i class="fas fa-bars"></i></a><a href="#" data-target="#mobile-search-form" class="mobile-menu-button mobile-menu-button-search"><i class="fas fa-search"></i></a><a href="#" data-target="#mobile-help-menu" class="mobile-menu-button mobile-menu-button-help"><i class="fas fa-question"></i></a></div>            <!-- Main Menu -->
-                <ul class="navbar-nav">
-                            
-                    <li class="nav-item dropdown "> <a class="nav-link" href="https://www.kelioniulaikas.lt/keliones/autobusu" id="navbar-16"><i class="fas fa-bus"></i>Autobusu</a>
-                        <ul class="dropdown-menu" aria-labelledby="navbar-16">
-                                                        <li class="dropdown-item "><a href="">Artimiausios kelionės</a></li>
-                                                        <li class="dropdown-item "><a href="">Garantuotos kelionės</a></li>
-                                                        <li class="dropdown-item "><a href="">Savaitgalio kelionės</a></li>
-                                                        <li class="dropdown-item "><a href="">Naujametinės kelionės</a></li>
-                                                        <li class="dropdown-item "><a href="">Kalėdinės kelionės</a></li>
-                                                </ul>
-                    </li>
-                
-                                        
-                    <li class="nav-item dropdown "> <a class="nav-link" href="" id="navbar-17"><i class="icon lithuania-flag-button-round"></i>Po Lietuvą</a>
-                        <ul class="dropdown-menu" aria-labelledby="navbar-17">
-                                                        <li class="dropdown-item "><a href="https://www.kelioniulaikas.lt/keliones/autobusu-lietuvoje">Kelionės autobusu</a></li>
-                                                        <li class="dropdown-item "><a href="https://www.kelioniulaikas.lt">Garantuotos kelionės</a></li>
-                                                        <li class="dropdown-item "><a href="https://www.kelioniulaikas.lt/keliones/pesciomis">Ekskursijos po Vilnių</a></li>
-                                                        <li class="dropdown-item "><a href="https://www.kelioniulaikas.lt">Artimiausios kelionės</a></li>
-                                                        <li class="dropdown-item "><a href="https://www.kelioniulaikas.lt/susidek-kelione">Susikurk maršrutą pats</a></li>
-                                                </ul>
-                    </li>
-                
-                                        
-                    <li class="nav-item dropdown "> <a class="nav-link" href="https://www.kelioniulaikas.lt/keliones/lektuvu" id="navbar-28"><i class="fas fa-plane"></i>Lėktuvu</a>
-                        <ul class="dropdown-menu" aria-labelledby="navbar-28">
-                                                        <li class="dropdown-item "><a href="https://www.kelioniulaikas.lt/poilsines-keliones">Poilsinės kelionės visi organizatoriai</a></li>
-                                                        <li class="dropdown-item "><a href="https://www.kelioniulaikas.lt/keliones/lektuvu/pazintines">Pažintinės kelionės</a></li>
-                                                        <li class="dropdown-item "><a href="https://www.kelioniulaikas.lt/keliones/lektuvu/skrydis-viesbutis">Skrydis + viešbutis</a></li>
-                                                        <li class="dropdown-item "><a href="https://www.kelioniulaikas.lt/keliones/lektuvu/paskutine-minute">Paskutinė minutė</a></li>
-                                                        <li class="dropdown-item "><a href="http://itaka.kelioniulaikas.lt/">Itaka kelionės</a></li>
-                                                        <li class="dropdown-item "><a href="https://www.kelioniulaikas.lt/keliones/lektuvu/slidinejimas">Slidinėjimas</a></li>
-                                                </ul>
-                    </li>
-                
-                                        
-                    <li class="nav-item dropdown "> <a class="nav-link" href="https://www.kelioniulaikas.lt/keliones/poilsines" id="navbar-27"><i class="fas fa-spa"></i>Poilsinės</a>
-                        <ul class="dropdown-menu" aria-labelledby="navbar-27">
-                                                        <li class="dropdown-item "><a href="https://www.kelioniulaikas.lt/keliones/paskutine-minute">Paskutinė minutė</a></li>
-                                                        <li class="dropdown-item "><a href="https://www.kelioniulaikas.lt/keliones/poilsines/geriausi-pasiulymai">Geriausi pasiūlymai</a></li>
-                                                        <li class="dropdown-item "><a href="https://www.kelioniulaikas.lt/keliones/seimai">Šeimai</a></li>
-                                                        <li class="dropdown-item "><a href="https://www.kelioniulaikas.lt/keliones/tik-suaugusiems">Tik suaugusiems</a></li>
-                                                        <li class="dropdown-item "><a href="https://www.kelioniulaikas.lt/keliones/lektuvu/poilsines">Kelionės lėktuvu</a></li>
-                                                        <li class="dropdown-item "><a href="https://www.kelioniulaikas.lt/keliones/poilsis-lietuvoje">Poilsis Lietuvoje</a></li>
-                                                        <li class="dropdown-item "><a href="https://www.kelioniulaikas.lt/keliones/lektuvu/poilsines">Viešbučiai</a></li>
-                                                </ul>
-                    </li>
-                
-                                        
-                    <li class="nav-item dropdown "> <a class="nav-link" href="https://www.kelioniulaikas.lt/keliones/slidinejimas" id="navbar-74"><i class="fas fa-skiing"></i>Slidinėjimas</a>
-                        <ul class="dropdown-menu" aria-labelledby="navbar-74">
-                                                        <li class="dropdown-item "><a href="https://www.kelioniulaikas.lt/keliones/lektuvu/slidinejimas">Lėktuvu</a></li>
-                                                        <li class="dropdown-item "><a href="https://www.kelioniulaikas.lt/keliones/savo-transportu/slidinejimas">Savo transportu</a></li>
-                                                </ul>
-                    </li>
-                
-                        <li class="nav-item">
-            <a id="main-menu-search-button" href="#search-form-block" class="nav-link" data-toggle="collapse"><i class="fas fa-search"></i></a>
-        </li>
-    </ul>
+            <div id="main-header" class="col-main-header">
+              <div id="logo">
+                <a href="<%= baseUrl %>/index" class="logo">
+                  <span>VšĮ "Prasmingam gyvenimui"</span>
+                </a>
+              </div>
+              <div id="menu">
+                <a href="<%= baseUrl %>/autubusu.html">
+                  <img class="icon" src="<%= baseUrl %>/img/bus-svgrepo-com.svg" />
+                  <span>Autobusu</span>
+                </a>
+                <a href="<%= baseUrl %>/lietuvoje.html">
+                  <img class="icon" src="<%= baseUrl %>/img/flag-for-flag-lithuania-svgrepo-com.svg" />
+                  <span>Lietuvoje</span>
+                </a>
+                <a href="<%= baseUrl %>/uzsienyje.html">
+                  <img class="icon" src="<%= baseUrl %>/img/globe-svgrepo-com.svg" />
+                  <span>Užsienyje</span>
+                </a>
+                <a href="<%= baseUrl %>/garantuotos.html">
+                  <img class="icon" src="<%= baseUrl %>/img/approved-aproved-confirm-2-svgrepo-com.svg" />
+                  <span>Garantuotos</span>
+                </a>
+                <a href="<%= baseUrl %>/kaledines.html">
+                  <img class="icon" src="<%= baseUrl %>/img/christmas-tree-svgrepo-com.svg" />
+                  <span>Kalėdinės</span>
+                </a>
+              </div>
+              <div id="search">
+                <a href="#" id="searchIcon">
+                  <img class="icon" src="<%= baseUrl %>/img/search-svgrepo-com.svg" />
+                </a>
+              </div>
             </div>
+          </div>
         </nav>
-    </header>
+        <!-- end mobile search modal -->
+        <!-- Mobile search modal -->
+        <div id="searchMobile" class="hidden">
+          <div class="search-container">
+            <div class="search-content">
+              <form action="<%= baseUrl %>/your-backend-endpoint" method="POST">
+                <div class="data-input-container">
+                  <div class="data-input-col">
+                    <div class="data-input-field data-input-country">
+                      <input type="text" placeholder="Kelionė arba šalis" name="tour" id="tour-name" autocomplete="off" class="country">
+                    </div>
+                    <div class="data-input-field data-input-transport">
+                      <label class="checkbox-icon" title="Autobusu">
+                        <input type="checkbox" class="select-only-one" name="transport" value="bus">
+                        <span class="checkbody">
+                          <span class="checkmark">
+                            <img src="<%= baseUrl %>/img/bus-svgrepo-com.svg" />
+                          </span>
+                        </span>
+                      </label>
+                      <label class="checkbox-icon" title="Lėktuvu">
+                        <input type="checkbox" class="select-only-one" name="transport" value="plane">
+                        <span class="checkbody">
+                          <span class="checkmark">
+                            <img src="<%= baseUrl %>/img/airplane-svgrepo-com.svg" />
+                          </span>
+                        </span>
+                      </label>
+                    </div>
+                  </div>
+                  <div class="data-input-col">
+                    <div class="data-input-field data-input-date">
+                      <div class="data-input-date-from">
+                        <input type="date" placeholder="Data nuo" name="date_from" id="d1" class="date-from">
+                      </div>
+                      <div class="data-input-field data-input-date-to">
+                        <input type="date" placeholder="Data iki" name="date_to" id="d2" class="date-to">
+                      </div>
+                    </div>
+                    <div class="data-input-field data-input-tour-type">
+                      <select name="travel_type" id="keliones-tipas" class="">
+                        <option value="" selected>Kelionės tipas</option>
+                        <option value="1">Pažintinės</option>
+                        <option value="2">Poilsinės</option>
+                        <!-- Add more options as needed -->
+                      </select>
+                    </div>
+                  </div>
+                  <div class="data-input-col">
+                    <div class="data-input-field data-input-price-range">
+                      <h3 class="range-title">Kelionės kaina</h3>
+                      <div class="range_container">
+                        <div class="form_control">
+                          <div class="form_control_container">
+                            <div class="form_control_container__time">Min</div>
+                            <input class="form_control_container__time__input" type="number" id="fromInput" name="price_min" value="80" min="0" max="3999"/>
+                          </div>
+                          <div class="form_control_container">
+                            <div class="form_control_container__time">Max</div>
+                            <input class="form_control_container__time__input" type="number" id="toInput" name="price_max" value="3000" min="0" max="3999"/>
+                          </div>
+                        </div>
+                        <div class="sliders_control">
+                          <input id="fromSlider" type="range" value="80" min="0" max="3999"/>
+                          <input id="toSlider" type="range" value="3000" min="0" max="3999"/>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="data-input-field data-input-submit">
+                      <button type="submit" class="btn-search-submit">
+                        <img src="<%= baseUrl %>/img/search-svgrepo-com-white.svg" />
+                        <span>Ieškoti</span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <!-- end mobile search modal -->
+      </header>
     
     <div class="sticky-space" style="height: 120px; display: none;"></div>
     
@@ -412,7 +453,7 @@
         </div>
     
                 <h2>Keliautojai</h2>
-                <%let cost, discount;  %>
+                <% let cost, discount;  %>
                 <% cost = ses.travelObj.cost; %>
                 <% discount = ses.travelObj.discount; %>
                 <% totalcost = cost-(cost/100*discount); %>
@@ -849,88 +890,75 @@
         </div>
     </section>
     
-    <footer class="footer position-relative">
-        <div class="footer-content">
-            <div class="container">
-                <div class="row">
-                    <!-- Footer widget 1 -->
-                    <div class="col-lg-3 col-sm-7 order-sm-1">
-                        <div class="widget address">
-                            <a href="" class="footer-logo">
-                                <img src="">
-                            </a>
-                            <div class="footer-post">
-                                
-                                <p><strong>“Kelionių Laikas” </strong>yra kelionių organizatorius siūlantis išvykstamojo, atvykstamojo bei vietinio turizmo paslaugas. Turizmo srityje dirbame nuo 2002 metų, turime subūrę didelį puikiai savo darbą išmanančių ir jį mylinčių asmenų komandą. Organizuojame įvairias keliones pavieniams asmenims bei kolektyvams, taip pat specializuotas keliones moksleivių grupėms, senjorams.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Footer widget 2 -->
-                    <div class="col-lg-2 col-sm-4 order-sm-3">
-                        <div class="widget">
-                            <h4>Struktūra</h4>
-                            <ul class="nav">
-                                                                <li class="nav-item"><a class="nav-link" href="h" target="">Atsiliepimai</a></li>
-                                                                <li class="nav-item"><a class="nav-link" href="" target="">Apie mus</a></li>
-                                                                <li class="nav-item"><a class="nav-link" href="" target="">Kontaktai</a></li>
-                                                                <li class="nav-item"><a class="nav-link" href="" target="">Dovanų kuponas</a></li>
-                                                                <li class="nav-item"><a class="nav-link" href="" target="">Kelionės užklausa</a></li>
-                                                        </ul>
-                        </div>
-                    </div>
-                    <!-- Footer widget 3 -->
-                    <div class="col-lg-2 col-sm-4 order-sm-4">
-                        <div class="widget">
-                            <h4>Kelionės</h4>
-                            <ul class="nav">
-                                                                <li class="nav-item"><a class="nav-link" href="" target="">Kelionės po Lietuvą</a></li>
-                                                                <li class="nav-item"><a class="nav-link" href="" target="">Poilsis Lietuvoje</a></li>
-                                                                <li class="nav-item"><a class="nav-link" href="" target="">Skrydis + viešbutis</a></li>
-                                                                <li class="nav-item"><a class="nav-link" href="" target="">Ekskursija pėsčiomis</a></li>
-                                                                <li class="nav-item"><a class="nav-link" href="" target="">Kelionės autobusu</a></li>
-                                                                <li class="nav-item"><a class="nav-link" href="" target="">Kelionės lėktuvu</a></li>
-                                                                <li class="nav-item"><a class="nav-link" href="" target="">Poilsinės kelionės</a></li>
-                                                                <li class="nav-item"><a class="nav-link" href="" target="">Pažintinės kelionės</a></li>
-                                                                <li class="nav-item"><a class="nav-link" href="" target="">Savaitgalio kelionės</a></li>
-                                                        </ul>
-                        </div>
-                    </div>
-                    <!-- Footer widget 4 -->
-                    <div class="col-lg-2 col-sm-4 order-sm-5">
-                        <div class="widget">
-                            <h4>Informacija</h4>
-                            <ul class="nav">
-                                                                <li class="nav-item"><a class="nav-link" href="" target="">Turizmo paslaugų sutartis</a></li>
-                                                                <li class="nav-item"><a class="nav-link" href="" target="">Informacija vartotojams koronaviruso laikotarpiu</a></li>
-                                                                <li class="nav-item"><a class="nav-link" href="" target="">ES projektai</a></li>
-                                                                <li class="nav-item"><a class="nav-link" href="" target="">Privatumo politika</a></li>
-                                                                <li class="nav-item"><a class="nav-link" href="" target="">Informavimas apie asmens duomenų tvarkymą</a></li>
-                                                                <li class="nav-item"><a class="nav-link" href="" target="_blank">Kelionės kolektyvams po Lietuvą</a></li>
-                                                        </ul>
-                        </div>
-                    </div>
-                    <!-- Footer widget 5 -->
-                    <div class="col-lg-3 col-sm-5 order-sm-2">
-                        <div class="widget">
-                            <h4>UAB „Kelionių laikas“</h4>
-                            <ul class="list-unstyled footer-contacts">
-                                <li><i class="fas fa-phone"></i><script type="text/javascript">var p11 = '(+37', p21 = '(+37', p12 = '0)52', p13 = '751797', p23 = ' 275 17 97', p22 = '0) 5'; document.write('<a href="tel:' + p11 + p12 + p13 + '" target="_blank">' + p21 + p22 + p23 + '</a>');</script><a href="tel:(+370)52751797" target="_blank">(+370) 5 275 17 97</a></li>
-                                <li><i class="far fa-envelope"></i><script type="text/javascript">var e2 = '', e1 = 'info'; document.write('<a href="mailto:' + e1 + '@' + e2 + '" target="_blank">' + e1 + '@' + e2 + '</a>');</script><a href="mailto:info@kelioniulaikas.lt" target="_blank">info@kelioniulaikas.lt</a></li>
-                                <li><i class="fas fa-map-marked-alt"></i><p>Kalvarijų g. 14, LT 09309 Vilnius</p></li>
-                                <li><i class="far fa-clock"></i><p>I-V <strong>9.00 - 18.00</strong><br>VI-VII <strong>nedirbame</strong></p></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+    <footer id="site-footer">
+        <div class="container">
+          <div class="column-wrapper">
+            <div class="footer-col info-company">
+              <div id="logo" class="logo">
+                <a href="<%= baseUrl %>/index-2.html">
+                  <span>VšĮ "Prasmingam gyvenimui"</span>
+                </a>
+              </div>
+              <p class="company-desc-1">Kelionės autobusu - Jūsų Prasmingam gyvenimui</p>
+              <h3 class="company-desc-2">Džiaugiamės, kad domitės mūsų pasiūlymais!</h3>
             </div>
-        </div>
-        <div class="divider mt-3"></div>
-        <!--footer copyright -->
-        <div class="footer-copyright">
-            <div class="container">
+            <div class="footer-col info-contact">
+              <h3 class="info-header">susisiekime</h3>
+              <div class="contact-info">
+                <a href="tel:37065955770">
+                  <img class="icon" src="<%= baseUrl %>/img/phone-svgrepo-com-white.svg" />
+                  <span>(+370) 659 55770</span>
+                </a>
+                <a href="#">
+                  <img class="icon" src="<%= baseUrl %>/img/mail-svgrepo-com-white.svg" />
+                  <span>info@mail.com</span>
+                </a>
+              </div>
+              <div class="social-icons">
+                <a href="https://www.facebook.com/profile.php?id=100080044436184">
+                  <img class="icon" src="<%= baseUrl %>/img/facebook-svgrepo-com-white.svg" />
+                </a>
+                <a href="#">
+                  <img class="icon" src="<%= baseUrl %>/img/instagram-svgrepo-com-white.svg" />
+                </a>
+              </div>
+              <div class="work-hours">
+                <p>I-V 9-13 val.</p>
+                <p>IV-IIV nedirbame</p>
+              </div>
             </div>
+            <div class="footer-col info-link">
+              <h3 class="info-header">Struktura</h3>
+              <a href="<%= baseUrl %>/apie-mus.html" class="link-item">Apie mus</a>
+              <a href="<%= baseUrl %>/kontaktai.html" class="link-item">Kontaktai</a>
+            </div>
+            <div class="footer-col info-trips">
+              <h3 class="info-header">Kelionės</h3>
+              <a href="<%= baseUrl %>/augustavas.html" class="link-item">Augustavas Lenkija</a>
+              <a href="<%= baseUrl %>/balstoge.html" class="link-item">Balstoge Lenkija</a>
+              <a href="<%= baseUrl %>/druskininkai.html" class="link-item">Druskininkai</a>
+              <a href="<%= baseUrl %>/kursiu-nerija.html" class="link-item">Kursiu nerija</a>
+              <a href="<%= baseUrl %>/vilko-guolis.html" class="link-item">Vilko guolis Lenkija</a>
+              <a href="<%= baseUrl %>/zarasai.html" class="link-item">Zarasai</a>
+              <a href="<%= baseUrl %>/zemaitija.html" class="link-item">Zemaitija</a>
+            </div>
+            <div class="footer-col info-more-links">
+              <h3 class="info-header">Informacija</h3>
+              <a href="<%= baseUrl %>/turizmo-paslaugų-sutartis.html" class="link-item">Turizmo paslaugų sutartis</a>
+              <a href="<%= baseUrl %>/informacija-vartotojams-koronaviruso-laikotarpiu.html" class="link-item">Informacija vartotojams koronaviruso laikotarpiu</a>
+              <a href="<%= baseUrl %>/es-projektai.html" class="link-item">ES projektai</a>
+              <a href="<%= baseUrl %>/privatumo-politika.html" class="link-item">Privatumo politika</a>
+              <a href="<%= baseUrl %>/informavimas-apie-asmens-duomenų-tvarkymą.html" class="link-item">Informavimas apie asmens duomenų tvarkymą</a>
+              <a href="<%= baseUrl %>/kelionės-kolektyvams-po-lietuvą.html" class="link-item">Kelionės kolektyvams po Lietuvą</a>
+            </div>
+          </div>
         </div>
-    </footer>
+        <div class="footer-bottom">
+          <p>Copyright 2024. Your company name. All rights reserved.</p>
+        </div>
+      </footer>
+      <script src="<%= baseUrl %>/javascript/search-toggle.js"></script>
+      <script src="<%= baseUrl %>/javascript/searchForm.js"></script>
 <!-- Root element of PhotoSwipe. Must have class pswp. -->
 <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
 
@@ -1050,7 +1078,6 @@ let tripid = '<%= trip._id %>';
         const areBothChecked = termsCheckbox.checked && privacyCheckbox.checked;
 
         if (areBothChecked){
-
             //modal.style.display = "block";
             fetch('/checkout', {
                 method: 'POST',
