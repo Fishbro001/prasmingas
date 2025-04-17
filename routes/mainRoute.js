@@ -31,11 +31,11 @@ const fetchTripMiddleware = async (req, res, next) => {
 };
 
 
-router.get('/edittrip', async (req, res) => {
-    //const baseUrl = process.env.BASE_URL;
-    const trips = await crudController.getAllTripsObj(req); // Implement this method in your controller
-    res.render('edittrip', { baseUrl, trips });
-});
+// router.get('/edittrip', async (req, res) => {
+//     //const baseUrl = process.env.BASE_URL;
+//     const trips = await crudController.getAllTripsObj(req); // Implement this method in your controller
+//     res.render('edittrip', { baseUrl, trips });
+// });
 
 
 // cost-(cost/100*discount)
@@ -237,10 +237,10 @@ router.get('/', async (req, res) => {
         res.status(500).send('Internal Server Error');
     }
 });
-router.get('/createtrip', async (req, res) => {
-   // const baseUrl = process.env.BASE_URL;
-    res.render('createtrip', {baseUrl});
-});
+// router.get('/createtrip', async (req, res) => {
+//    // const baseUrl = process.env.BASE_URL;
+//     res.render('createtrip', {baseUrl});
+// });
 router.get('/category/:category', async (req, res) => {
     try {
         const trips = await crudController.getCategoryTrips(req);
