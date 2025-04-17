@@ -58,10 +58,9 @@
         document.addEventListener('DOMContentLoaded', function() {
             const tripSelect = document.getElementById('trip_select');
             const deleteButton = document.getElementById('deleteButton');
-
+            
             tripSelect.addEventListener('change', async function() {
                 const tripId = tripSelect.value;
-                console.log('tripID: ', tripId);
                 if (tripId) {
                     const response = await fetch(`<%= baseUrl %>/api/trips/${tripId}`);
                     const tripData = await response.json();
@@ -92,9 +91,70 @@
                 event.preventDefault();
                 const formData = new FormData(document.getElementById('editTripForm'));
                 const tripId = document.getElementById('trip_select').value;
+                    console.log('formdata = ' +typeof formData);
+
+
 
                 // Convert FormData to an object
-                const updatedData = Object.fromEntries(formData);
+                let updatedData = Object.fromEntries(formData);
+                console.table(updatedData);
+
+                //array of objects!
+                let trip_programme = []; 
+                let trips = [];
+                let indexof = 0;
+                let cleanedKey
+                let tempObjTripProgramme = {};
+                let tempObjTrips = {};
+
+                Object.keys(updatedData).forEach((key, currIndex, array) => {
+                if(key.includes(indexof + 1))
+                {
+                    trips.push(tempObjTrips);
+                    tempObjTrips = {};
+                    trip_programme.push(tempObjTripProgramme);
+                    tempObjTripProgramme = {};
+                    indexof++;
+                }
+                cleanedKey = key.replace(/^(trip_|day_)|_\d+$/g, '');
+
+                //cleanedKey = key.replace('_' + indexof, '');
+                if (key.startsWith('day_')) {
+                    tempObjTripProgramme[cleanedKey] = updatedData[key];
+
+                } else if (key.startsWith('trip_')) {
+                    tempObjTrips[cleanedKey] = updatedData[key];
+                }
+                
+                if(currIndex === array.length - 1) {
+                    trips.push(tempObjTrips);
+                    tempObjTrips = {};
+                    trip_programme.push(tempObjTripProgramme);
+                    tempObjTripProgramme = {};
+                    indexof++;
+                }
+                });
+                console.log('OLD');
+                console.table(updatedData);
+
+                Object.keys(updatedData).forEach(function (key) {
+                if (/_\d/.test(key)) {
+                    delete updatedData[key];
+                }
+                });
+
+
+
+
+                updatedData.trips = trips;
+                updatedData.trip_programme = trip_programme;
+
+                console.log('NEW');
+                console.table(updatedData);
+
+
+
+
                 if (updatedData.trip_comment) {
                     try {
                         updatedData.trip_comment = JSON.parse(updatedData.trip_comment);
@@ -104,6 +164,14 @@
                 }
                 updatedData.isactive = updatedData.isactive === 'on';
 
+
+                if (updatedData.trips && Array.isArray(updatedData.trips)) {
+                updatedData.trips.forEach(trip => {
+                    if (trip.hasOwnProperty('isguaranteed')) {
+                        trip.isguaranteed = trip.isguaranteed === 'on';
+                    }
+                });
+            }
                 // Log the data being sent
                 console.log('Updated Data:', JSON.stringify(updatedData, null, 2));
 
@@ -222,6 +290,7 @@
 
         <label for="trip_programme">Trip Programme:</label>
         <div id="trip_programme_container">
+
         </div>
 
         <label for="trip_pickuppoints">Trip Pickup Points (comma-separated):</label>

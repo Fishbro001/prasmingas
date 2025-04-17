@@ -1,5 +1,7 @@
 const { Crud, CrudInactive } = require('../models/crudModel');
 
+
+
 // Create a new trip
 exports.createTrip = async (req, res) => {
     try {
@@ -129,12 +131,15 @@ exports.getTrip = async (req, res) => {
 // Update a trip by ID
 exports.updateTripById = async (req, res) => {
     const updates = Object.keys(req.body);
+    // console.table(req.body);
+    // console.table(req.body.trips);
+    // console.table(req.body.trip_programme);
     const allowedUpdates = ['trip_name', 'trip_category', 'trip_transport', 'trip_duration', 'trip_description', 'trip_fotos', 'trip_programme_sdesc', 'trip_programme', 'trip_pickuppoints', 'trip_comment', 'trips', 'isactive'];
     const isValidOperation = updates.every(update => allowedUpdates.includes(update));
 
-    if (!isValidOperation) {
-        return res.status(400).send({ error: 'Invalid updates!' });
-    }
+    // if (!isValidOperation) {
+    //     return res.status(400).send({ error: 'Invalid updates!' });
+    // }
 
     try {
         const trip = await Crud.findById(req.params.id);
@@ -148,6 +153,32 @@ exports.updateTripById = async (req, res) => {
         res.status(400).send(error);
     }
 };
+exports.updateTripSeats = async (tripId, seatstaken, seatsoccupied) => {
+    try {
+        // Find the document in the Crud collection and update the specific trip
+        const result = await Crud.findOneAndUpdate(
+            { 'trips._id': tripId }, // Find the document with the specific trip ID
+            {
+                $set: {
+                    'trips.$.seatstaken': seatstaken, // Update seatstaken
+                    'trips.$.seatsoccupied': seatsoccupied // Update seatsoccupied
+                }
+            },
+            { new: true } // Return the updated document
+        );
+
+        if (!result) {
+            throw new Error('Trip not found');
+        }
+
+        console.log('Updated Trip:', result);
+        return result;
+    } catch (error) {
+        console.error('Error updating trip:', error);
+        throw error;
+    }
+}
+
 
 // Delete a trip by ID
 exports.deleteTripById = async (req, res) => {

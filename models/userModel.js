@@ -1,18 +1,19 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 
-const tripSchema = new mongoose.Schema({
-    trip_id: { type: String},
-    trip_date: { type: Date},
-    trip_seats: { type: [String]}
-});
+// const tripSchema = new mongoose.Schema({
+//     trip_id: { type: String},
+//     trip_date: { type: Date},
+//     trip_seats: { type: [String]}
+// });
 
 //Main Schema
 const userSchema = new mongoose.Schema({
     user_name: { type: String, required: true, unique:true },
     user_password: { type: String, required: true},
+    user_email: { type: String, required: true},
     user_admin: { type: Boolean, default: false },
-    user_trips: { type: [tripSchema], default: [] }
+    user_order: { type: [String], default: [] }
 }, { collection: 'users' });
 
 

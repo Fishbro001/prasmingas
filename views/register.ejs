@@ -1,32 +1,204 @@
 
 
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="<%= baseUrl %>/css/range.css">
+    <link rel="stylesheet" href="<%= baseUrl %>/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Login - Kelionių laikas</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="container">
+                <div id="top-header" class="col-top-header">
+                    <div class="contact-info">
+                        <a href="tel:37065955770">
+                            <img class="icon" src="<%= baseUrl %>/img/phone-svgrepo-com.svg" />
+                            <span>(+370) 659 55770</span>
+                        </a>
+                        <a href="#">
+                            <img class="icon" src="<%= baseUrl %>/img/mail-svgrepo-com.svg" />
+                            <span>info@mail.com</span>
+                        </a>
+                    </div>
+                    <div class="top-header-links">
+                        <a href="<%= baseUrl %>/apie-mus.html">
+                            <img class="icon" src="<%= baseUrl %>/img/info-circle-svgrepo-com.svg" />
+                            <span>Apie mus</span>
+                        </a>
+                        <a href="<%= baseUrl %>/kontaktai.html">
+                            <img class="icon" src="<%= baseUrl %>/img/location-svgrepo-com.svg" />
+                            <span>Kontaktai</span>
+                        </a>
+                        <a href="<%= baseUrl %>/dashboard">
+                            <img class="icon" src="<%= baseUrl %>/img/user-svgrepo-com.svg" />
+                            <span>Login</span>
+                        </a>
+                    </div>
+                    <div class="social-icons">
+                        <a href="https://www.facebook.com/profile.php?id=100080044436184">
+                            <img class="icon" src="<%= baseUrl %>/img/facebook-svgrepo-com.svg" />
+                        </a>
+                        <a href="#">
+                            <img class="icon" src="<%= baseUrl %>/img/instagram-svgrepo-com.svg" />
+                        </a>
+                    </div>
+                </div>
+                <div id="main-header" class="col-main-header">
+                    <div id="logo">
+                        <a href="<%= baseUrl %>/index" class="logo">
+                            <span>VšĮ "Prasmingam gyvenimui"</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
 
-<!-- views/register.html -->
+    <main>
+        <div class="container">
+            <div class="login-container">
+                <h2>Register</h2>
+                <form id="register">
+                    <div class="form-group">
+                        <label for="username">Vartotojo vardas:</label>
+                        <input type="text" name="username" placeholder="Username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Slaptažodis:</label>
+                        <input type="password" name="password" placeholder="Password" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" name="email" placeholder="Email" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary" >Register</button>
+                </form>
+
+
+
+
+                <h2>Login</h2>
+                <form action="/auth/login" method="POST">
+                    <div class="form-group">
+                        <label for="username">Vartotojo vardas:</label>
+                        <input type="text" name="username" placeholder="Username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Slaptažodis:</label>
+                        <input type="password" name="password" placeholder="Password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Prisijungti</button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+
+    <footer id="site-footer">
+        <div class="container">
+            <div class="column-wrapper">
+                <div class="footer-col info-company">
+                    <div id="logo" class="logo">
+                        <a href="<%= baseUrl %>/index-2.html">
+                            <span>VšĮ "Prasmingam gyvenimui"</span>
+                        </a>
+                    </div>
+                    <p class="company-desc-1">Kelionės autobusu - Jūsų Prasmingam gyvenimui</p>
+                    <h3 class="company-desc-2">Džiaugiamės, kad domitės mūsų pasiūlymais!</h3>
+                </div>
+                <div class="footer-col info-contact">
+                    <h3 class="info-header">Susisiekime</h3>
+                    <div class="contact-info">
+                        <a href="tel:37065955770">
+                            <img class="icon" src="<%= baseUrl %>/img/phone-svgrepo-com-white.svg" />
+                            <span>(+370) 659 55770</span>
+                        </a>
+                        <a href="#">
+                            <img class="icon" src="<%= baseUrl %>/img/mail-svgrepo-com-white.svg" />
+                            <span>info@mail.com</span>
+                        </a>
+                    </div>
+                    <div class="social-icons">
+                        <a href="https://www.facebook.com/profile.php?id=100080044436184">
+                            <img class="icon" src="<%= baseUrl %>/img/facebook-svgrepo-com-white.svg" />
+                        </a>
+                        <a href="#">
+                            <img class="icon" src="<%= baseUrl %>/img/instagram-svgrepo-com-white.svg" />
+                        </a>
+                    </div>
+                    <div class="work-hours">
+                        <p>I-V 9-13 val.</p>
+                        <p>IV-IIV nedirbame</p>
+                    </div>
+                </div>
+                <div class="footer-col info-link">
+                    <h3 class="info-header">Struktūra</h3>
+                    <a href="<%= baseUrl %>/apie-mus.html" class="link-item">Apie mus</a>
+                    <a href="<%= baseUrl %>/kontaktai.html" class="link-item">Kontaktai</a>
+                </div>
+                <div class="footer-col info-trips">
+                    <h3 class="info-header">Kelionės</h3>
+                    <a href="<%= baseUrl %>/augustavas.html" class="link-item">Augustavas Lenkija</a>
+                    <a href="<%= baseUrl %>/balstoge.html" class="link-item">Balstogė Lenkija</a>
+                    <a href="<%= baseUrl %>/druskininkai.html" class="link-item">Druskininkai</a>
+                    <a href="<%= baseUrl %>/kursiu-nerija.html" class="link-item">Kuršių nerija</a>
+                    <a href="<%= baseUrl %>/vilko-guolis.html" class="link-item">Vilko guolis Lenkija</a>
+                    <a href="<%= baseUrl %>/zarasai.html" class="link-item">Žarasai</a>
+                    <a href="<%= baseUrl %>/zemaitija.html" class="link-item">Žemaitija</a>
+                </div>
+                <div class="footer-col info-more-links">
+                    <h3 class="info-header">Informacija</h3>
+                    <a href="<%= baseUrl %>/turizmo-paslaugų-sutartis.html" class="link-item">Turizmo paslaugų sutartis</a>
+                    <a href="<%= baseUrl %>/informacija-vartotojams-koronaviruso-laikotarpiu.html" class="link-item">Informacija vartotojams koronaviruso laikotarpiu</a>
+                    <a href="<%= baseUrl %>/es-projektai.html" class="link-item">ES projektai</a>
+                    <a href="<%= baseUrl %>/privatumo-politika.html" class="link-item">Privatumo politika</a>
+                    <a href="<%= baseUrl %>/informavimas-apie-asmens-duomenų-tvarkymą.html" class="link-item">Informavimas apie asmens duomenų tvarkymą</a>
+                    <a href="<%= baseUrl %>/kelionės-kolektyvams-po-lietuvą.html" class="link-item">Kelionės kolektyvams po Lietuvą</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>Copyright 2024. Your company name. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="<%= baseUrl %>/javascript/search-toggle.js"></script>
+    <script src="<%= baseUrl %>/javascript/searchForm.js"></script>
+</body>
+</html>
+
+<!-- views/register.html
 <form id="register">
     <input type="text" name="username" placeholder="Username" required>
     <input type="password" name="password" placeholder="Password" required>
     <button type="submit">Register</button>
 </form>
 
-<!-- views/login.html -->
+  views/login.html
 <form action="/auth/login" method="POST">
     <input type="text" name="username" placeholder="Username" required>
     <input type="password" name="password" placeholder="Password" required>
     <button type="submit">Login</button>
-</form>
+</form> -->
 
 <script>
 
 document.getElementById('register').addEventListener('submit', async function(event) {
             event.preventDefault();
             const formData = new FormData(document.getElementById('register'));
-            console.log(formData.get('username'));
+            //console.log(formData.get('username'));
             
             const userData = {
                 user_name: formData.get('username'),
-                user_password: formData.get('password')
+                user_password: formData.get('password'),
+                user_email: formData.get('email')
             };
-            console.log(JSON.stringify(userData));
+           // console.log(JSON.stringify(userData));
 
             try {
                 const createResponse = await fetch('/auth/register', {

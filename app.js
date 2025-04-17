@@ -5,11 +5,12 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const path = require('path');
 const crudRoute = require('./routes/crudRoute');
+const orderRoute = require('./routes/orderRoute');
 const mainRoute = require('./routes/mainRoute');
 const authRoute = require('./routes/authRoute');
 const stripeRoute = require('./routes/stripeRoute');
 const multer = require('multer');
-const session = require('cookie-session');
+const session = require('express-session');
 const passport = require('passport');
 const bcrypt = require('bcryptjs');
 const LocalStrategy = require('passport-local').Strategy
@@ -137,6 +138,7 @@ mongoose.connect(process.env.MONGO_URI, {
 
 // Api route
 app.use('/api', crudRoute);
+app.use('/api2', orderRoute);
 //app.use('/pay', stripeRoute);
 // Trip route
 app.use('/', mainRoute); // Use the tripRoutes for /trip/:trip_id
@@ -180,7 +182,9 @@ app.use((err, req, res, next) => {
 });
 
 module.exports = app;
-
+//IMPORTANT RIGHT NOW PICKUP CITY IS FIRST USER CITY
+//IMPORTANT CHANGE EXTRAS IN ORDERS 
+//IMPORNTANT
 
 
 //TODO: NORMALIZE DB - LIKE EARLIER TRIPS HAVE TO BE FIRST IN DB AND STUFF DO IT BEFORE SUBMITTING SO NO EXTRA THINGS NEEDED ON FRONT END LESS LOAD TIME 

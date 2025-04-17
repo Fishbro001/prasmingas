@@ -36,12 +36,49 @@
         .logout-button:hover {
             background-color: #ff1a1a;
         }
+        .admin-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .admin-button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .admin-button:hover {
+            background-color: #0056b3;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Welcome to the Dashboard</h1>
         <a href="/auth/logout" class="logout-button">Logout</a>
+        <div id="admin-buttons" class="admin-buttons" style="display: none;">
+            <button class="admin-button" onclick="window.location.href='/dashboard/edittrip'">Edit Trip</button>
+            <button class="admin-button" onclick="window.location.href='/dashboard/createtrip'">Create Trip</button>
+        </div>
     </div>
+    <script>
+        // Function to check if the user is an admin and display the admin buttons
+        function checkAdminStatus() {
+            fetch('/dashboard/check-admin-status')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.isAdmin) {
+                        document.getElementById('admin-buttons').style.display = 'flex';
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+        }
+
+        // Call the function to check admin status on page load
+        document.addEventListener('DOMContentLoaded', checkAdminStatus);
+    </script>
 </body>
 </html>
