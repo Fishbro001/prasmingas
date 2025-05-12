@@ -1,0 +1,155 @@
+<header>
+    <nav>
+      <div class="container">
+        <div id="top-header" class="col-top-header">
+          <div class="contact-info">
+            <a href="tel:37065955770">
+              <img class="icon" src="<%= baseUrl %>/img/phone-svgrepo-com.svg" />
+              <span>(+370) 659 55770</span>
+            </a>
+            <a href="mailto:info@prasmingas.lt">
+              <img class="icon" src="<%= baseUrl %>/img/mail-svgrepo-com.svg" />
+              <span>info@prasmingas.lt</span>
+            </a>
+          </div>
+          <div class="top-header-links">
+            <a href="<%= baseUrl %>/apie-mus.html">
+              <img class="icon" src="<%= baseUrl %>/img/info-circle-svgrepo-com.svg" />
+              <span>Apie mus</span>
+            </a>
+            <a href="<%= baseUrl %>/kontaktai.html">
+              <img class="icon" src="<%= baseUrl %>/img/location-svgrepo-com.svg" />
+              <span>Kontaktai</span>
+            </a>
+            <a href="<%= baseUrl %>/dashboard">
+              <img class="icon" src="<%= baseUrl %>/img/user-svgrepo-com.svg" />
+              <span>Prisijungti</span>
+            </a>
+          </div>
+          <div class="social-icons">
+            <a href="https://www.facebook.com/profile.php?id=100080044436184">
+              <img class="icon" src="<%= baseUrl %>/img/facebook-svgrepo-com.svg" />
+            </a>
+            <a href="#">
+              <img class="icon" src="<%= baseUrl %>/img/instagram-svgrepo-com.svg" />
+            </a>
+          </div>
+        </div>
+        <div id="main-header" class="col-main-header">
+          <div id="logo">
+            <a href="<%= baseUrl %>" class="logo">
+              <span>VšĮ "Prasmingam gyvenimui"</span>
+            </a>
+          </div>
+          <div id="menu">
+            <a href="<%= baseUrl %>/autubusu.html">
+              <img class="icon" src="<%= baseUrl %>/img/bus-svgrepo-com.svg" />
+              <span>Autobusu</span>
+            </a>
+            <a href="<%= baseUrl %>/lietuvoje.html">
+              <img class="icon" src="<%= baseUrl %>/img/flag-for-flag-lithuania-svgrepo-com.svg" />
+              <span>Lietuvoje</span>
+            </a>
+            <a href="<%= baseUrl %>/uzsienyje.html">
+              <img class="icon" src="<%= baseUrl %>/img/globe-svgrepo-com.svg" />
+              <span>Užsienyje</span>
+            </a>
+            <a href="<%= baseUrl %>/garantuotos.html">
+              <img class="icon" src="<%= baseUrl %>/img/approved-aproved-confirm-2-svgrepo-com.svg" />
+              <span>Garantuotos</span>
+            </a>
+            <a href="<%= baseUrl %>/kaledines.html">
+              <img class="icon" src="<%= baseUrl %>/img/christmas-tree-svgrepo-com.svg" />
+              <span>Kalėdinės</span>
+            </a>
+          </div>
+          <div id="search">
+            <a href="#" id="searchIcon">
+              <img class="icon" src="<%= baseUrl %>/img/search-svgrepo-com.svg" />
+            </a>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <!-- end mobile search modal -->
+    <!-- Mobile search modal -->
+    <div id="searchMobile" class="hidden">
+      <div class="search-container">
+        <div class="search-content">
+          <form action="<%= baseUrl %>/your-backend-endpoint" method="POST">
+            <div class="data-input-container">
+              <div class="data-input-col">
+                <div class="data-input-field data-input-country">
+                  <input type="text" placeholder="Kelionė arba šalis" name="tour" id="tour-name" autocomplete="off" class="country">
+                </div>
+                <div class="data-input-field data-input-transport">
+                  <label class="checkbox-icon" title="Autobusu">
+                    <input type="checkbox" class="select-only-one" name="transport" value="bus">
+                    <span class="checkbody">
+                      <span class="checkmark">
+                        <img src="<%= baseUrl %>/img/bus-svgrepo-com.svg" />
+                      </span>
+                    </span>
+                  </label>
+                  <label class="checkbox-icon" title="Lėktuvu">
+                    <input type="checkbox" class="select-only-one" name="transport" value="plane">
+                    <span class="checkbody">
+                      <span class="checkmark">
+                        <img src="<%= baseUrl %>/img/airplane-svgrepo-com.svg" />
+                      </span>
+                    </span>
+                  </label>
+                </div>
+              </div>
+              <div class="data-input-col">
+                <div class="data-input-field data-input-date">
+                  <div class="data-input-date-from">
+                    <input type="date" placeholder="Data nuo" name="date_from" id="d1" class="date-from">
+                  </div>
+                  <div class="data-input-field data-input-date-to">
+                    <input type="date" placeholder="Data iki" name="date_to" id="d2" class="date-to">
+                  </div>
+                </div>
+                <div class="data-input-field data-input-tour-type">
+                  <select name="travel_type" id="keliones-tipas" class="">
+                    <option value="" selected>Kelionės tipas</option>
+                    <option value="1">Pažintinės</option>
+                    <option value="2">Poilsinės</option>
+                    <!-- Add more options as needed -->
+                  </select>
+                </div>
+              </div>
+              <div class="data-input-col">
+                <div class="data-input-field data-input-price-range">
+                  <h3 class="range-title">Kelionės kaina</h3>
+                  <div class="range_container">
+                    <div class="form_control">
+                      <div class="form_control_container">
+                        <div class="form_control_container__time">Min</div>
+                        <input class="form_control_container__time__input" type="number" id="fromInput" name="price_min" value="80" min="0" max="3999"/>
+                      </div>
+                      <div class="form_control_container">
+                        <div class="form_control_container__time">Max</div>
+                        <input class="form_control_container__time__input" type="number" id="toInput" name="price_max" value="3000" min="0" max="3999"/>
+                      </div>
+                    </div>
+                    <div class="sliders_control">
+                      <input id="fromSlider" type="range" value="80" min="0" max="3999"/>
+                      <input id="toSlider" type="range" value="3000" min="0" max="3999"/>
+                    </div>
+                  </div>
+                </div>
+                <div class="data-input-field data-input-submit">
+                  <button type="submit" class="btn-search-submit">
+                    <img src="<%= baseUrl %>/img/search-svgrepo-com-white.svg" />
+                    <span>Ieškoti</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <!-- end mobile search modal -->
+  </header>

@@ -78,7 +78,45 @@ exports.getAllTripsObj = async (req, res) => {
         res.status(400).send(error);
     }
 };
-//here!
+// exports.getAllTripsObjFilterDate = async (req, res) => {
+//     try {
+//         const trips = await Crud.find({});
+//         return trips;
+//     } catch (error) {
+//         res.status(400).send(error);
+//     }
+// };
+
+exports.getAllTripsObjFilterDate = async (req, res) => {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0); // Set time to midnight to compare only the date part
+
+    try {
+        // Step 1: Filter out documents where all trips have dates earlier than today
+        const filteredDocuments = await Crud.find({
+            trips: {
+                $elemMatch: {
+                    date: { $gte: today }
+                }
+            }
+        });
+
+        // Step 2: Filter out trips with dates earlier than today within the remaining documents
+        const filteredTrips = filteredDocuments.map(doc => {
+            return {
+                ...doc.toObject(),
+                trips: doc.trips.filter(trip => trip.date >= today)
+            };
+        });
+        return filteredTrips;
+    } catch (error) {
+        console.error('Error filtering trips:', error);
+        throw error;
+    }
+}
+
+
+
 exports.getCategoryTrips = async (req, res) => {
     try {
         console.log('category');
@@ -123,6 +161,33 @@ exports.getTrip = async (req, res) => {
             return res.status(404).send();
         }
         return trip;
+    } catch (error) {
+        res.status(400).send(error);
+    }
+};
+
+exports.getTripFilteredDate = async (req, res) => {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0); // Set time to midnight to compare only the date part
+
+    try {
+        const trip = await Crud.findById(req.params.id);
+        if (!trip) {
+            return res.status(404).send();
+        }
+        
+        // Filter out trips with dates earlier than today
+        const filteredTrips = trip.trips.filter(tripItem => tripItem.date >= today);
+        // console.log('trip: ', trip);
+        // console.log('filteredtrips: ', filteredTrips);
+
+        // Create a new object with the filtered trips
+        const filteredTrip = {
+            ...trip.toObject(),
+            trips: filteredTrips
+        };
+       // console.log('filtered trip: ', filteredTrip);
+       return filteredTrip;
     } catch (error) {
         res.status(400).send(error);
     }

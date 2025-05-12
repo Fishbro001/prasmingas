@@ -14,7 +14,7 @@
  
     <meta name="facebook-domain-verification" content="zbz5z0oum2kcmuswnmo1t1vhbvv9hx">
     <!-- Facebook Pixel Code -->
-   
+
 <body>
 
     <header>
@@ -880,6 +880,12 @@
     
         <div class="actions-row clearfix">
             <button id="go_back_button" type="button" class="btn btn-primary btn-large btn-secondary" onclick="booking_go_back(); return false;"><i class="fa fa-chevron-left"></i> GRĮŽTI</button>
+            <% const TripDate4WeeksBefore = new Date(ses.travelObj.date) %>
+            <% TripDate4WeeksBefore.setDate(TripDate4WeeksBefore.getDate()-28); %>
+            
+            <% if(now<=TripDate4WeeksBefore) {%>
+              <button id="go_next_button" type="button" class="btn btn-primary btn-large btn-primary" onclick="booking_go_next_advance(); return false;">Sumokėti avansą (<%= totalcost*.2 %>) <i class="fa fa-check"></i></button>
+            <%} %>
             <button id="go_next_button" type="button" class="btn btn-primary btn-large btn-primary" onclick="booking_go_next(); return false;">Patvirtinti <i class="fa fa-check"></i></button>
         </div>
     
@@ -961,7 +967,6 @@
       <script src="<%= baseUrl %>/javascript/searchForm.js"></script>
 <!-- Root element of PhotoSwipe. Must have class pswp. -->
 <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
-
     <!-- Background of PhotoSwipe.
          It's a separate element as animating opacity is faster than rgba(). -->
     <div class="pswp__bg"></div>
@@ -1061,77 +1066,106 @@
 </form> -->
 
 
-        <script src="/javascript/seats.js" type="text/javascript"></script>
+<script src="/javascript/seats.js" type="text/javascript"></script>
 
         
-<iframe name="__uspapiLocator" tabindex="-1" role="presentation" aria-hidden="true" title="Blank" style="display: none; position: absolute; width: 1px; height: 1px; top: -9999px;"></iframe><script>
-// Custom JavaScript
-
-let tripid = '<%= trip._id %>';
-    //var modal = document.getElementById("paymentModal");
-
-    let booking_go_next = function() {
-        const termsCheckbox = document.querySelector('input[name="booking[agreetermsandconditions]"]');
-        const privacyCheckbox = document.querySelector('input[name="booking[agreeprivacypolicy]"]');
-
-        // Check if both checkboxes are checked
-        const areBothChecked = termsCheckbox.checked && privacyCheckbox.checked;
-
-        if (areBothChecked){
-            //modal.style.display = "block";
-            fetch('/checkout', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ 
-                    totalamount: <%= ses.travelObj.cost %>, 
-                    numberofUsers: <%= ses.travellersCount.amount %>, 
-                    priceperuser: <%= ses.travelObj.cost %>, 
-                    discount: <%= ses.travelObj.discount %> }) // Amount in cents
-            })
-            .then (response => response.json())
-                .then(html => {
-                    // Redirect to a different page
-                    window.location.href = html.url
-                })
-                .catch((error) => {
-                    console.log('Error', error);
-                });
-        }
-        else {
-            termsCheckbox.nextElementSibling.style.backgroundColor = 'Red';
-            privacyCheckbox.nextElementSibling.style.backgroundColor = "Red";
-            setTimeout(() => {
-                if (termsCheckbox) {
-                    termsCheckbox.nextElementSibling.style.backgroundColor = ''; // Remove inline style
-                }
-
-                if (privacyCheckbox) {
-                    privacyCheckbox.nextElementSibling.style.backgroundColor = ''; // Remove inline style
-                }
-            }, 800);
-                }
-    };
-    let booking_go_back = function() {
-        window.location.href = '/trip/' + tripid + '/buy3';
-    };
+<iframe name="__uspapiLocator" tabindex="-1" role="presentation" aria-hidden="true" title="Blank" style="display: none; position: absolute; width: 1px; height: 1px; top: -9999px;"></iframe>
 
 
 
 
 
+<ul id="ui-id-1" tabindex="0" class="ui-menu ui-widget ui-widget-content ui-autocomplete ui-front" style="display: none;"></ul><div role="status" aria-live="assertive" aria-relevant="additions" class="ui-helper-hidden-accessible"></div><ul id="ui-id-2" tabindex="0" class="ui-menu ui-widget ui-widget-content ui-autocomplete ui-front" style="display: none;"></ul><div role="status" aria-live="assertive" aria-relevant="additions" class="ui-helper-hidden-accessible"></div><div id="ui-datepicker-div" class="ui-datepicker ui-widget ui-widget-content ui-helper-clearfix ui-corner-all"></div><iframe tabindex="-1" role="presentation" aria-hidden="true" title="Blank" src="https://consentcdn.cookiebot.com/sdk/bc-v4.min.html" style="position: absolute; width: 1px; height: 1px; top: -9999px;"></iframe><div id="veepn-guard-alert"></div><style>@font-face{font-family:FigtreeVF;src:url(chrome-extension://majdfhpaihoncoakbjgbdhglocklcgno/fonts/FigtreeVF.woff2) format("woff2 supports variations"),url(chrome-extension://majdfhpaihoncoakbjgbdhglocklcgno/fonts/FigtreeVF.woff2) format("woff2-variations");font-weight:100 1000;font-display:swap}</style><div id="veepn-breach-alert"></div><style>@font-face{font-family:FigtreeVF;src:url(chrome-extension://majdfhpaihoncoakbjgbdhglocklcgno/fonts/FigtreeVF.woff2) format("woff2 supports variations"),url(chrome-extension://majdfhpaihoncoakbjgbdhglocklcgno/fonts/FigtreeVF.woff2) format("woff2-variations");font-weight:100 1000;font-display:swap}</style><img id="CookiebotSessionPixel" src="https://imgsct.cookiebot.com/1.gif?dgi=830b35ab-2f01-43eb-ae32-302b067aab6b" alt="Cookiebot session tracker icon loaded" data-cookieconsent="ignore" style="display: none;"></body>
 
 
-// end Custom JavaScript
+<script>
+  
+  let booking_go_next_advance = function() {
+      const termsCheckbox = document.querySelector('input[name="booking[agreetermsandconditions]"]');
+      const privacyCheckbox = document.querySelector('input[name="booking[agreeprivacypolicy]"]');
 
-// Book JavaScript
+      // Check if both checkboxes are checked
+      const areBothChecked = termsCheckbox.checked && privacyCheckbox.checked;
 
-// END Book JavaScript
+      if (areBothChecked) {
+          fetch('/checkout', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                advance: true,
+              }) 
+          })
+          .then(response => response.json())
+          .then(html => {
+              // Redirect to a different page
+              window.location.href = html.url;
+          })
+          .catch((error) => {
+              console.error('Error:', error);
+          });
+      } else {
+          termsCheckbox.nextElementSibling.style.backgroundColor = 'red';
+          privacyCheckbox.nextElementSibling.style.backgroundColor = 'red';
+          setTimeout(() => {
+              if (termsCheckbox) {
+                  termsCheckbox.nextElementSibling.style.backgroundColor = ''; // Remove inline style
+              }
+              if (privacyCheckbox) {
+                  privacyCheckbox.nextElementSibling.style.backgroundColor = ''; // Remove inline style
+              }
+          }, 800);
+      }
+  };
 
-// Facebook pixel events
+  let booking_go_next = function() {
+      const termsCheckbox = document.querySelector('input[name="booking[agreetermsandconditions]"]');
+      const privacyCheckbox = document.querySelector('input[name="booking[agreeprivacypolicy]"]');
 
+      // Check if both checkboxes are checked
+      const areBothChecked = termsCheckbox.checked && privacyCheckbox.checked;
+      if (areBothChecked) {
+          fetch('/checkout', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                  advance: false,
+              }) // Amount in cents
+          })
+          .then(response => response.json())
+          .then(html => {
+              // Redirect to a different page
+              window.location.href = html.url;
+          })
+          .catch((error) => {
+              console.error('Error:', error);
+          });
+      } else {
+          termsCheckbox.nextElementSibling.style.backgroundColor = 'red';
+          privacyCheckbox.nextElementSibling.style.backgroundColor = 'red';
+          setTimeout(() => {
+              if (termsCheckbox) {
+                  termsCheckbox.nextElementSibling.style.backgroundColor = ''; // Remove inline style
+              }
+              if (privacyCheckbox) {
+                  privacyCheckbox.nextElementSibling.style.backgroundColor = ''; // Remove inline style
+              }
+          }, 800);
+      }
+  };
 
-// END Facebook pixel events
+  let booking_go_back = function() {
+      window.location.href = '/trip/' + '<%= trip._id %>' + '/buy3';
+  };
 </script>
 
 
-<ul id="ui-id-1" tabindex="0" class="ui-menu ui-widget ui-widget-content ui-autocomplete ui-front" style="display: none;"></ul><div role="status" aria-live="assertive" aria-relevant="additions" class="ui-helper-hidden-accessible"></div><ul id="ui-id-2" tabindex="0" class="ui-menu ui-widget ui-widget-content ui-autocomplete ui-front" style="display: none;"></ul><div role="status" aria-live="assertive" aria-relevant="additions" class="ui-helper-hidden-accessible"></div><div id="ui-datepicker-div" class="ui-datepicker ui-widget ui-widget-content ui-helper-clearfix ui-corner-all"></div><iframe tabindex="-1" role="presentation" aria-hidden="true" title="Blank" src="https://consentcdn.cookiebot.com/sdk/bc-v4.min.html" style="position: absolute; width: 1px; height: 1px; top: -9999px;"></iframe><div id="veepn-guard-alert"></div><style>@font-face{font-family:FigtreeVF;src:url(chrome-extension://majdfhpaihoncoakbjgbdhglocklcgno/fonts/FigtreeVF.woff2) format("woff2 supports variations"),url(chrome-extension://majdfhpaihoncoakbjgbdhglocklcgno/fonts/FigtreeVF.woff2) format("woff2-variations");font-weight:100 1000;font-display:swap}</style><div id="veepn-breach-alert"></div><style>@font-face{font-family:FigtreeVF;src:url(chrome-extension://majdfhpaihoncoakbjgbdhglocklcgno/fonts/FigtreeVF.woff2) format("woff2 supports variations"),url(chrome-extension://majdfhpaihoncoakbjgbdhglocklcgno/fonts/FigtreeVF.woff2) format("woff2-variations");font-weight:100 1000;font-display:swap}</style><img id="CookiebotSessionPixel" src="https://imgsct.cookiebot.com/1.gif?dgi=830b35ab-2f01-43eb-ae32-302b067aab6b" alt="Cookiebot session tracker icon loaded" data-cookieconsent="ignore" style="display: none;"></body></html>
+
+
+
+
+
+
+
+
+
+</html>
