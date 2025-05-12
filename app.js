@@ -216,7 +216,8 @@ tinypng optimizacijai
 //TODO buying fix, the seats, not checking currently how many empty and stuff
 //TODO DB empty seats number cuz using it alot
 //TODO isvaziavimo vietos turi buti array
-
+//TODO AVANSAS
+//TODO protect routes if the date is too old dont let them buy tickets
 
 
 

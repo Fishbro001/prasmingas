@@ -215,31 +215,31 @@
                                  <div class="row">
                                     <div class="col-sm-12 col-sm-6  col-md-6 form-group">
                                        <label>Vardas *</label>
-                                       <input type="text" id="traveller-<%=i%>-firstname" name="travellers[<%=i%>][person][firstname]" class="form-control " value="">
+                                       <input type="text" id="traveller-<%=i%>-firstname" name="travellers[<%=i%>][person][firstname]" class="form-control " value="" required>
                                     </div>
                                     <div class="col-sm-12 col-sm-6  col-md-6 form-group">
                                        <label>Pavardė *</label>
-                                       <input type="text" id="traveller-<%=i%>-lastname" name="travellers[<%=i%>[person][lastname]" class="form-control " value="">
+                                       <input type="text" id="traveller-<%=i%>-lastname" name="travellers[<%=i%>[person][lastname]" class="form-control " value="" required>
                                     </div>
                                  </div>
                                  <div class="row">
                                     <div class="col-sm-12 col-sm-6  col-md-6 form-group">
                                        <label>Gimimo data *</label>
-                                       <input type="text" id="traveller-<%=i%>-birthday" name="travellers[<%=i%>][person][birthday]" class="form-control " value="" placeholder="Formatas 2024-12-20">
+                                       <input type="text" id="traveller-<%=i%>-birthday" name="travellers[<%=i%>][person][birthday]" class="form-control " value="" placeholder="Formatas 2024-12-20" required>
                                     </div>
                                     <div class="col-sm-12 col-sm-6  col-md-6 form-group">
-                                       <label>Asmens kodas </label>
-                                       <input type="text" id="traveller-<%=i%>-personcode" name="travellers[<%=i%>][person][personcode]" class="form-control " value="">
+                                       <label>Asmens kodas *</label>
+                                       <input type="text" id="traveller-<%=i%>-personcode" name="travellers[<%=i%>][person][personcode]" class="form-control " value="" required>
                                     </div>
                                  </div>
                                  <div class="row">
                                     <div class="col-sm-12 col-sm-6  col-md-6 form-group">
                                        <label for="traveller-<%=i%>-email">El. paštas <span id="first-traveller-email-asterisk">*</span></label>
-                                       <input id="traveller-<%=i%>-email" name="travellers[<%=i%>][person][email]" type="email" value="" class="form-control ">
+                                       <input id="traveller-<%=i%>-email" name="travellers[<%=i%>][person][email]" type="email" value="" class="form-control " required>
                                     </div>
                                     <div class="col-sm-12 col-sm-6  col-md-6 form-group">
                                        <label for="traveller-<%=i%>-city">Miestas <span id="first-traveller-city-asterisk">*</span></label>
-                                       <input id="traveller-<%=i%>-city" name="travellers[<%=i%>][person][city]" type="text" value="" class="form-control ">
+                                       <input id="traveller-<%=i%>-city" name="travellers[<%=i%>][person][city]" type="text" value="" class="form-control " required>
                                     </div>
                                  </div>
                                  </div>
@@ -396,7 +396,8 @@
             let travArr = [];
             let tempObj = {};
             let fname, lname, personcode, email, city, birthdate, departureCity, tel;
-            let travCount = '<%= ses.travellersCount.amount %>'
+            let travCount = '<%= ses.travellersCount.amount %>';
+            let isValid = true;
             
             console.log('travcount ', travCount);
             for (let b = 0; b < travCount ; b++) {
@@ -409,9 +410,18 @@
                 const selectElement = document.getElementById(`travellers[${b}][departurecityid]`);
                 const selectedIndex = selectElement.selectedIndex;
                 const departureCity = selectElement.options[selectedIndex].text;
-
-
                 tel = document.getElementById(`travellers-${b}-phone`).value;
+
+
+                if (!fname || !lname || !birthdate || !personcode || !email || !city || !departureCity) {
+                  isValid = false;
+                  alert('Please fill in all required fields.');
+                  break;
+                }
+
+
+
+
                 tempObj = {
                     fname: fname,
                     lname: lname,
@@ -425,23 +435,27 @@
                 };
                 travArr.push(tempObj);
             }
-            fetch('/update-session2', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ travArr })
-            }).then(response => response.json())
-            .then(data => {
-                console.log('Session updated:', data);
-                // You can redirect or update the UI here
-                return fetch(`/trip/${tripid}/buy3`);
-            }).then(html => {
-                console.log('Trip details fetched:', html);
-                // Redirect to a different page
-                window.location.href = '/trip/' + tripid + '/buy3';
-            })
-            .catch(error => console.error('Error:', error));
+
+
+            if(isValid){
+                fetch('/update-session2', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ travArr })
+                }).then(response => response.json())
+                .then(data => {
+                    console.log('Session updated:', data);
+                    // You can redirect or update the UI here
+                    return fetch(`/trip/${tripid}/buy3`);
+                }).then(html => {
+                    console.log('Trip details fetched:', html);
+                    // Redirect to a different page
+                    window.location.href = '/trip/' + tripid + '/buy3';
+                })
+                .catch(error => console.error('Error:', error));
+              }
  
         }
         let booking_go_back = function() {
