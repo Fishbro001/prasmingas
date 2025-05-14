@@ -81,6 +81,10 @@ const orderSchema = new mongoose.Schema({
     cityOfDeparture: {
         type: String,
         required: true
+    },
+    tickets: {
+        type: [String],
+        required: true
     }
 }, {
     timestamps: true // Automatically adds createdAt and updatedAt fields

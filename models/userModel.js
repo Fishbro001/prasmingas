@@ -13,7 +13,8 @@ const userSchema = new mongoose.Schema({
     user_password: { type: String, required: true},
     user_email: { type: String, required: true},
     user_admin: { type: Boolean, default: false },
-    user_order: { type: [String], default: [] }
+    user_order: { type: [String], default: [] },
+    user_tickets: {type: [String], default: [] },
 }, { collection: 'users' });
 
 
