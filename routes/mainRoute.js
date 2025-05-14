@@ -217,8 +217,6 @@ router.get('/complete', async (req, res) => {
             seats = seats.concat(', ' + user.seat);
         });
 
-        console.log('seats after:', seats);
-
         await crudController.updateTripSeats(travelObj._id, taken, seats);
         console.table(newOrder);
 
@@ -244,93 +242,6 @@ router.get('/complete', async (req, res) => {
         res.status(500).send('Error processing order');
     }
 });
-
-
-
-// router.get('/complete', async (req, res) => {
-
-
-//     const result = Promise.all([
-//         stripe.checkout.sessions.retrieve(req.query.session_id, { expand: ['payment_intent.payment_method'] }),
-//         stripe.checkout.sessions.listLineItems(req.query.session_id)
-//     ])
-
-//     console.log(JSON.stringify(await result))
-
-//     res.send(`
-//         <!DOCTYPE html>
-//         <html>
-//         <head>
-//             <title>Mokėjimas buvo sėkmingas</title>
-//         </head>
-//         <body>
-//             <h1>Your payment was successful</h1>
-//             <script>
-//                 setTimeout(function() {
-//                     window.location.href = '/order-complete';
-//                 }, 3000); // Redirect after 3 seconds
-//             </script>
-//         </body>
-//         </html>
-//     `);
-// })
-// router.get('/order-complete', async (req, res) => {
-//     if(!req.session.travelObj || !req.session.travelObj){
-//         res.status(500).send('ERROR');
-//     }
-
-//     try {
-//         const { travelObj, advance, travellersArr }= req.session;
-//         const orderData = {
-//             tripTypeId: travelObj.parent_tripid, // Assuming parent_tripid is the tripTypeId
-//             tripId: travelObj._id, // Assuming _id is the tripId
-//             users: travellersArr.map(traveller => ({
-//                 firstName: traveller.fname,
-//                 lastName: traveller.lname,
-//                 birthday: traveller.birthdate,
-//                 socNumber: traveller.personcode,
-//                 telNumber: traveller.tel,
-//                 email: traveller.email,
-//                 city: traveller.city,
-//                 cityOfDeparture: traveller.departureCity,
-//                 placeOnBus: traveller.seat,
-//                 pricePaid: travelObj.cost,
-//                 isAdvance:  advance,
-//                 extras: null // Add extras if applicable
-//             })),
-//             userEmail: travellersArr[0].email, // Assuming the first traveller's email
-//             userPhoneNumber: travellersArr[0].tel, // Assuming the first traveller's phone number
-//             userAcc: null, // TODO CHANGE THIS LATER
-//             extras: null, // TODO CHANGE THIS LATER
-//             cityOfDeparture: travellersArr[0].departureCity // TODO CHANGE THIS LATER
-//         };
-
-//         // Create the order using the controller function
-//         console.log('Order: ');
-//         console.table(orderData);
-//         //let tempobj = {body: orderData};
-//         const newOrder = await orderController.createOrderFromData(orderData);
-//         const taken = travelObj.seatstaken + travellersArr.length;
-//         let seats = travelObj.seatsoccupied[0];
-//         console.log('seats before:', seats);
-
-//         travellersArr.forEach( user => {
-//            seats = seats.concat(', ' + user.seat);
-//         });
-        
-//         console.log('seats after:', seats);
-        
-//         const updateSeats = crudController.updateTripSeats(travelObj._id, taken, seats);
-//         console.table(newOrder);
-//         // Send a success response with the created order
-//         res.status(201).json(newOrder);
-//     } catch (error) {
-//         // Handle errors and send an error response
-//         res.status(400).json({ error: error.message });
-//     }
-//     });
-
-
 
 router.get('/cancel', (req, res) => {
     res.redirect('/')
