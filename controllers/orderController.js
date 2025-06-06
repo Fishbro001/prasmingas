@@ -58,7 +58,7 @@ exports.getOrderById = async (req, res) => {
 // Update an order by ID
 exports.updateOrder = async (req, res) => {
     const updates = Object.keys(req.body);
-    const allowedUpdates = ['orderNumber', 'tripTypeId', 'tripId', 'users', 'userEmail', 'userPhoneNumber', 'userAcc', 'extras', 'cityOfDeparture'];
+    const allowedUpdates = ['orderNumber', 'tripTypeId', 'tripId', 'users', 'userEmail', 'userPhoneNumber', 'userAcc', 'extras', 'cityOfDeparture','documents'];
     const isValidOperation = updates.every(update => allowedUpdates.includes(update));
 
     if (!isValidOperation) {
@@ -72,6 +72,29 @@ exports.updateOrder = async (req, res) => {
         }
 
         updates.forEach(update => order[update] = req.body[update]);
+        await order.save();
+        res.send(order);
+    } catch (error) {
+        res.status(400).send(error);
+    }
+};
+exports.updateOrderDocument = async (orderid, doc) => {
+    // const updates = Object.keys(req.body);
+    // const allowedUpdates = ['orderNumber', 'tripTypeId', 'tripId', 'users', 'userEmail', 'userPhoneNumber', 'userAcc', 'extras', 'cityOfDeparture','documents'];
+    // const isValidOperation = updates.every(update => allowedUpdates.includes(update));
+
+    // if (!isValidOperation) {
+    //     return res.status(400).send({ error: 'Invalid updates!' });
+    // }
+
+    try {
+        const order = await Order.findById(orderid);
+        if (!order) {
+            return res.status(404).send();
+        }
+        order.documents.push(doc);
+
+        // updates.forEach(update => order[update] = req.body[update]);
         await order.save();
         res.send(order);
     } catch (error) {

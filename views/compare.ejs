@@ -1,0 +1,87 @@
+document.getElementById('editTripForm').addEventListener('submit', async function(event) {
+    event.preventDefault();
+    const formData = new FormData(document.getElementById('editTripForm'));
+    const tripId = document.getElementById('trip_select').value;
+    console.log('formdata = ' + typeof formData);
+    console.log('initial data:');
+    console.table(formData);
+
+    // Convert FormData to an object
+    let updatedData = Object.fromEntries(formData);
+    console.table(updatedData);
+
+    let trips = [];
+    let trip_programme = [];
+    let tempObjTrips = {};
+    let tempObjTripProgramme = {};
+
+    // Process each key-value pair in the form data
+    Object.keys(updatedData).forEach((key) => {
+        if (key.startsWith('day_')) {
+            // Extract the index and cleaned key for trip programme
+            const index = key.match(/\d+/)[0];
+            const cleanedKey = key.replace(/^(day_)|_\d+$/g, '');
+
+            if (!trip_programme[index]) {
+                trip_programme[index] = {};
+            }
+            trip_programme[index][cleanedKey] = updatedData[key];
+        } else if (key.startsWith('trip_')) {
+            // Extract the index and cleaned key for trips
+            const index = key.match(/\d+/)[0];
+            const cleanedKey = key.replace(/^(trip_)|_\d+$/g, '');
+
+            if (!trips[index]) {
+                trips[index] = {};
+            }
+            trips[index][cleanedKey] = updatedData[key];
+        }
+    });
+
+    // Filter out empty objects that might have been created
+    trips = trips.filter(trip => Object.keys(trip).length > 0);
+    trip_programme = trip_programme.filter(programme => Object.keys(programme).length > 0);
+
+    // Update the data object with the processed trips and trip_programme
+    updatedData.trips = trips;
+    updatedData.trip_programme = trip_programme;
+
+    console.log('NEW');
+    console.table(updatedData);
+
+    if (updatedData.trip_comment) {
+        try {
+            updatedData.trip_comment = JSON.parse(updatedData.trip_comment);
+        } catch (error) {
+            console.error('Error parsing trip_comment:', error);
+        }
+    }
+    updatedData.isactive = updatedData.isactive === 'on';
+
+    if (updatedData.trips && Array.isArray(updatedData.trips)) {
+        updatedData.trips.forEach(trip => {
+            if (trip.hasOwnProperty('isguaranteed')) {
+                trip.isguaranteed = trip.isguaranteed === 'on';
+            }
+        });
+    }
+
+    // Log the data being sent
+    console.log('Updated Data:', JSON.stringify(updatedData, null, 2));
+
+    const response = await fetch(`<%= baseUrl %>/api/trips/${tripId}`, {
+        method: 'PATCH',
+        body: JSON.stringify(updatedData),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    });
+
+    if (response.ok) {
+        alert('Trip updated successfully!');
+    } else {
+        const errorData = await response.json();
+        console.error('Error Response:', errorData);
+        alert('Failed to update trip. Error: ' + errorData.message);
+    }
+});
