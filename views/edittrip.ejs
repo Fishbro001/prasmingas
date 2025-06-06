@@ -54,12 +54,14 @@
             'alignleft aligncenter alignright alignjustify | ' +
             'bullist numlist checklist outdent indent | removeformat | a11ycheck code table help'
         });
-
+        let tripIndex = 0;
         document.addEventListener('DOMContentLoaded', function() {
+            
             const tripSelect = document.getElementById('trip_select');
             const deleteButton = document.getElementById('deleteButton');
             
             tripSelect.addEventListener('change', async function() {
+                tripIndex = 0;
                 const tripId = tripSelect.value;
                 if (tripId) {
                     const response = await fetch(`<%= baseUrl %>/api/trips/${tripId}`);
@@ -87,73 +89,118 @@
                 }
             });
 
+
+            
+
+            document.getElementById('addTripButton').addEventListener('click', function () {
+                const tripContainer = document.getElementById('trips_container');
+
+                const tripFields = document.createElement('div');
+                tripFields.className = 'trip-fields';
+                tripFields.innerHTML = `
+                <th></th>
+                    <label for="trip_date_${tripIndex}">Date:</label>
+                    <input type="date" id="trip_date_${tripIndex}" name="trip_date_${tripIndex}" required>
+
+                    <label for="trip_time_${tripIndex}">Time:</label>
+                    <input type="time" id="trip_time_${tripIndex}" name="trip_time_${tripIndex}" required>
+
+                    <label for="trip_discount_${tripIndex}">Discount:</label>
+                    <input type="number" id="trip_discount_${tripIndex}" name="trip_discount_${tripIndex}" required>
+
+                    <label for="trip_cost_${tripIndex}">Cost:</label>
+                    <input type="number" id="trip_cost_${tripIndex}" name="trip_cost_${tripIndex}" required>
+
+                    <label for="trip_isguaranteed_${tripIndex}">Is Guaranteed:</label>
+                    <input type="checkbox" id="trip_isguaranteed_${tripIndex}" name="trip_isguaranteed_${tripIndex}">
+
+                    <label for="trip_seatstotal_${tripIndex}">Seats Total:</label>
+                    <input type="text" id="trip_seatstotal_${tripIndex}" name="trip_seatstotal_${tripIndex}" required>
+
+                    <label for="trip_seatstaken_${tripIndex}">Seats Taken:</label>
+                    <input type="text" id="trip_seatstaken_${tripIndex}" name="trip_seatstaken_${tripIndex}" required>
+
+                    <label for="trip_seatsoccupied_${tripIndex}">Seats Occupied (comma-separated):</label>
+                    <input type="text" id="trip_seatsoccupied_${tripIndex}" name="trip_seatsoccupied_${tripIndex}">
+                `;
+                tripContainer.appendChild(tripFields);
+                tripIndex++;
+            });
+
+
+            
+
             document.getElementById('editTripForm').addEventListener('submit', async function(event) {
                 event.preventDefault();
                 const formData = new FormData(document.getElementById('editTripForm'));
                 const tripId = document.getElementById('trip_select').value;
-                    console.log('formdata = ' +typeof formData);
-
-
+                    console.log('formdata = ' + typeof formData);
+                console.log('initial data:');
+                console.table(formData);
 
                 // Convert FormData to an object
                 let updatedData = Object.fromEntries(formData);
-                console.table(updatedData);
-
-                //array of objects!
-                let trip_programme = []; 
+                console.table(updatedData); 
+ 
                 let trips = [];
-                let indexof = 0;
-                let cleanedKey
-                let tempObjTripProgramme = {};
+                let trip_programme = [];
                 let tempObjTrips = {};
-
-                Object.keys(updatedData).forEach((key, currIndex, array) => {
-                if(key.includes(indexof + 1))
-                {
-                    trips.push(tempObjTrips);
-                    tempObjTrips = {};
-                    trip_programme.push(tempObjTripProgramme);
-                    tempObjTripProgramme = {};
-                    indexof++;
-                }
-                cleanedKey = key.replace(/^(trip_|day_)|_\d+$/g, '');
-
-                //cleanedKey = key.replace('_' + indexof, '');
-                if (key.startsWith('day_')) {
-                    tempObjTripProgramme[cleanedKey] = updatedData[key];
-
-                } else if (key.startsWith('trip_')) {
-                    tempObjTrips[cleanedKey] = updatedData[key];
-                }
+                let tempObjTripProgramme = {};
+                let indexoftrip = 0;
+                let indexofprog = 0;
+                let cleanedKey;
                 
-                if(currIndex === array.length - 1) {
-                    trips.push(tempObjTrips);
-                    tempObjTrips = {};
-                    trip_programme.push(tempObjTripProgramme);
-                    tempObjTripProgramme = {};
-                    indexof++;
-                }
+    
+                Object.keys(updatedData).forEach((key, currIndex, array) => {   
+
+                    if(key.startsWith('day_') && /_\d+$/.test(key)) // remove just the _0 suffix
+                    {   
+                        if(key.endsWith(`_${indexofprog + 1}`)) //if the next suffix appears ex _1 push and delete temp
+                        {
+                            trip_programme.push(tempObjTripProgramme);
+                            tempObjTripProgramme = {};
+                            indexofprog++;
+                        }
+                        cleanedKey = key.replace(/_\d+$/g, ''); // remove the _0 of the key
+                        tempObjTripProgramme[cleanedKey] = updatedData[key];
+                        delete updatedData[key]; //remove the entry
+                    }
+                    if(key.startsWith('trip_') && /_\d+$/.test(key)) // remove trip_ and the _0 suffix
+                    {   
+                        if(key.endsWith(`_${indexoftrip + 1}`)) //if the next suffix appears ex _1 push and delete temp
+                        {
+                            trips.push(tempObjTrips);
+                            tempObjTrips = {};
+                            indexoftrip++;
+                        }
+                        cleanedKey = key.replace(/^(trip_|day_)|_\d+$/g, '');
+                        tempObjTrips[cleanedKey] = updatedData[key];
+                        delete updatedData[key]; //remove the entry dont need no more
+                    }
+                                 
+                    const isNotEmpty = obj => Object.keys(obj).length > 0; //define Method
+                    if(currIndex === array.length - 1) { // if last loop //check if have something in temp, and push if do and empty temp objects.
+                        if (isNotEmpty(tempObjTrips)) {
+                            trips.push(tempObjTrips);
+                            tempObjTrips = {};
+                        }
+                        if (isNotEmpty(tempObjTripProgramme)){
+                            trip_programme.push(tempObjTripProgramme);
+                            tempObjTripProgramme = {};
+                        }
+                    }
                 });
-                console.log('OLD');
-                console.table(updatedData);
 
-                Object.keys(updatedData).forEach(function (key) {
-                if (/_\d/.test(key)) {
-                    delete updatedData[key];
-                }
-                });
-
-
-
-
+                // Object.keys(updatedData).forEach(function (key) {
+                // if (/_\d/.test(key)) {
+                //     delete updatedData[key];
+                // }
+                // });
                 updatedData.trips = trips;
                 updatedData.trip_programme = trip_programme;
 
                 console.log('NEW');
                 console.table(updatedData);
-
-
-
 
                 if (updatedData.trip_comment) {
                     try {
@@ -164,7 +211,6 @@
                 }
                 updatedData.isactive = updatedData.isactive === 'on';
 
-
                 if (updatedData.trips && Array.isArray(updatedData.trips)) {
                 updatedData.trips.forEach(trip => {
                     if (trip.hasOwnProperty('isguaranteed')) {
@@ -172,8 +218,10 @@
                     }
                 });
             }
+
                 // Log the data being sent
                 console.log('Updated Data:', JSON.stringify(updatedData, null, 2));
+                console.table('Updated Data:', updatedData);
 
                 const response = await fetch(`<%= baseUrl %>/api/trips/${tripId}`, {
                     method: 'PATCH',
@@ -225,6 +273,7 @@
             const tripContainer = document.getElementById('trips_container');
             tripContainer.innerHTML = '';
             tripData.trips.forEach((trip, index) => {
+                tripIndex++;
                 let date = new Date(trip.date);
                 let formattedDate = date.toISOString().split('T')[0];
                 let formattedTime = date.toISOString().split('T')[1];
@@ -233,9 +282,9 @@
                 const tripFields = document.createElement('div');
                 tripFields.className = 'trip-fields';
                 tripFields.innerHTML = `
+                    <br></br>
                     <label for="trip_date_${index}">Date:</label>
                     <input type="date" id="trip_date_${index}" name="trip_date_${index}" value="${formattedDate}" required>
-                   
                     <label for="trip_time_${index}">Time:</label>
                     <input type="time" id="trip_time_${index}" name="trip_time_${index}" value="${trip.time}" required>
                     <label for="trip_discount_${index}">Discount:</label>
@@ -298,7 +347,7 @@
 
         <label for="trip_comment">Trip Comments:</label>
         <textarea id="trip_comment" name="trip_comment"></textarea>
-
+        <button type="button" id="addTripButton">Add More Trip Dates</button>
         <label for="trips">Trips:</label>
         <div id="trips_container">
         </div>

@@ -2,6 +2,10 @@ const mongoose = require('mongoose');
 
 // Define the schema for the order
 const orderSchema = new mongoose.Schema({
+     orderNumber: {
+        type: String,
+        unique: true // Ensures that each order number is unique
+    },
     tripTypeId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Crud', // Reference to another model if applicable
@@ -85,6 +89,10 @@ const orderSchema = new mongoose.Schema({
     tickets: {
         type: [String],
         required: true
+    },
+    documents: {
+        type: [String],
+        default: []
     }
 }, {
     timestamps: true // Automatically adds createdAt and updatedAt fields

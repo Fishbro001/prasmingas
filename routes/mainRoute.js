@@ -6,7 +6,19 @@ const orderRoute = require('../routes/orderRoute');
 const stripe = require('stripe')(process.env.STRIPE_PRIVATE);
 const {transporter, message} = require('../middleware/mailer');
 const baseUrl = process.env.BASE_URL;
+const generateDocument = require('../middleware/docx.js');
+
 let now = new Date();
+
+router.get('/testthings', async (req, res, next) => {
+    try {
+        const outputPath = await generateDocument();
+        res.send(`Document generated at: ${outputPath}`);
+    } catch (error) {
+        console.error('Error generating document:', error);
+        res.status(500).send('Error generating document');
+    }
+});
 
 
 router.get('/test-email', async (req, res, next) =>{
@@ -203,11 +215,58 @@ router.get('/complete', async (req, res) => {
             cityOfDeparture: travellersArr[0].departureCity
         };
 
-        console.log('Order:');
-        console.table(orderData);
+        // console.log('Order:');
+        // console.table(orderData);
 
         // Create the order
         const newOrder = await orderController.createOrderFromData(orderData);
+                const testdata = {
+            date: '2025-03-04',
+            orderNumber: '123456',
+            mainNumber: '37061436986',
+            mainEmail: 'asd@gmail.com',
+            mainAddress:'Kaunas, kauno g. 5',
+            tripName: 'Tripas vienas',
+            tripDate: '2025-01-01',
+            tripDuration: '3 dienos',
+            numberofCust: '3 žmonės',
+            totalPrice: '360',
+            users: [
+                {   name:'pijus', 
+                    birthdate:'1997-07-05',
+                    phoneNumber:'37061436986',
+                    pickupPlace:'Vienozinskis',
+                    occupiedSeat:'B2',
+                    price:'80'
+                },
+                {   name:'pijus2', 
+                    birthdate:'1997-07-05',
+                    phoneNumber:'37061436986',
+                    pickupPlace:'Vienozinskis',
+                    occupiedSeat:'B3',
+                    price:'360'
+                },
+                {   name:'pijus3', 
+                    birthdate:'1997-07-05',
+                    phoneNumber:'37061436986',
+                    pickupPlace:'Vienozinskis',
+                    occupiedSeat:'B4',
+                    price:'200'
+                },
+                {   name:'pijus4', 
+                    birthdate:'1997-07-05',
+                    phoneNumber:'37061436986',
+                    pickupPlace:'Vienozinskis',
+                    occupiedSeat:'C1',
+                    price:'150'
+                },
+                
+            ]
+        }
+        const outputPath = generateDocument(testdata);
+        orderController.updateOrderDocument(newOrder, outputPath)
+
+
 
         // Update trip details
         const taken = travelObj.seatstaken + travellersArr.length;
@@ -218,7 +277,7 @@ router.get('/complete', async (req, res) => {
         });
 
         await crudController.updateTripSeats(travelObj._id, taken, seats);
-        console.table(newOrder);
+        // console.table(newOrder);
 
         // Send a success response
         res.send(`
@@ -242,6 +301,8 @@ router.get('/complete', async (req, res) => {
         res.status(500).send('Error processing order');
     }
 });
+router.get('')
+
 
 router.get('/cancel', (req, res) => {
     res.redirect('/')

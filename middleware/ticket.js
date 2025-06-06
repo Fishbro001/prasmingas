@@ -15,9 +15,9 @@ async function generateTicket(tripDetails, userDetails, outputPath) {
     const qrCodeDataURL = await QRCode.toDataURL(attendeeDetails.ticketId);
 
     // Add content to the PDF
-    doc.fontSize(20).text(eventDetails.name, { align: 'center' });
-    doc.fontSize(14).text(`Date: ${eventDetails.date}`, { align: 'center' });
-    doc.fontSize(14).text(`Venue: ${eventDetails.venue}`, { align: 'center' });
+    doc.fontSize(20).text(tripDetails.name, { align: 'center' });
+    doc.fontSize(14).text(`Date: ${tripDetails.date}`, { align: 'center' });
+    doc.fontSize(14).text(`Venue: ${tripDetails.venue}`, { align: 'center' });
     doc.moveDown();
     doc.fontSize(16).text(`Attendee: ${attendeeDetails.name}`, { align: 'center' });
     doc.moveDown();
