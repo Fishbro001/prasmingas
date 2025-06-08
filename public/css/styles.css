@@ -494,6 +494,7 @@ footer .social-icons {
 .tour-img {
     width: 100%;
     max-width: 1000px;
+    min-width: 400px;
     height: auto;
 }
 
