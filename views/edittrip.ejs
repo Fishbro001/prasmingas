@@ -40,270 +40,27 @@
         .delete-button:hover {
             background-color: #e57373;
         }
-    </style>
-    <script>
-        tinymce.init({
-            selector: '#trip_description',
-            license_key: 'gpl',
-            plugins: [
-                'a11ychecker','advlist','advcode','advtable','autolink','checklist','markdown',
-                'lists','link','image','charmap','preview','anchor','searchreplace','visualblocks',
-                'powerpaste','fullscreen','formatpainter','insertdatetime','media','table','help','wordcount'
-            ],
-            toolbar: 'undo redo | formatpainter casechange blocks | bold italic backcolor | ' +
-            'alignleft aligncenter alignright alignjustify | ' +
-            'bullist numlist checklist outdent indent | removeformat | a11ycheck code table help'
-        });
-        let tripIndex = 0;
-        document.addEventListener('DOMContentLoaded', function() {
-            
-            const tripSelect = document.getElementById('trip_select');
-            const deleteButton = document.getElementById('deleteButton');
-            
-            tripSelect.addEventListener('change', async function() {
-                tripIndex = 0;
-                const tripId = tripSelect.value;
-                if (tripId) {
-                    const response = await fetch(`<%= baseUrl %>/api/trips/${tripId}`);
-                    const tripData = await response.json();
-                    populateForm(tripData);
-                    deleteButton.disabled = false; // Enable delete button when a trip is selected
-                } else {
-                    deleteButton.disabled = true; // Disable delete button if no trip is selected
-                }
-            });
-
-            deleteButton.addEventListener('click', async function() {
-                const tripId = tripSelect.value;
-                if (tripId && confirm('Are you sure you want to delete this trip?')) {
-                    const response = await fetch(`<%= baseUrl %>/api/trips/${tripId}`, {
-                        method: 'DELETE'
-                    });
-                    if (response.ok) {
-                        alert('Trip deleted successfully!');
-                        location.reload(); // Refresh the page to update the trip list
-                    } else {
-                        const errorData = await response.json();
-                        alert('Failed to delete trip. Error: ' + errorData.message);
-                    }
-                }
-            });
-
-
-            
-
-            document.getElementById('addTripButton').addEventListener('click', function () {
-                const tripContainer = document.getElementById('trips_container');
-
-                const tripFields = document.createElement('div');
-                tripFields.className = 'trip-fields';
-                tripFields.innerHTML = `
-                <th></th>
-                    <label for="trip_date_${tripIndex}">Date:</label>
-                    <input type="date" id="trip_date_${tripIndex}" name="trip_date_${tripIndex}" required>
-
-                    <label for="trip_time_${tripIndex}">Time:</label>
-                    <input type="time" id="trip_time_${tripIndex}" name="trip_time_${tripIndex}" required>
-
-                    <label for="trip_discount_${tripIndex}">Discount:</label>
-                    <input type="number" id="trip_discount_${tripIndex}" name="trip_discount_${tripIndex}" required>
-
-                    <label for="trip_cost_${tripIndex}">Cost:</label>
-                    <input type="number" id="trip_cost_${tripIndex}" name="trip_cost_${tripIndex}" required>
-
-                    <label for="trip_isguaranteed_${tripIndex}">Is Guaranteed:</label>
-                    <input type="checkbox" id="trip_isguaranteed_${tripIndex}" name="trip_isguaranteed_${tripIndex}">
-
-                    <label for="trip_seatstotal_${tripIndex}">Seats Total:</label>
-                    <input type="text" id="trip_seatstotal_${tripIndex}" name="trip_seatstotal_${tripIndex}" required>
-
-                    <label for="trip_seatstaken_${tripIndex}">Seats Taken:</label>
-                    <input type="text" id="trip_seatstaken_${tripIndex}" name="trip_seatstaken_${tripIndex}" required>
-
-                    <label for="trip_seatsoccupied_${tripIndex}">Seats Occupied (comma-separated):</label>
-                    <input type="text" id="trip_seatsoccupied_${tripIndex}" name="trip_seatsoccupied_${tripIndex}">
-                `;
-                tripContainer.appendChild(tripFields);
-                tripIndex++;
-            });
-
-
-            
-
-            document.getElementById('editTripForm').addEventListener('submit', async function(event) {
-                event.preventDefault();
-                const formData = new FormData(document.getElementById('editTripForm'));
-                const tripId = document.getElementById('trip_select').value;
-                    console.log('formdata = ' + typeof formData);
-                console.log('initial data:');
-                console.table(formData);
-
-                // Convert FormData to an object
-                let updatedData = Object.fromEntries(formData);
-                console.table(updatedData); 
- 
-                let trips = [];
-                let trip_programme = [];
-                let tempObjTrips = {};
-                let tempObjTripProgramme = {};
-                let indexoftrip = 0;
-                let indexofprog = 0;
-                let cleanedKey;
-                
-    
-                Object.keys(updatedData).forEach((key, currIndex, array) => {   
-
-                    if(key.startsWith('day_') && /_\d+$/.test(key)) // remove just the _0 suffix
-                    {   
-                        if(key.endsWith(`_${indexofprog + 1}`)) //if the next suffix appears ex _1 push and delete temp
-                        {
-                            trip_programme.push(tempObjTripProgramme);
-                            tempObjTripProgramme = {};
-                            indexofprog++;
-                        }
-                        cleanedKey = key.replace(/_\d+$/g, ''); // remove the _0 of the key
-                        tempObjTripProgramme[cleanedKey] = updatedData[key];
-                        delete updatedData[key]; //remove the entry
-                    }
-                    if(key.startsWith('trip_') && /_\d+$/.test(key)) // remove trip_ and the _0 suffix
-                    {   
-                        if(key.endsWith(`_${indexoftrip + 1}`)) //if the next suffix appears ex _1 push and delete temp
-                        {
-                            trips.push(tempObjTrips);
-                            tempObjTrips = {};
-                            indexoftrip++;
-                        }
-                        cleanedKey = key.replace(/^(trip_|day_)|_\d+$/g, '');
-                        tempObjTrips[cleanedKey] = updatedData[key];
-                        delete updatedData[key]; //remove the entry dont need no more
-                    }
-                                 
-                    const isNotEmpty = obj => Object.keys(obj).length > 0; //define Method
-                    if(currIndex === array.length - 1) { // if last loop //check if have something in temp, and push if do and empty temp objects.
-                        if (isNotEmpty(tempObjTrips)) {
-                            trips.push(tempObjTrips);
-                            tempObjTrips = {};
-                        }
-                        if (isNotEmpty(tempObjTripProgramme)){
-                            trip_programme.push(tempObjTripProgramme);
-                            tempObjTripProgramme = {};
-                        }
-                    }
-                });
-
-                // Object.keys(updatedData).forEach(function (key) {
-                // if (/_\d/.test(key)) {
-                //     delete updatedData[key];
-                // }
-                // });
-                updatedData.trips = trips;
-                updatedData.trip_programme = trip_programme;
-
-                console.log('NEW');
-                console.table(updatedData);
-
-                if (updatedData.trip_comment) {
-                    try {
-                        updatedData.trip_comment = JSON.parse(updatedData.trip_comment);
-                    } catch (error) {
-                        console.error('Error parsing trip_comment:', error);
-                    }
-                }
-                updatedData.isactive = updatedData.isactive === 'on';
-
-                if (updatedData.trips && Array.isArray(updatedData.trips)) {
-                updatedData.trips.forEach(trip => {
-                    if (trip.hasOwnProperty('isguaranteed')) {
-                        trip.isguaranteed = trip.isguaranteed === 'on';
-                    }
-                });
-            }
-
-                // Log the data being sent
-                console.log('Updated Data:', JSON.stringify(updatedData, null, 2));
-                console.table('Updated Data:', updatedData);
-
-                const response = await fetch(`<%= baseUrl %>/api/trips/${tripId}`, {
-                    method: 'PATCH',
-                    body: JSON.stringify(updatedData),
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                });
-
-                if (response.ok) {
-                    alert('Trip updated successfully!');
-                } else {
-                    const errorData = await response.json();
-                    console.error('Error Response:', errorData);
-                    alert('Failed to update trip. Error: ' + errorData.message);
-                }
-            });
-        });
-
-        function populateForm(tripData) {
-            document.getElementById('trip_name').value = tripData.trip_name;
-            document.getElementById('trip_category').value = tripData.trip_category;
-            document.getElementById('trip_transport').value = tripData.trip_transport;
-            document.getElementById('trip_duration').value = tripData.trip_duration;
-            tinymce.get('trip_description').setContent(tripData.trip_description);
-            document.getElementById('trip_programme_sdesc').value = tripData.trip_programme_sdesc;
-            document.getElementById('trip_pickuppoints').value = tripData.trip_pickuppoints.join(',');
-            document.getElementById('trip_comment').value = JSON.stringify(tripData.trip_comment);
-            document.getElementById('isactive').checked = tripData.isactive;
-
-            // Populate day fields
-            const dayContainer = document.getElementById('trip_programme_container');
-            dayContainer.innerHTML = '';
-            tripData.trip_programme.forEach((day, index) => {
-                const dayFields = document.createElement('div');
-                dayFields.className = 'day-fields';
-                dayFields.innerHTML = `
-                    <label for="day_title_${index}">Day Title:</label>
-                    <input type="text" id="day_title_${index}" name="day_title_${index}" value="${day.day_title}" required>
-                    <label for="day_desc_${index}">Day Description:</label>
-                    <textarea id="day_desc_${index}" name="day_desc_${index}">${day.day_desc}</textarea>
-                    <label for="day_media_${index}">Day Media (comma-separated):</label>
-                    <input type="text" id="day_media_${index}" name="day_media_${index}" value="${day.day_media.join(',')}">
-                `;
-                dayContainer.appendChild(dayFields);
-            });
-
-            // Populate trip fields
-            const tripContainer = document.getElementById('trips_container');
-            tripContainer.innerHTML = '';
-            tripData.trips.forEach((trip, index) => {
-                tripIndex++;
-                let date = new Date(trip.date);
-                let formattedDate = date.toISOString().split('T')[0];
-                let formattedTime = date.toISOString().split('T')[1];
-                // console.table(tripData);
-                // console.table(tripData.trips);
-                const tripFields = document.createElement('div');
-                tripFields.className = 'trip-fields';
-                tripFields.innerHTML = `
-                    <br></br>
-                    <label for="trip_date_${index}">Date:</label>
-                    <input type="date" id="trip_date_${index}" name="trip_date_${index}" value="${formattedDate}" required>
-                    <label for="trip_time_${index}">Time:</label>
-                    <input type="time" id="trip_time_${index}" name="trip_time_${index}" value="${trip.time}" required>
-                    <label for="trip_discount_${index}">Discount:</label>
-                    <input type="number" id="trip_discount_${index}" name="trip_discount_${index}" value="${trip.discount}" required>
-                    <label for="trip_cost_${index}">Cost:</label>
-                    <input type="number" id="trip_cost_${index}" name="trip_cost_${index}" value="${trip.cost}" required>
-                    <label for="trip_isguaranteed_${index}">Is Guaranteed:</label>
-                    <input type="checkbox" id="trip_isguaranteed_${index}" name="trip_isguaranteed_${index}" ${trip.isguaranteed ? 'checked' : ''}>
-                    <label for="trip_seatstotal_${index}">Seats Total:</label>
-                    <input type="text" id="trip_seatstotal_${index}" name="trip_seatstotal_${index}" value="${trip.seatstotal}" required>
-                    <label for="trip_seatstaken_${index}">Seats Taken:</label>
-                    <input type="text" id="trip_seatstaken_${index}" name="trip_seatstaken_${index}" value="${trip.seatstaken}" required>
-                    <label for="trip_seatsoccupied_${index}">Seats Occupied (comma-separated):</label>
-                    <input type="text" id="trip_seatsoccupied_${index}" name="trip_seatsoccupied_${index}" value="${trip.seatsoccupied.join(',')}">
-                `;
-                tripContainer.appendChild(tripFields);
-            });
+        .day-fields, .trip-fields {
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            padding: 10px;
         }
-    </script>
+        .photo-preview {
+            display: inline-block;
+            margin: 5px;
+            position: relative;
+        }
+        .photo-preview img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+        }
+        .photo-preview .delete-photo {
+            position: absolute;
+            top: 0;
+            right: 0;
+        }
+    </style>
 </head>
 <body>
     <h1>Edit Trip</h1>
@@ -334,23 +91,29 @@
         <label for="trip_description">Trip Description:</label>
         <textarea id="trip_description" name="trip_description"></textarea>
 
+        <label>Existing Photos:</label>
+        <div id="existing_photos_container"></div>
+        <label for="trip_fotos">Upload New Trip Photos:</label>
+        <input type="file" id="trip_fotos" name="photos" multiple>
+
+
         <label for="trip_programme_sdesc">Trip Programme Short Description:</label>
         <textarea id="trip_programme_sdesc" name="trip_programme_sdesc"></textarea>
 
         <label for="trip_programme">Trip Programme:</label>
-        <div id="trip_programme_container">
-
-        </div>
+        <div id="trip_programme_container"></div>
+        <button type="button" id="addDayButton">Add Day</button>
 
         <label for="trip_pickuppoints">Trip Pickup Points (comma-separated):</label>
         <input type="text" id="trip_pickuppoints" name="trip_pickuppoints">
 
         <label for="trip_comment">Trip Comments:</label>
         <textarea id="trip_comment" name="trip_comment"></textarea>
-        <button type="button" id="addTripButton">Add More Trip Dates</button>
+
         <label for="trips">Trips:</label>
-        <div id="trips_container">
-        </div>
+        <div id="trips_container"></div>
+        <button type="button" id="addTripButton">Add More Trip Dates</button>
+        
 
         <label for="isactive">Is Active:</label>
         <input type="checkbox" id="isactive" name="isactive">
@@ -358,5 +121,310 @@
         <button type="submit">Save Changes</button>
         <button type="button" id="deleteButton" class="delete-button" disabled>Delete Trip</button>
     </form>
+
+<script>
+    tinymce.init({
+        selector: '#trip_description',
+        license_key: 'gpl',
+        plugins: 'a11ychecker advlist advcode advtable autolink checklist markdown lists link image charmap preview anchor searchreplace visualblocks powerpaste fullscreen formatpainter insertdatetime media table help wordcount',
+        toolbar: 'undo redo | formatpainter casechange blocks | bold italic backcolor | alignleft aligncenter alignright justify | bullist numlist checklist outdent indent | removeformat | a11ycheck code table help'
+    });
+
+    let tripIndex = 0;
+    let dayCount = 0;
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const tripSelect = document.getElementById('trip_select');
+        const deleteButton = document.getElementById('deleteButton');
+        const addDayButton = document.getElementById('addDayButton');
+        const dayContainer = document.getElementById('trip_programme_container');
+
+        tripSelect.addEventListener('change', async function() {
+            tripIndex = 0;
+            const tripId = tripSelect.value;
+            if (tripId) {
+                const response = await fetch(`<%= baseUrl %>/api/trips/${tripId}`);
+                const tripData = await response.json();
+                populateForm(tripData);
+                deleteButton.disabled = false;
+            } else {
+                deleteButton.disabled = true;
+            }
+        });
+
+        deleteButton.addEventListener('click', async function() {
+            const tripId = tripSelect.value;
+            if (tripId && confirm('Are you sure you want to delete this trip?')) {
+                const response = await fetch(`<%= baseUrl %>/api/trips/${tripId}`, { method: 'DELETE' });
+                if (response.ok) {
+                    alert('Trip deleted successfully!');
+                    location.reload();
+                } else {
+                    const errorData = await response.json();
+                    alert('Failed to delete trip. Error: ' + errorData.message);
+                }
+            }
+        });
+
+        addDayButton.addEventListener('click', function() {
+            dayCount = dayContainer.getElementsByClassName('day-fields').length;
+            const dayFields = document.createElement('div');
+            dayFields.className = 'day-fields';
+            dayFields.innerHTML = `
+                <hr>
+                <label for="day_title_${dayCount}">Day Title:</label>
+                <input type="text" id="day_title_${dayCount}" name="day_title_${dayCount}" required>
+                <label for="day_desc_${dayCount}">Day Description:</label>
+                <textarea id="day_desc_${dayCount}" name="day_desc_${dayCount}"></textarea>
+                <label>Existing Day Media:</label>
+                <div id="existing_day_media_container_${dayCount}"></div>
+                <label for="day_media_${dayCount}">Upload New Day Media:</label>
+                <input type="file" id="day_media_${dayCount}" name="day_media_${dayCount}" multiple>
+            `;
+            dayContainer.appendChild(dayFields);
+
+            tinymce.init({
+                selector: `#day_desc_${dayCount}`,
+                license_key: 'gpl',
+                plugins: 'a11ychecker advlist advcode advtable autolink checklist markdown lists link image charmap preview anchor searchreplace visualblocks powerpaste fullscreen formatpainter insertdatetime media table help wordcount',
+                toolbar: 'undo redo | formatpainter casechange blocks | bold italic backcolor | alignleft aligncenter alignright justify | bullist numlist checklist outdent indent | removeformat | a11ycheck code table help'
+            });
+            dayCount++;
+        });
+        
+        document.getElementById('addTripButton').addEventListener('click', function() {
+            const tripContainer = document.getElementById('trips_container');
+            const tripFields = document.createElement('div');
+            tripFields.className = 'trip-fields';
+            tripFields.innerHTML = `
+                <label for="trip_date_${tripIndex}">Date:</label>
+                <input type="date" id="trip_date_${tripIndex}" name="trip_date_${tripIndex}" required>
+                <label for="trip_time_${tripIndex}">Time:</label>
+                <input type="time" id="trip_time_${tripIndex}" name="trip_time_${tripIndex}" required>
+                <label for="trip_discount_${tripIndex}">Discount:</label>
+                <input type="number" id="trip_discount_${tripIndex}" name="trip_discount_${tripIndex}" required>
+                <label for="trip_cost_${tripIndex}">Cost:</label>
+                <input type="number" id="trip_cost_${tripIndex}" name="trip_cost_${tripIndex}" required>
+                <label for="trip_isguaranteed_${tripIndex}">Is Guaranteed:</label>
+                <input type="checkbox" id="trip_isguaranteed_${tripIndex}" name="trip_isguaranteed_${tripIndex}">
+                <label for="trip_seatstotal_${tripIndex}">Seats Total:</label>
+                <input type="text" id="trip_seatstotal_${tripIndex}" name="trip_seatstotal_${tripIndex}" value="48" required>
+                <label for="trip_seatstaken_${tripIndex}">Seats Taken:</label>
+                <input type="text" id="trip_seatstaken_${tripIndex}" name="trip_seatstaken_${tripIndex}" value="1" required>
+                <label for="trip_seatsoccupied_${tripIndex}">Seats Occupied (comma-separated):</label>
+                <input type="text" id="trip_seatsoccupied_${tripIndex}" name="trip_seatsoccupied_${tripIndex}">
+            `;
+            tripContainer.appendChild(tripFields);
+            tripIndex++;
+        });
+
+        // MODIFIED: Form submission logic to handle file uploads
+        document.getElementById('editTripForm').addEventListener('submit', async function(event) {
+            event.preventDefault();
+            tinymce.triggerSave();
+
+            const formData = new FormData(document.getElementById('editTripForm'));
+            const tripId = document.getElementById('trip_select').value;
+            
+            // Step 1: Upload new files
+            const uploadResponse = await fetch('<%= baseUrl %>/upload2', {
+                method: 'POST',
+                body: formData,
+                 headers: {
+                    'daycount': dayCount
+                }
+            });
+            const filePaths = await uploadResponse.json();
+
+            let newPhotos = [];
+            let newDayPhotos = [];
+            filePaths.forEach(file => {
+                if (file.fieldname === "photos") {
+                    newPhotos.push(file.path);
+                } else if (file.fieldname.startsWith("day_media_")) {
+                    const index = parseInt(file.fieldname.split("_")[2]);
+                    if (!newDayPhotos[index]) {
+                        newDayPhotos[index] = [];
+                    }
+                    newDayPhotos[index].push(file.path);
+                }
+            });
+
+            // Step 2: Build the final data object for PATCH request
+            const updatedData = {
+                trip_name: formData.get('trip_name'),
+                trip_category: formData.get('trip_category'),
+                trip_transport: formData.get('trip_transport'),
+                trip_duration: formData.get('trip_duration'),
+                trip_description: formData.get('trip_description'),
+                trip_programme_sdesc: formData.get('trip_programme_sdesc'),
+                trip_pickuppoints: formData.get('trip_pickuppoints').split(','),
+                trip_comment: JSON.parse(formData.get('trip_comment')),
+                isactive: formData.get('isactive') === 'on',
+                trip_fotos: [],
+                trip_programme: [],
+                trips: []
+            };
+
+            // Gather existing main photos that weren't deleted
+            document.querySelectorAll('#existing_photos_container input[type="checkbox"]:checked').forEach(checkbox => {
+                updatedData.trip_fotos.push(checkbox.value);
+            });
+            updatedData.trip_fotos = updatedData.trip_fotos.concat(newPhotos);
+
+            // Gather data for each day
+            const dayFields = document.getElementsByClassName('day-fields');
+            for (let i = 0; i < dayFields.length; i++) {
+                const day_title = formData.get(`day_title_${i}`);
+                const day_desc = tinymce.get(`day_desc_${i}`).getContent();
+                let day_media = [];
+
+                // Gather existing day media that weren't deleted
+                document.querySelectorAll(`#existing_day_media_container_${i} input[type="checkbox"]:checked`).forEach(checkbox => {
+                    day_media.push(checkbox.value);
+                });
+                
+                // Add new day media
+                if (newDayPhotos[i]) {
+                    day_media = day_media.concat(newDayPhotos[i]);
+                }
+
+                updatedData.trip_programme.push({ day_title, day_desc, day_media });
+            }
+
+            // Gather data for each trip instance
+            const tripFields = document.getElementsByClassName('trip-fields');
+            for (let i = 0; i < tripFields.length; i++) {
+                updatedData.trips.push({
+                    date: formData.get(`trip_date_${i}`),
+                    time: formData.get(`trip_time_${i}`),
+                    discount: formData.get(`trip_discount_${i}`),
+                    cost: formData.get(`trip_cost_${i}`),
+                    isguaranteed: formData.get(`trip_isguaranteed_${i}`) === 'on',
+                    seatstotal: formData.get(`trip_seatstotal_${i}`),
+                    seatstaken: formData.get(`trip_seatstaken_${i}`),
+                    seatsoccupied: formData.get(`trip_seatsoccupied_${i}`).split(',')
+                });
+            }
+
+            // Step 3: Send the final PATCH request
+            const patchResponse = await fetch(`<%= baseUrl %>/api/trips/${tripId}`, {
+                method: 'PATCH',
+                body: JSON.stringify(updatedData),
+                headers: { 'Content-Type': 'application/json' }
+            });
+
+            if (patchResponse.ok) {
+                alert('Trip updated successfully!');
+                location.reload();
+            } else {
+                const errorData = await patchResponse.json();
+                alert('Failed to update trip. Error: ' + errorData.message);
+            }
+        });
+    });
+
+    function populateForm(tripData) {
+        document.getElementById('trip_name').value = tripData.trip_name;
+        document.getElementById('trip_category').value = tripData.trip_category;
+        document.getElementById('trip_transport').value = tripData.trip_transport;
+        document.getElementById('trip_duration').value = tripData.trip_duration;
+        tinymce.get('trip_description').setContent(tripData.trip_description || '');
+        document.getElementById('trip_programme_sdesc').value = tripData.trip_programme_sdesc;
+        document.getElementById('trip_pickuppoints').value = tripData.trip_pickuppoints.join(',');
+        document.getElementById('trip_comment').value = JSON.stringify(tripData.trip_comment);
+        document.getElementById('isactive').checked = tripData.isactive;
+
+        // MODIFIED: Populate existing photos
+        const photosContainer = document.getElementById('existing_photos_container');
+        photosContainer.innerHTML = '';
+        if (tripData.trip_fotos && tripData.trip_fotos.length > 0) {
+            tripData.trip_fotos.forEach(photoPath => {
+                const photoDiv = document.createElement('div');
+                photoDiv.className = 'photo-preview';
+                photoDiv.innerHTML = `
+                    <img src="<%= baseUrl %>/${photoPath.replace(/\\/g, '/')}" alt="Trip Photo">
+                    <label><input type="checkbox" name="existing_photos" value="${photoPath}" checked> Keep</label>
+                `;
+                photosContainer.appendChild(photoDiv);
+            });
+        }
+
+        const dayContainer = document.getElementById('trip_programme_container');
+        dayContainer.innerHTML = '';
+        tinymce.remove('textarea[id^="day_desc_"]');
+        dayCount = 0;
+        
+        tripData.trip_programme.forEach((day, index) => {
+            const dayFields = document.createElement('div');
+            dayFields.className = 'day-fields';
+            dayFields.innerHTML = `
+                <hr>
+                <label for="day_title_${index}">Day Title:</label>
+                <input type="text" id="day_title_${index}" name="day_title_${index}" value="${day.day_title}" required>
+                <label for="day_desc_${index}">Day Description:</label>
+                <textarea id="day_desc_${index}" name="day_desc_${index}">${day.day_desc}</textarea>
+                <label>Existing Day Media:</label>
+                <div id="existing_day_media_container_${index}"></div>
+                <label for="day_media_${index}">Upload New Day Media:</label>
+                <input type="file" id="day_media_${index}" name="day_media_${index}" multiple>
+            `;
+            dayContainer.appendChild(dayFields);
+            
+            // MODIFIED: Populate existing day media
+            const dayMediaContainer = document.getElementById(`existing_day_media_container_${index}`);
+            if (day.day_media && day.day_media.length > 0) {
+                day.day_media.forEach(mediaPath => {
+                    const mediaDiv = document.createElement('div');
+                    mediaDiv.className = 'photo-preview';
+                    mediaDiv.innerHTML = `
+                        <img src="<%= baseUrl %>/${mediaPath.replace(/\\/g, '/')}" alt="Day Media">
+                        <label><input type="checkbox" name="existing_day_media_${index}" value="${mediaPath}" checked> Keep</label>
+                    `;
+                    dayMediaContainer.appendChild(mediaDiv);
+                });
+            }
+
+            tinymce.init({
+                selector: `#day_desc_${index}`,
+                license_key: 'gpl',
+                plugins: 'a11ychecker advlist advcode advtable autolink checklist markdown lists link image charmap preview anchor searchreplace visualblocks powerpaste fullscreen formatpainter insertdatetime media table help wordcount',
+                toolbar: 'undo redo | formatpainter casechange blocks | bold italic backcolor | alignleft aligncenter alignright justify | bullist numlist checklist outdent indent | removeformat | a11ycheck code table help'
+            });
+            dayCount++;
+        });
+
+        const tripContainer = document.getElementById('trips_container');
+        tripContainer.innerHTML = '';
+        tripIndex = 0;
+        tripData.trips.forEach((trip, index) => {
+            let date = new Date(trip.date);
+            let formattedDate = date.toISOString().split('T')[0];
+            const tripFields = document.createElement('div');
+            tripFields.className = 'trip-fields';
+            tripFields.innerHTML = `
+                <label for="trip_date_${index}">Date:</label>
+                <input type="date" id="trip_date_${index}" name="trip_date_${index}" value="${formattedDate}" required>
+                <label for="trip_time_${index}">Time:</label>
+                <input type="time" id="trip_time_${index}" name="trip_time_${index}" value="${trip.time}" required>
+                <label for="trip_discount_${index}">Discount:</label>
+                <input type="number" id="trip_discount_${index}" name="trip_discount_${index}" value="${trip.discount}" required>
+                <label for="trip_cost_${index}">Cost:</label>
+                <input type="number" id="trip_cost_${index}" name="trip_cost_${index}" value="${trip.cost}" required>
+                <label for="trip_isguaranteed_${index}">Is Guaranteed:</label>
+                <input type="checkbox" id="trip_isguaranteed_${index}" name="trip_isguaranteed_${index}" ${trip.isguaranteed ? 'checked' : ''}>
+                <label for="trip_seatstotal_${index}">Seats Total:</label>
+                <input type="text" id="trip_seatstotal_${index}" name="trip_seatstotal_${index}" value="${trip.seatstotal}" required>
+                <label for="trip_seatstaken_${index}">Seats Taken:</label>
+                <input type="text" id="trip_seatstaken_${index}" name="trip_seatstaken_${index}" value="${trip.seatstaken}" required>
+                <label for="trip_seatsoccupied_${index}">Seats Occupied (comma-separated):</label>
+                <input type="text" id="trip_seatsoccupied_${index}" name="trip_seatsoccupied_${index}" value="${trip.seatsoccupied.join(',')}">
+            `;
+            tripContainer.appendChild(tripFields);
+            tripIndex++;
+        });
+    }
+</script>
+
 </body>
 </html>
