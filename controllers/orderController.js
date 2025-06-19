@@ -78,29 +78,34 @@ exports.updateOrder = async (req, res) => {
         res.status(400).send(error);
     }
 };
-exports.updateOrderDocument = async (orderid, doc) => {
-    // const updates = Object.keys(req.body);
-    // const allowedUpdates = ['orderNumber', 'tripTypeId', 'tripId', 'users', 'userEmail', 'userPhoneNumber', 'userAcc', 'extras', 'cityOfDeparture','documents'];
-    // const isValidOperation = updates.every(update => allowedUpdates.includes(update));
-
-    // if (!isValidOperation) {
-    //     return res.status(400).send({ error: 'Invalid updates!' });
-    // }
-
+exports.updateOrderDocument = async (orderId, docPath) => {
     try {
-        const order = await Order.findById(orderid);
-        if (!order) {
-            return res.status(404).send();
-        }
-        order.documents.push(doc);
+        // Find the order by its ID
+        const order = await Order.findById(orderId);
 
-        // updates.forEach(update => order[update] = req.body[update]);
+        // If the order doesn't exist, throw an error to be caught by the route handler
+        if (!order) {
+            throw new Error(`Order with ID ${orderId} not found.`);
+        }
+
+        // Add the new document path to the documents array
+        order.documents.push(docPath);
+
+        // Save the updated order to the database
         await order.save();
-        res.send(order);
+        
+        console.log(`Successfully updated order ${orderId} with document: ${docPath}`);
+
+        // Return the updated order object (optional, but good practice)
+        return order;
+
     } catch (error) {
-        res.status(400).send(error);
+        // If any error occurs, re-throw it so the calling function's catch block can handle it.
+        console.error('Error in updateOrderDocument:', error);
+        throw error;
     }
 };
+
 
 // Delete an order by ID
 exports.deleteOrder = async (req, res) => {
