@@ -4,9 +4,9 @@ const crudController = require('../controllers/crudController');
 const orderController = require('../controllers/orderController');
 const orderRoute = require('../routes/orderRoute');
 const stripe = require('stripe')(process.env.STRIPE_PRIVATE);
-const {transporter, message} = require('../middleware/mailer');
 const baseUrl = process.env.BASE_URL;
 const generateDocument = require('../middleware/docx.js');
+const { sendTripTicketEmail } = require('../middleware/ticketService.js');
 
 let now = new Date();
 
@@ -204,7 +204,7 @@ router.get('/complete', async (req, res) => {
                 city: traveller.city,
                 cityOfDeparture: traveller.departureCity,
                 placeOnBus: traveller.seat,
-                pricePaid: travelObj.cost,
+                pricePaid: travelObj.cost - (travelObj.cost / 100 * travelObj.discount),
                 isAdvance: advance,
                 extras: null
             })),
@@ -220,82 +220,119 @@ router.get('/complete', async (req, res) => {
 
         // Create the order
         const newOrder = await orderController.createOrderFromData(orderData);
-                const testdata = {
-            date: '2025-03-04',
-            orderNumber: '123456',
-            mainNumber: '37061436986',
-            mainEmail: 'asd@gmail.com',
-            mainAddress:'Kaunas, kauno g. 5',
-            tripName: 'Tripas vienas',
-            tripDate: '2025-01-01',
-            tripDuration: '3 dienos',
-            numberofCust: '3 žmonės',
-            totalPrice: '360',
-            users: [
-                {   name:'pijus', 
-                    birthdate:'1997-07-05',
-                    phoneNumber:'37061436986',
-                    pickupPlace:'Vienozinskis',
-                    occupiedSeat:'B2',
-                    price:'80'
-                },
-                {   name:'pijus2', 
-                    birthdate:'1997-07-05',
-                    phoneNumber:'37061436986',
-                    pickupPlace:'Vienozinskis',
-                    occupiedSeat:'B3',
-                    price:'360'
-                },
-                {   name:'pijus3', 
-                    birthdate:'1997-07-05',
-                    phoneNumber:'37061436986',
-                    pickupPlace:'Vienozinskis',
-                    occupiedSeat:'B4',
-                    price:'200'
-                },
-                {   name:'pijus4', 
-                    birthdate:'1997-07-05',
-                    phoneNumber:'37061436986',
-                    pickupPlace:'Vienozinskis',
-                    occupiedSeat:'C1',
-                    price:'150'
-                },
+        //         const testdata = {
+        //     date: '2025-03-04',
+        //     orderNumber: '123456',
+        //     mainNumber: '37061436986',
+        //     mainEmail: 'asd@gmail.com',
+        //     mainAddress:'Kaunas, kauno g. 5',
+        //     tripName: 'Tripas vienas',
+        //     tripDate: '2025-01-01',
+        //     tripDuration: '3 dienos',
+        //     numberofCust: '3 žmonės',
+        //     totalPrice: '360',
+        //     users: [
+        //         {   name:'pijus', 
+        //             birthdate:'1997-07-05',
+        //             phoneNumber:'37061436986',
+        //             pickupPlace:'Vienozinskis',
+        //             occupiedSeat:'B2',
+        //             price:'80'
+        //         },
+        //         {   name:'pijus2', 
+        //             birthdate:'1997-07-05',
+        //             phoneNumber:'37061436986',
+        //             pickupPlace:'Vienozinskis',
+        //             occupiedSeat:'B3',
+        //             price:'360'
+        //         },
+        //         {   name:'pijus3', 
+        //             birthdate:'1997-07-05',
+        //             phoneNumber:'37061436986',
+        //             pickupPlace:'Vienozinskis',
+        //             occupiedSeat:'B4',
+        //             price:'200'
+        //         },
+        //         {   name:'pijus4', 
+        //             birthdate:'1997-07-05',
+        //             phoneNumber:'37061436986',
+        //             pickupPlace:'Vienozinskis',
+        //             occupiedSeat:'C1',
+        //             price:'150'
+        //         },
                 
-            ]
-        }
-        const outputPath = generateDocument(testdata);
-        orderController.updateOrderDocument(newOrder, outputPath)
+        //     ]
+        // }
 
+            const documentData = {
+                date: new Date().toLocaleDateString('lt-LT'),
+                orderNumber: newOrder._id.toString(), // Use the unique order ID
+                mainNumber: travellersArr[0].tel,
+                mainEmail: travellersArr[0].email,
+                mainAddress: travellersArr[0].city,
+                tripName: travelObj.trip_name,
+                tripDate: new Date(travelObj.date).toLocaleDateString('lt-LT'),
+                tripDuration: 'N/A', // You can get this from travelObj if available
+                numberofCust: travellersArr.length,
+                totalPrice: (orderData.users[0].pricePaid * travellersArr.length).toFixed(2),
+                users: travellersArr.map(t => ({
+                    name: `${t.fname} ${t.lname}`,
+                    birthdate: new Date(t.birthdate).toLocaleDateString('lt-LT'),
+                    phoneNumber: t.tel,
+                    pickupPlace: t.departureCity,
+                    occupiedSeat: t.seat,
+                    price: orderData.users[0].pricePaid.toFixed(2)
+                }))
+        };
+        const outputPath = await generateDocument(documentData, newOrder._id.toString());
+
+        await orderController.updateOrderDocument(newOrder, outputPath)
+        
+
+        await sendTripTicketEmail(
+            travellersArr[0].email,       // Customer's email
+            travellersArr[0].fname,       // Customer's first name
+            travelObj.trip_name,          // Name of the trip
+            travelObj.date,               // Date of the trip
+            outputPath                    // Path to the generated document
+        );
 
 
         // Update trip details
-        const taken = travelObj.seatstaken + travellersArr.length;
-        let seats = travelObj.seatsoccupied[0];
+        const taken = Number(travelObj.seatstaken) + travellersArr.length;
+        // let seats = travelObj.seatsoccupied[0];
 
-        travellersArr.forEach(user => {
-            seats = seats.concat(', ' + user.seat);
-        });
+        // travellersArr.forEach(user => {
+        //     seats = seats.concat(', ' + user.seat);
+        // });
+
+        let seats = travelObj.seatsoccupied[0] || '';
+        const newSeats = travellersArr.map(user => user.seat).join(',');
+        
+        // Also a good idea to ensure seats isn't an array with an empty string
+        if (seats && newSeats) {
+            seats += ',' + newSeats;
+        } else {
+            seats = newSeats;
+        }
 
         await crudController.updateTripSeats(travelObj._id, taken, seats);
         // console.table(newOrder);
 
         // Send a success response
-        res.send(`
-        <!DOCTYPE html>
-        <html>
-        <head>
-            <title>Mokėjimas buvo sėkmingas</title>
-        </head>
-        <body>
-            <h1>Your payment was successful</h1>
-            <script>
-                setTimeout(function() {
-                    window.location.href = '/order-complete';
-                }, 3000); // Redirect after 3 seconds
-            </script>
-        </body>
-        </html>
-    `);
+            res.send(`
+                        <!DOCTYPE html>
+                        <html>
+                        <head><title>Mokėjimas sėkmingas</title></head>
+                        <body>
+                            <h1>Apmokėjimas gautas!</h1>
+                            <p>Jūsų kelionės patvirtinimas ir sutartis išsiųsta Jums el. paštu. Netrukus būsite nukreipti į pagrindinį puslapį.</p>
+                            <script>
+                                setTimeout(() => { window.location.href = '/'; }, 5000);
+                            </script>
+                        </body>
+                        </html>
+            `);
     } catch (error) {
         console.error('Error processing order:', error);
         res.status(500).send('Error processing order');
